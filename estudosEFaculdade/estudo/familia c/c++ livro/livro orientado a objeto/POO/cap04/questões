@@ -1,0 +1,5 @@
+questões
+01)estruturas são tipos de dados.quando vc deve agrupar um grupo de variaveis de varios tipos como registro alem de economizar linhas de códigos.;
+02)Sim. em casos que você queira usar altura largura e afins.;
+03)estruturas são varios dados de tipos diferentes, já enumerados são do mesmo tipo mas de forma numeral. ex: enumeros dias da semana. estruturas { char nome,int idade, float altura};
+04)Diferenças entre estruturas e classes compreendem a definição de uma estrutura são de natureza pública (oir default). já em uma classe, todos os membros são privados.ex: estruturas definidas como : struct ex {int a, int b, int c};class ex{private int a, private int b, private int c}

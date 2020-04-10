@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Generated with glade 3.22.1 -->
+<interface>
+  <requires lib="gtk+" version="3.20"/>
+  <object class="GtkWindow" id="window1">
+    <property name="can_focus">False</property>
+    <signal name="destroy" handler="onDestroy" swapped="no" />
+    <child>
+      <placeholder/>
+    </child>
+    <child>
+      <object class="GtkButton" id="nextwindow2">
+        <property name="label" translatable="yes">window2</property>
+        <property name="visible">True</property>
+        <property name="can_focus">True</property>
+        <property name="receives_default">True</property>
+        <signal name="pressed" handler="onButtonPressed2" swapped="no"/>
+      </object>
+    </child>
+  </object>
+  <object class="GtkWindow" id="window2">
+    <property name="can_focus">False</property>
+    <child>
+      <placeholder/>
+    </child>
+    <child>
+      <object class="GtkButton" id="nextwindow1">
+        <property name="label" translatable="yes">window1</property>
+        <property name="visible">True</property>
+        <property name="can_focus">True</property>
+        <property name="receives_default">True</property>
+        <signal name="pressed" handler="onButtonPressed1" swapped="no"/>
+      </object>
+    </child>
+  </object>
+</interface>

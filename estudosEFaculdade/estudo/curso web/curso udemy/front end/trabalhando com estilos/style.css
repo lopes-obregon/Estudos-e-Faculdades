@@ -1,0 +1,79 @@
+/*Meu primeiro arquivo CSS*/
+/*seletor{
+	propriedade:valor;
+	propriedade2: valor2;
+}*/
+/* tags*/
+p{
+	color: white;
+	/*background-color: black; muda a cor apenas do fundo da propriedade*/
+	font-size: 15px;
+	font-family: Helvetica, arial; /*muda a fonte; fonte com nomes separados obrigatório as ""*/
+	text-shadow: 1px 1px 1px #111111;
+}
+body{
+	background-color: black;
+}
+/* * para toda a pagina*/
+*{
+	margin: 0;
+	padding: 0;
+	font-family: Helvetica, arial;
+}
+
+header{
+	background-color: #35b8b0;
+	height: 80px; /*altura*/
+	padding: 20px;/*marguem interna*/
+}
+footer{
+	clear: both;
+	background-color: #35b8b0;
+	height: 50px;
+	text-align: center;/*centraliza o texto*/
+	padding: 10px;
+	font-size: 12px;
+
+}
+h1{
+	color: #FF7F50;
+	text-shadow: 1px 1px 1px #111111;
+	text-align: center;
+	margin: 0 0 50px 0;
+}
+/*id*/
+#principal{
+	background-image: url('cidade.jpg');
+	clear: both;
+	background-size:100%; 
+	min-height: 400px/*cresce conforme o conteudo*/
+	padding:80px 0 0 0;
+	/*width:60%; /*largura*/
+	/*float: left; /*propriedade que faz ficar uma do lado da outra*/*/
+}
+#logo{
+	float: left;
+
+}
+#menu{
+	float: right;
+	margin-top: 30px;
+}
+#menu a{
+	text-decoration: none;/*remove o sublinhado*/
+	color: black;
+	text-shadow: 1px 1px #111111;
+	padding: 20px;
+}
+#menu a:hover{
+	background-color: #9999EE;
+	color: #35b8b0;
+}
+/*class*/
+.container{
+	width: 960px;
+	margin: auto;
+}
+.efeito{
+	background-color: rgba(0, 0, 0, 0.5);
+}

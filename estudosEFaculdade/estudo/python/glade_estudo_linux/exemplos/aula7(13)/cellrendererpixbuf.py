@@ -1,0 +1,33 @@
+import gi
+gi.require_version("Gtk", "3.0")
+from gi.repository import Gtk
+class CellRendererPixBufWindow(Gtk.Window):
+    def __init__(self):
+        Gtk.Window.__init__(self, title="CellRenderePixbuf Example")
+
+        self.set_default_size(200, 200)
+
+        self.listsotre = Gtk.ListStore(str, str)
+        self.listsotre.append(["New", "document-new"])
+        self.listsotre.append(["Open", "document-open"])
+        self.listsotre.append(["Save", "document-save"])
+
+        treeview = Gtk.TreeView(model=self.listsotre)
+
+        renderer_text = Gtk.CellRendererText()
+        column_text = Gtk.TreeViewColumn("Text", renderer_text, text=0)
+        treeview.append_column(column_text)
+
+        renderer_pixbuf = Gtk.CellRendererPixbuf()
+
+        column_pixbuf = Gtk.TreeViewColumn("Image", renderer_pixbuf, icon_name=1)
+        treeview.append_column(column_pixbuf)
+
+        self.add(treeview)
+
+
+if __name__ == '__main__':
+    win = CellRendererPixBufWindow()
+    win.connect("destroy", Gtk.main_quit)
+    win.show_all()
+    Gtk.main()

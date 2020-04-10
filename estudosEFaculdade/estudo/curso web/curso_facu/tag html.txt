@@ -1,0 +1,38 @@
+<!Doctype>//tipo de documento no caso html 5
+<html lang ="pt-br">// o tipo da lingua local do site no caso br por ser um site braseileiro.
+<head>
+//tag para cabeçalho
+</head>// fim da tag
+<body>
+//esta tag é a parte que a gente ve no site tudo que ve esta por traz da tag body.
+</body> 
+<h1>// sub-titulos.
+<img src=""/>// caminho para ler a imaguem 
+<header>
+//são para tópicos selecionaveis
+</header>
+<div>
+//A tag <div> serve para alterar o estilo em partes específicas da página e posicionar objetos.
+</div>
+<hgroup>
+//grupo de titulos
+</hgroup>
+tag para quebra de linha
+<br/>//para cada um da uma quebra de linha.
+tag para espaços laterais.
+&nbsp//espaço em branco.
+<p>//para paragrafo;
+&shy para colocar ifem;
+<wbr/>//quebra de silaba
+
+formatação de texto.
+<b></b> // para deixar em negrito;
+<i></i> //para deixar em italico.
+<em>//enfase;
+<span style= "text-decoration: underline;> ("font-weight: bolder)//sublinhado e negrito
+<del>//texto que foi deletado o risco na palavra.
+alinhamento{
+	style= "text-align : center;"//left or rigth
+	style ="text-align: justify;"
+}
+

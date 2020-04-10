@@ -1,0 +1,36 @@
+//Capitulo 01
+//Questões
+
+//01:Quais as principais caracteristicas do paradgigma da programação estruturada?
+/*programação estruturada pag04 seg:1.3.3
+a facil organização do programa. otima organização e facil manutenção para o mesmo.*/
+
+
+//02:Quais as principais caracteristicas do paradigma da(POO) programação orientada a obejetos?
+/*caracteristicas de POO seg:1.4...
+A ideia por trás das linguagens de programação orientada a objetos é combinar em uma entidade tanto os dados quanto as funções que operam sobre esses dados. Tal entidade  é denominada obejetos.
+Outra caracteristica muito importante são as classes e as heranças.Também é possivel declaras quantas variaveis do mesmo tipo quiser, coias que em outras linguaguem não é permitido;*/
+
+//03:QUais as limitações da progrmação estruturada;
+/*programação estruturada seg:1.3.3.
+A medida que o programa se torna maior e mais complexo acaba se tornando "sinais de fraqueza".Outro ponto importanta é que a programação estruturada está focada para executar funções e não objetos;*/
+
+//04:O que é encapsulamento de dados?
+/*seg:1.4.2;
+Encapsulamneto de dados é a ocultação de dados (ou datahiding) são aspectos importantes na descrição da linguaguem orientado a objetos;*/
+
+//05:Qual a diferença de classe e objeto;
+/*classe é uma coleção de objetos similares;
+objeto é combinar em uma única entidade tanto os dados quanto as funções que operam sobre esses dados.
+
+//06:Qual as principais diferença entre a linguaguem c++ e c?
+/*as principais diferanças é que em c++ é que compreendem classe,objetos e a POO;*/
+
+//Exercicios
+
+//01:em que situações é essencial utilizar herança em um programa? Por quê?
+/*
+
+
+//02:Oque é reuso de (artejatos de) software proporcionar? Apresente exemplos.
+/*

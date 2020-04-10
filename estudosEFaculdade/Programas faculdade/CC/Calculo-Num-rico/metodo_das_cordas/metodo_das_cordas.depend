@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1564681159 source:/home/AD/rgm35042/Documentos/cn/metodo_das_cordas/main.c
+	<stdio.h>
+	<stdlib.h>
+	<math.h>
+

@@ -1,0 +1,42 @@
+{% load static %}
+<html>
+    <head>
+        <title>Django Girls blog</title>
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+        <link href='//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="{% static 'css/blog.css' %}">
+    </head>
+    <body>
+        <div class="page-header">
+            {% if user.is_authenticated %}
+                <a href="{% url 'post_new' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a>
+            {% endif %}
+            <h1><a href="/">Django Girls Blog</a></h1>
+        </div>
+        <div class="content container">
+            <div class="row">
+                <div class="col-md-8">
+                    {% block content %}
+                    {% endblock %}
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
+
+        <!--<body>
+                <h1>Olá Mundo de titulo :D</h1>
+                <h2>sub-titulo</h2>
+                <h3>sub-sub-titulo</h3>
+                <p>Olá Mundo!</p>
+                <p>It works!</p>
+                <em>texto (enfatiza o texto)</em>
+                <strong>text(enfaitiza fortemento o texto)</strong>
+                <br>
+                <a>cria um link, href="https://djangogirls.org">link</a>
+                <ul>primeiro item</ul>
+                <li>segundo item/ cria uma lista</li>
+                <div>define uma seção da pagina</div>
+                <p>Parte de baixo é a parte do estudo a de cima é para saber oque cada coisa faz</p>
+            </body>-->

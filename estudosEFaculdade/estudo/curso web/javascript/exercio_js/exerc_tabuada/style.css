@@ -1,0 +1,16 @@
+/*tag*/
+h1{
+	text-align: center;
+}
+body{
+	background-color: blue;
+}
+footer{
+	text-align: center;
+}
+/*id*/
+#container{
+	background-color: white;
+	width: 500px;
+	margin: auto;
+}

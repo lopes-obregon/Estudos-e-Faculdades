@@ -1,0 +1,21 @@
+/*tag*/
+footer{
+	text-align: center;
+}
+body{
+	background-color: orange;
+}
+h1{
+	text-align: center;
+}	
+/*id*/
+#container{
+	background-color: white;
+	width: 550px; 
+	margin: auto;
+
+
+}
+#cand2{
+	margin-left: 80px
+}

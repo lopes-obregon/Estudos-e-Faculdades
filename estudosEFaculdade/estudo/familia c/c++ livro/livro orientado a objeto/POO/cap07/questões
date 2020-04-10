@@ -1,0 +1,21 @@
+questões
+01)Diferença entre estruturas e array é estrutura são varios tipos de dados e array são o mesmo tipo de dados.
+ex:
+array =>  int v[100];
+estruturas => struct var {
+		int c;
+		float b;
+		char a;
+}
+
+02)string é um vetor de caractere, para definir uma string em vetor de array basta colocar em aspas.
+
+03)para declarar o tamnhao de um array basta colocar o valor dentro de colchetes [];
+
+04)sim, para exemplificar vou montar uma parte de código
+ class Dados{
+private:
+	char nome [50];
+ };
+ ou Dados nome [50];
+ 

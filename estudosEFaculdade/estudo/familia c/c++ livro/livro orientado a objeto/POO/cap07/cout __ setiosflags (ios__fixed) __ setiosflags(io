@@ -1,0 +1,2 @@
+cout << setiosflags (ios::fixed) << setiosflags(ios::showpoint) << setprecision(2) << (variavel para exibir);
+  									//exibe ponto decimal			define precisão

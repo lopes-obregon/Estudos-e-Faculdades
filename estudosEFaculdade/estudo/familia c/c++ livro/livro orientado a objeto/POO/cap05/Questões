@@ -1,0 +1,12 @@
+Questões
+01)Funções são instruções ou parte do código. Funções servem para diminuir o tamanho do código, ou para sere chamadas varias vezes.
+
+02)Ocorre um erro no copilador avisando que há um erro na passaguem dos argumentos ou ha passaguem dos argumentos podem dar erro aparecendo lixo.
+
+03)Funções recursivas são funções que obtêm um resultado através de várias chamadas à própia função. Um exempço simples de função recursiva é a função fatorial. Assim o fatorial de n é expresso como: n! = 1 * 2 * 3 * ... * (n-2) * (n-1) * n;
+
+04)Variáveis de referencia você tem acesso  há uma cópia dela. um jeito bastante usando é na passaguem de argumentos por referencias. por exemplo você quer parte inteira e fracionaria de um numéro.
+
+05)funções sobre carregadas são funcôes que são chamadas varias vezes que requer retorno de valores de varios tipos.
+
+06) funções inline são funções com instruções curtas como uma linha de código por exemplo: inline double dolarParaeal(double dolar){ return 1.75 * dolar;}

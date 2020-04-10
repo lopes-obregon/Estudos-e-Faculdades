@@ -1,0 +1,9 @@
+questões
+01)Uma classe consiste em uma coleção de objetos, enquanto cada objetos é uma instância de uma classe.
+
+02)Polimorfismo possibilita que objetos de classes distintas respondam à mesma função de maneira adequada pra cada objetos.
+
+03)construtor faz com que cada objeto se inicialize sozinho. ele é chamado automaticamenta toda vez que um novo obejto é criado.
+Destrutor, tem o principal objetico de liberar memória que foi alocada pelo construtor.
+
+04) emcapsulamento permite delimitar o escopo de uma entidade  definindo o que está dentro e fora da entidade. 

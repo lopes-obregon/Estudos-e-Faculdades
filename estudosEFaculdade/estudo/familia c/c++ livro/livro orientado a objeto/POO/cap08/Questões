@@ -1,0 +1,9 @@
+Questões
+01) Os operadores unários atuam sobre apenas um operando (ou uma variavel). exemplo de operadores unários são os operadores ++ --;
+Os operadores binários podem ser sobrecarregados similarmente como ocorre com os operadores unários.
+
+02)Função friend ssssssão funções que podem acessar aos dados membro de uma classeela pode acessar dados privados de uma classe.
+
+03)Não tenho certeza mas acho que não
+
+04) Não é possivel uma autoatribuição pos se nao for atribuido um incremento ou algo do tipo nada ocorrerá;

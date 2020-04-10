@@ -1,0 +1,227 @@
+@media screen and (max-width:700px) {
+	
+	
+
+	#conteudo .barraLateral #procura {
+		display: none;
+	}
+
+
+	#conteudo .barraLateral {
+		float: none;
+		width: 100%;
+		height: auto;
+		overflow: auto;
+		padding-left: 12%;
+		padding-top: 0px;
+	}
+
+
+	#conteudo .barraLateral hr {
+		display: none;
+	}
+
+
+	#conteudo {
+		position: relative;
+		top: -22px;
+		width: 100%;
+		overflow: hidden;
+	}
+
+
+	#menuBar .menu h2 {
+		display: inline;
+		font-size: medium;
+		padding-right: 6%;
+	}
+
+
+
+	.menu ul ul {
+		position: relative;
+		visibility: hidden;
+		display: flex;
+
+	}
+	
+	.menu ul li:hover ul {
+		visibility: visible;
+		background-color: black;
+	}
+
+	
+
+	#menuBar .menu ul li {
+		display: inline;
+		font-size: medium;
+		padding-left: 0%;
+		padding-right: 3%;
+	}
+
+	#menuBar .menu ul li .sub_menu a {
+		display: block;
+	}
+
+
+	.barraLateral #menuBar .menu ul .notimp {
+		display: none;
+	}
+
+
+	.barraLateral #menuBar .menu {
+		width: 100%;
+		text-align: center;
+		position: relative;
+		top: 16px;
+	}
+
+
+	#conteudo .barraLateral #menuBar {
+		position: relative;
+		left: -7%;
+		overflow: hidden;
+		width: 95%;
+		padding-top: 0px;
+	}
+
+
+	#main #conteudo .mainConteudo {
+		overflow: hidden;
+		width: 95%;
+		margin-top: 40px;
+	}
+
+
+	.produtoRow .productInfo .preco {
+		font-size: 19px;
+	}
+	
+
+	.produtoRow .productInfo .desc_Conteudo {
+		font-size: 16px;
+	}
+
+
+	.produtoRow .productInfo .meuBotao {
+		font-size: 15px;
+	}
+
+
+	#main footer .footerlinks {
+		float: none;
+		width: 100%;
+		position: relative;
+		top: 17px;
+		clear: both;
+		text-align: center;
+		left: 0%;
+		padding-bottom: 19px;
+	}
+
+
+	#main footer div {
+		width: 44%;
+		text-align: justify;
+		font-size: 15px;
+	}
+
+
+	.footerlinks p a {
+		padding-top: 0px;
+		padding-bottom: 0px;
+		display: inline;
+		padding-right: 35px;
+	}
+
+
+	#main footer {
+		padding-left: 16px;
+		overflow: hidden;
+	}
+	
+
+	header #headerLinks a {
+		padding-left: 0px;
+		padding-right: 30px;
+	}
+
+
+	footer .footerlinks p {
+		display: inline;
+	}
+}
+
+
+@media screen and (max-width:480px) {
+
+	#main header #headerLinks {
+		width: 100%;
+		text-align: center;
+		padding-bottom: 21px;
+	}
+
+
+	#main header #logo {
+		width: 100%;
+		text-align: center;
+	}
+
+
+	header #headerLinks a {
+		text-align: center;
+		padding-right: 15px;
+		padding-left: 0px;
+	}
+
+
+	#conteudo .barraLateral #menuBar {
+		position: relative;
+		left: -8%;
+		text-align: center;
+	}
+
+
+	#menuBar .menu h2 {
+		width: 100%;
+		display: block;
+	}
+
+
+	.mainConteudo .produtoRow .productInfo {
+		width: 100%;
+		display: block;
+		padding-left: 0px;
+		padding-right: 0px;
+		position: relative;
+		left: -2%;
+	}
+
+
+	#main footer div {
+		width: 100%;
+		margin-left: -16px;
+		text-align: justify;
+		padding-bottom: 16px;
+		overflow: auto;
+	}
+
+
+	.menu ul {
+		position: relative;
+		padding-left: 24%;
+	}
+
+
+	#main footer .footerlinks {
+		padding-left: 8%;
+	}
+
+
+	#main #content .mainContent {
+		margin-top: -81px;
+		text-align: center;
+		width: 100%;
+		padding-left: 0px;
+	}
+}

@@ -1,0 +1,13 @@
+# depslib dependency file v1.0
+1557707926 source:/home/renanobregon/Documentos/Cn/programas em c/metodo_jacobi/main.c
+	<stdio.h>
+	<stdlib.h>
+
+1559137270 source:/home/renanobregon/Documentos/programas_faculdade_CC/Cn/programas em c/metodo_jacobi/main.c
+	<stdio.h>
+	<stdlib.h>
+
+1559137270 source:/home/renanobregon/Documentos/faculdade/programas_faculdade_CC/Cn/programas em c/metodo_jacobi/main.c
+	<stdio.h>
+	<stdlib.h>
+
