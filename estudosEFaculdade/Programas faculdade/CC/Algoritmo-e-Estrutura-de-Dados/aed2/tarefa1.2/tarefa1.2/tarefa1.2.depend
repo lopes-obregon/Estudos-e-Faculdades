@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1593361756 source:c:\users\renan\onedrive\documentos\github\estudosefaculdade\programas faculdade\cc\algoritmo-e-estrutura-de-dados\aed2\tarefa1.2\tarefa1.2\main.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+

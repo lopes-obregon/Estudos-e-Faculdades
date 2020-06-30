@@ -81,6 +81,20 @@ void insert(struct s_no **ptl, int value){
  *  fimEnquanto
  * atual^.prox := novo;
 */
+void desaloca(struct s_no **ptl){
+    struct s_no* pt = *ptl;
+    struct s_no* ptold;
+    while ( pt != NULL)
+    {
+        /* code */
+        ptold = pt;
+        pt = pt->prox;
+        free(ptold);
+    }
+    
+}
+
+
 //insere no final da lista
 void insert_end(struct s_no **ptl, struct list *List){
     struct s_no* atual = List->first;
@@ -123,6 +137,7 @@ struct s_no* search(struct s_no *ptl, int value){
  * senão  "nó não encontrado na tabela"
 */
 //remove 
+/*
 int remove(struct s_no *ptl, struct s_no *back){
     int valueBack = 0 ;
     if(ptl != NULL){
@@ -132,7 +147,7 @@ int remove(struct s_no *ptl, struct s_no *back){
     }else{
         printf("Nó não encontrado");
     }
-}
+}*/
 //main code
 int main(){
     struct s_no *ptlista = NULL;
@@ -145,5 +160,6 @@ int main(){
     printf("\n");
     print_rec(ptlista);
     printf("\n");
+    desaloca(ptlista);
     return 0;
 }
