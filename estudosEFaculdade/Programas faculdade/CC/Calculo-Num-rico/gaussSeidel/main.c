@@ -10,18 +10,19 @@ float calcError(float *vet, float *vet2){
     maior = maior2 = -99999999;
     for(int i = 0; i < n; i++){
         aux = abs(vet[i] - vet2[i]);
+        printf("|x%d - x%d| = %f\n", i+ 1, i + 1, aux);
         if(maior < abs(aux) &&  maior2 < abs(vet[i])){
             maior = abs(aux);
             maior2 = abs(vet[i]);
         }
     }
-
+    printf("dr = %.9f/%.9f", maior/maior2);
     return maior/maior2;
 }
 //imprime vetor xn
 void printVet(float *vet){
     for(int i = 0; i < n; i++){
-        printf("|%f|\n", vet[i]);
+        printf("|%.9f|\n", vet[i]);
     }
 
 }
@@ -34,6 +35,7 @@ void copyVet(float *v1, float *v2){
 //calcula a matriz
 void calcMat(float mat[n][m], float erro, float *vetIni){
     float vet[n], aux, div;
+    int k = 0;
     printf("%f", mat[0][m -1]);
     do{
             copyVet(vetIni, vet);
@@ -48,7 +50,9 @@ void calcMat(float mat[n][m], float erro, float *vetIni){
             }
             vet[i] = aux/div;
         }
+        printf("k = %d\n", k);
         printVet(vet);
+        k += 1;
     }while(calcError(vet, vetIni)  > erro);
 
 }
@@ -57,11 +61,11 @@ void printMat(float mat[n][m]){
  for(int i = 0; i < n; i++){
     for(int j = 0; j < m; j++){
         if(j+ 1 == m){
-            printf("coluna[%d]:%f", j ,mat[i][j]);
+            printf("%f",mat[i][j]);
             printf("\n");
 
         }else{
-            printf("coluna[%d]:%f ",j , mat[i][j]);
+            printf("%f ", mat[i][j]);
         }
     }
  }
@@ -95,8 +99,9 @@ int main()
     printMat(matriz);
     //insere o dado do xn
     for(int i = 0; i < n; i++){
-        printf("Informe o %dº\n", i +1);
+        printf("Informe o %dº: ", i +1);
         scanf("%f", &x[i]);
+        printf("\n");
     }
     printf("Informe o erro: ");
     scanf("%f", &error);
