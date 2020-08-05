@@ -17,7 +17,7 @@ int troca_linha(float mat[linha][coluna], int passcol, int vezesTrocadaLinha){
     float menor = 99999;
     int linhaAserTrocada;
     int lintroca, aux;
-    float maior = 0;
+    float maior = -999999;
     float matb[linha][coluna];
     aux = 1;
     linhaAserTrocada = 1;
@@ -25,13 +25,13 @@ int troca_linha(float mat[linha][coluna], int passcol, int vezesTrocadaLinha){
     for(int i = 0; i < linha; i++){
             if((i == passcol)){
                 maior = mat[i][passcol];
-            }else{
-                menor = mat[i][passcol];
-                if(maior < menor){
-                        //pode aver troca
-                    linhaAserTrocada = 0;
-                }
             }
+            menor = mat[i][passcol];
+            if((maior < menor) && (i > passcol)){
+                //pode aver troca
+                linhaAserTrocada = 0;
+            }
+
 
         }
 
