@@ -89,6 +89,7 @@ void calcMat(float mat[n][m], float erro, float *vetIni){
         dr =  cal_parada(vet, vetIni);
         printf("erro: %f\n", dr);
     }while(dr  > erro);
+    printf("Portanto ");
 
 }
 //imprime a matriz
