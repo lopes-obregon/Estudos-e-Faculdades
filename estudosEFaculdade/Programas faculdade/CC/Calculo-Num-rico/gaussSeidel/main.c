@@ -1,0 +1,105 @@
+#include <stdio.h>
+#include <stdlib.h>
+//variavel global
+//n representa as linhas e m representa as colunas
+int n, m;
+//procedimentos
+//calcula o error
+float calcError(float *vet, float *vet2){
+    float maior, maior2, aux;
+    maior = maior2 = -99999999;
+    for(int i = 0; i < n; i++){
+        aux = abs(vet[i] - vet2[i]);
+        if(maior < abs(aux) &&  maior2 < abs(vet[i])){
+            maior = abs(aux);
+            maior2 = abs(vet[i]);
+        }
+    }
+
+    return maior/maior2;
+}
+//imprime vetor xn
+void printVet(float *vet){
+    for(int i = 0; i < n; i++){
+        printf("|%f|\n", vet[i]);
+    }
+
+}
+//copia o vetor
+void copyVet(float *v1, float *v2){
+    for(int i = 0; i < n; i++){
+        v2[i] = v1[i];
+    }
+}
+//calcula a matriz
+void calcMat(float mat[n][m], float erro, float *vetIni){
+    float vet[n], aux, div;
+    printf("%f", mat[0][m -1]);
+    do{
+            copyVet(vetIni, vet);
+            for(int i = 0; i < n; i++){
+                aux = mat[i][m -1];
+            for(int j = 0;  j < m; j++){
+                if(i != j){
+                    aux = aux - mat[i][j] * vet[j];
+                }else{
+                    div = mat[i][j];
+                }
+            }
+            vet[i] = aux/div;
+        }
+        printVet(vet);
+    }while(calcError(vet, vetIni)  > erro);
+
+}
+//imprime a matriz
+void printMat(float mat[n][m]){
+ for(int i = 0; i < n; i++){
+    for(int j = 0; j < m; j++){
+        if(j+ 1 == m){
+            printf("coluna[%d]:%f", j ,mat[i][j]);
+            printf("\n");
+
+        }else{
+            printf("coluna[%d]:%f ",j , mat[i][j]);
+        }
+    }
+ }
+
+}
+//insere dados na matriz
+void insere(float mat[n][m]){
+    for(int i = 0; i < n; i++){
+        for(int j = 0; j < m; j++){
+            if(j+1 == m){
+                printf("b:");
+                scanf("%f", &mat[i][j]);
+            }else{
+                printf("a%d%d: ", i + 1, j +1);
+                scanf("%f", &mat[i][j]);
+                printf("\n");
+            }
+        }
+    }
+
+}
+//main
+int main()
+{
+    printf("Informe o tamanho da matriz!\n");
+    scanf("%d %d", &n, &m);
+    m += 1;
+    //gera a matriz nova
+    float matriz[n][m], x[n], error;
+    insere(matriz);
+    printMat(matriz);
+    //insere o dado do xn
+    for(int i = 0; i < n; i++){
+        printf("Informe o %dº\n", i +1);
+        scanf("%f", &x[i]);
+    }
+    printf("Informe o erro: ");
+    scanf("%f", &error);
+    calcMat(matriz, error, x);
+    return 0;
+}
