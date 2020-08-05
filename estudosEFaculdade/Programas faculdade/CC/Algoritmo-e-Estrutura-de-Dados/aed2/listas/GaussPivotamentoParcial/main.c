@@ -3,21 +3,74 @@
 //função global
 int linha, coluna;
 //procedimentos
-//encontra o maior pivo da linha
-// j demanda de cada passo; i deve vir conforme a linha calculada
-//return returnPivoLinha(matriz, 0, 0 + 1, aux = matriz[0][0], 0);
-float returnPivoLinha(float mat[linha][coluna], int j, int i, float aux, int trocouLinhaVezes){
-    if(i >= linha){
-        return aux;
+//função que calcula o valor em modulo;
+float func_abs(float mat[linha][coluna], int i, int passocoluna){
+    float valor;
+    valor = mat[i][passocoluna];
+    if (valor < 0) {
+        valor = valor * -1;
+    }
+    return valor;
+}
+//função que troca a linha
+int troca_linha(float mat[linha][coluna], int passcol, int vezesTrocadaLinha){
+    float menor = 99999;
+    int linhaAserTrocada;
+    int lintroca, aux;
+    float maior = 0;
+    float matb[linha][coluna];
+    aux = 1;
+    linhaAserTrocada = 1;
+    //verificar a colina
+    for(int i = 0; i < linha; i++){
+            maior = func_abs(mat,i, passcol);
+            menor = func_abs(mat,i+1, passcol);
+        if((maior < menor) && ( i > passcol)){
+            //trocas autorizadas;
+            linhaAserTrocada = 0;
+        }
+    }
+    maior = -99999;
+    menor = 99999;
+    if(linhaAserTrocada == 0){
+            //primeiro percorrer a matriz
+        for(int i = 0; i < linha; i++){
+            //trava a coluna
+            if ((func_abs(mat,i,passcol) > maior) && (i >= passcol)) {
+                maior = mat[i][passcol];
+                lintroca = i;
+                aux = 0;
+            }
+
+        }
+        //realizar a troca da linha
+
+        //achar o menor
+        //temos que percorrer para achar o menor valor para trocar a linha
+        for(int i = 0; i < linha; i++)
+        {
+            if (func_abs(mat,i,passcol) < menor && i >= passcol) {
+                linhaAserTrocada = i;
+                menor = mat[i][passcol];
+            }
+
+        }
+        //copia os valores para a matriz b para que possa realizar os calculos da troca de linhas
+        func_copy_mat(mat,matb);
+        //parte que troca
+
+        for(int i = 0; i < coluna; i++){
+            mat[linhaAserTrocada][i] = matb[lintroca][i];
+            mat[lintroca][i] = matb[linhaAserTrocada][i];
+        }
     }
 
-    if(aux < mat[i][j]){
-        aux = mat[i][j];
-        trocouLinhaVezes += 1;
-    }else{
-        returnPivoLinha(mat, j, i+1, aux, trocouLinhaVezes);
+    if(aux == 0){
+        vezesTrocadaLinha += 1;
     }
+    return vezesTrocadaLinha;
 }
+
 //imprime matriz
 void printMat(float mat[linha][coluna]){
     for(int i = 0; i < linha; i++){
@@ -30,6 +83,88 @@ void printMat(float mat[linha][coluna]){
         }
     }
 }
+//função que calcula o determinante
+float calcDet(float mat[linha][coluna], int vezesTrocadas){
+    float aux = 1;
+    for(int i = 0; i < linha; i++){
+        for(int j = 0; j < coluna; j++){
+            if(i == j){
+                aux = aux*mat[i][j];
+            }
+        }
+    }
+    //vezes trocada é impar
+    while(vezesTrocadas > 0){
+        aux *= -1;
+        vezesTrocadas --;
+    }
+    return aux;
+}
+//passa o valor da linha para um vetor
+void copyMatToVector(float mat[linha][coluna], float *vet, int linhaTravada){
+    for(int i = 0; i < coluna; i++){
+        vet[i] = mat[linhaTravada][i];
+    }
+}
+//acha multiplicador
+float achaMult(float mat[linha][coluna],int i, int j){
+    if(i > j){
+        return mat[i][j];
+    }else{
+        return achaMult(mat, i + 1, j);
+    }
+}
+//função que acha o pivo
+float achaPivo(float mat[linha][coluna], int i, int j){
+    if(i == j){
+        //achou o pivo
+        return mat[i][j];
+    }else{
+        return achaPivo(mat, i, j+1);
+    }
+}
+//função que calcula a matriz
+void calMat(float mat[linha][coluna]){
+   float pivo, mult, vetLinha[coluna];
+   int calculo, trocouLinha, vezesCalculada; //variavel que conta a interação do calculo para tracar linha ou coluna
+   calculo = trocouLinha = 0;
+   vezesCalculada = 1;
+   do{
+        trocouLinha  = troca_linha(mat,calculo, trocouLinha);
+        printMat(mat);
+        printf("\n");
+        pivo = achaPivo(mat, calculo, calculo);
+        copyMatToVector(mat, vetLinha, calculo);
+        for(int i = 0; i < linha; i++){
+            mult = achaMult(mat, i, calculo);
+            mult = -1*(mult/pivo);
+            for(int j = 0; j < linha; j++){
+                if(i > calculo ){
+                    mat[i][j] = mult*vetLinha[j] + mat[i][j];
+                }
+            }
+        }
+
+        calculo += 1;
+        vezesCalculada +=1;
+   }while(vezesCalculada < linha);
+   printMat(mat);
+   printf("\n");
+    printf("Determinante da matriz é: %.2f\n", calcDet(mat, trocouLinha));
+}
+
+//função que copia
+void func_copy_mat(float mat[linha][coluna], float auxmat[linha][coluna]){
+    for(int i = 0; i < linha; i++){
+        for(int j = 0; j < coluna; j++)
+        {
+            auxmat[i][j] = mat[i][j];
+        }
+
+    }
+
+}
+
 //insere valores na matriz
 void insere(float mat[linha][coluna]){
     printf("Informe o elemento da matriz\n");
@@ -49,5 +184,8 @@ int main()
     insere(matriz);
     printf("Sua matriz é!\n");
     printMat(matriz);
+    printf("\n");
+    calMat(matriz);
+
     return 0;
 }
