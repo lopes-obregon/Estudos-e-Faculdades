@@ -23,17 +23,18 @@ int troca_linha(float mat[linha][coluna], int passcol, int vezesTrocadaLinha){
     linhaAserTrocada = 1;
     //verificar a colina
     for(int i = 0; i < linha; i++){
-            maior = func_abs(mat,i, passcol);
-            menor = func_abs(mat,i+1, passcol);
-        if((maior < menor) && ( i > passcol)){
-            //trocas autorizadas;
-            linhaAserTrocada = 0;
-        }else{
-            if((maior < menor) && (i == 0)){
-                linhaAserTrocada = 0;
+            if((i == passcol)){
+                maior = mat[i][passcol];
+            }else{
+                menor = mat[i][passcol];
+                if(maior < menor){
+                        //pode aver troca
+                    linhaAserTrocada = 0;
+                }
             }
+
         }
-    }
+
     maior = -99999;
     menor = 99999;
     if(linhaAserTrocada == 0){
