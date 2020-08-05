@@ -4,25 +4,58 @@
 //n representa as linhas e m representa as colunas
 int n, m;
 //procedimentos
-//calcula o error
-float calcError(float *vet, float *vet2){
-    float maior, maior2, aux;
-    maior = maior2 = -99999999;
+//função módulo
+float mod(float x1, float x2){
+    float valor;
+    valor = x1 - x2;
+    if(valor < 0){
+        valor *=-1;
+    }
+    return valor;
+}
+//função que encontra o maior para dividir
+float encontra_maior(float *vetMod, float *x){
+    float maior1 = 0,maior2 = 0, aux;
     for(int i = 0; i < n; i++){
-        aux = abs(vet[i] - vet2[i]);
-        printf("|x%d - x%d| = %f\n", i+ 1, i + 1, aux);
-        if(maior < abs(aux) &&  maior2 < abs(vet[i])){
-            maior = abs(aux);
-            maior2 = abs(vet[i]);
+        if(maior1 < vetMod[i]){
+            maior1 = vetMod[i];
+            if(maior1 < 0){
+                maior1 *=-1;
+            }
+        }
+        aux = x[i];
+        if(aux < 0){
+            aux *= -1;
+        }
+        if(maior2 < aux){
+            maior2 = aux;
+            if(maior2  < 0){
+                maior2 *=-1;
+            }
         }
     }
-    printf("dr = %.9f/%.9f", maior/maior2);
-    return maior/maior2;
+    return maior1/maior2;
 }
+//função que calcula o erro
+float cal_parada(float *v, float *x){
+    //parada
+    float vet_modulo[n];
+    float maiorDivisao;
+    float valor1, valor2;
+    for(int i = 0; i < n; i++){
+        valor1 = v[i];
+        valor2 = x[i];
+        vet_modulo[i] = mod(valor1, valor2);
+    }
+    //parte que pega o maior
+    return maiorDivisao = encontra_maior(vet_modulo,v);//vetor v que tem a referencia de aux
+}
+
+
 //imprime vetor xn
 void printVet(float *vet){
     for(int i = 0; i < n; i++){
-        printf("|%.9f|\n", vet[i]);
+        printf("|%f|\n", vet[i]);
     }
 
 }
@@ -34,11 +67,11 @@ void copyVet(float *v1, float *v2){
 }
 //calcula a matriz
 void calcMat(float mat[n][m], float erro, float *vetIni){
-    float vet[n], aux, div;
+    float vet[n], aux, div, dr;
     int k = 0;
-    printf("%f", mat[0][m -1]);
+    copyVet(vetIni, vet);
     do{
-            copyVet(vetIni, vet);
+            copyVet(vet, vetIni);
             for(int i = 0; i < n; i++){
                 aux = mat[i][m -1];
             for(int j = 0;  j < m; j++){
@@ -53,7 +86,9 @@ void calcMat(float mat[n][m], float erro, float *vetIni){
         printf("k = %d\n", k);
         printVet(vet);
         k += 1;
-    }while(calcError(vet, vetIni)  > erro);
+        dr =  cal_parada(vet, vetIni);
+        printf("erro: %f\n", dr);
+    }while(dr  > erro);
 
 }
 //imprime a matriz
