@@ -28,6 +28,10 @@ int troca_linha(float mat[linha][coluna], int passcol, int vezesTrocadaLinha){
         if((maior < menor) && ( i > passcol)){
             //trocas autorizadas;
             linhaAserTrocada = 0;
+        }else{
+            if((maior < menor) && (i == 0)){
+                linhaAserTrocada = 0;
+            }
         }
     }
     maior = -99999;
