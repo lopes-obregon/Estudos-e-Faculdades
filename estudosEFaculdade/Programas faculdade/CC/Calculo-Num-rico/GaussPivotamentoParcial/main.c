@@ -1,3 +1,4 @@
+//codigo para calcular determinante de matriz
 #include <stdio.h>
 #include <stdlib.h>
 //função global
