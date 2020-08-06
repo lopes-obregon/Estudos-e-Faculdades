@@ -4,7 +4,39 @@
 //n representa as linhas e m representa as colunas
 int n, m;
 //procedimentos
+//função que copia a matriz
+void copyMat(float mat[n][m], float matB[n][m]){
+    for(int i = 0; i < n; i++)
+        for(int j = 0; j < m; j++)
+            matB[i][j] = mat[i][j];
 
+}
+//função que troca linha
+void trocaLinha(float mat[n][m]){
+    float aux, matB[n][m];
+    int lMenor, lMaior;
+    for(int i = 0; i < n; i++){
+            aux = mat[i][0];
+        for(int j = 0; j < n; j++){
+            if((aux < mat[j][0]) && (mat[j][0] != 0)  && (aux != 0)){
+                lMenor = i;
+            }else{
+                if((aux > mat[j][0]) && (mat[j][0] != 0) && (aux != 0)){
+                    lMaior = i;
+                }
+            }
+        }
+    }
+    //copia matriz
+    copyMat(mat, matB);
+    //troca a linha
+    for(int i = 0; i < m; i++){
+        aux = mat[lMenor][i];
+        mat[lMenor][i] = matB[lMaior][i];
+        mat[lMaior][i] = aux;
+    }
+
+}
 //função que encontra o maior do vetor
 float maiorC(float *vet, float maior,int index ){
     if(index == n){
@@ -36,6 +68,9 @@ void criterioLinhas(float mat[n][m]){
     aux = maiorC(vet, -999999,0);
     if(aux > 1){
         //faz uma troca de linha
+        trocaLinha(mat);
+        printf("Sistema com a linha trocada!\n");
+        printMat(mat);
     }else{
         printf("Convergencia garantida!\n");
     }
@@ -170,14 +205,14 @@ int main()
     insere(matriz);
     printMat(matriz);
     //insere o dado do xn
-    for(int i = 0; i < n; i++){
+    /*for(int i = 0; i < n; i++){
         printf("Informe o %dº: ", i +1);
         scanf("%f", &x[i]);
         printf("\n");
     }
     printf("Informe o erro: ");
     scanf("%f", &error);
-    calcMat(matriz, error, x);
+    calcMat(matriz, error, x);*/
     criterioLinhas(matriz);
     return 0;
 }
