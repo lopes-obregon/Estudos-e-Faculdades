@@ -51,7 +51,7 @@ float maiorC(float *vet, float maior,int index ){
     }
 }
 //função que realiza o critério das linhas
-void criterioLinhas(float mat[n][m]){
+int  criterioLinhas(float mat[n][m]){
     float vet[n], aux, div;
     aux = 0;
     for(int i = 0; i < n; i++){
@@ -71,8 +71,10 @@ void criterioLinhas(float mat[n][m]){
         trocaLinha(mat);
         printf("Sistema com a linha trocada!\n");
         printMat(mat);
+        return 1;
     }else{
         printf("Convergencia garantida!\n");
+        return 2;
     }
 }
 //função módulo
@@ -160,7 +162,9 @@ void calcMat(float mat[n][m], float erro, float *vetIni){
         dr =  cal_parada(vet, vetIni);
         printf("erro: %f\n", dr);
     }while(dr  > erro);
-    printf("Portanto ");
+    printf("Portanto  a solução do sistema é: \n");
+    for(int i = 0; i < n; i++)
+        printf("|%f|\n", vet[i]);
 
 }
 //imprime a matriz
@@ -205,14 +209,17 @@ int main()
     insere(matriz);
     printMat(matriz);
     //insere o dado do xn
-    /*for(int i = 0; i < n; i++){
+    for(int i = 0; i < n; i++){
         printf("Informe o %dº: ", i +1);
         scanf("%f", &x[i]);
         printf("\n");
     }
     printf("Informe o erro: ");
     scanf("%f", &error);
-    calcMat(matriz, error, x);*/
-    criterioLinhas(matriz);
+    int aux = 0;
+    do{
+        aux += criterioLinhas(matriz);
+    }while(aux <= 2);
+    calcMat(matriz, error, x);
     return 0;
 }
