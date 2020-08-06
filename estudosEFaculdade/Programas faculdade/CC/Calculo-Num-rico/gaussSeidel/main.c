@@ -207,10 +207,11 @@ int main()
     //gera a matriz nova
     float matriz[n][m], x[n], error;
     insere(matriz);
+    printf("Sua matriz é!\n");
     printMat(matriz);
     //insere o dado do xn
     for(int i = 0; i < n; i++){
-        printf("Informe o %dº: ", i +1);
+        printf("Informe o Xn %dº: ", i +1);
         scanf("%f", &x[i]);
         printf("\n");
     }
