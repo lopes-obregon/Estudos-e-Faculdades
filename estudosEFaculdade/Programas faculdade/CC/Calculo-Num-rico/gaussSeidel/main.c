@@ -4,6 +4,42 @@
 //n representa as linhas e m representa as colunas
 int n, m;
 //procedimentos
+
+//função que encontra o maior do vetor
+float maiorC(float *vet, float maior,int index ){
+    if(index == n){
+        return maior;
+    }else{
+        if(maior < vet[index]){
+            maior = vet[index];
+            return maiorC(vet, maior, index + 1);
+        }else{
+            return maiorC(vet, maior, index + 1);
+        }
+    }
+}
+//função que realiza o critério das linhas
+void criterioLinhas(float mat[n][m]){
+    float vet[n], aux, div;
+    aux = 0;
+    for(int i = 0; i < n; i++){
+        for(int j = 0; j < m-1; j++){
+            if(i == j){
+                div = mat[i][j];
+            }else{
+                aux += mat[i][j];
+            }
+        }
+        vet[i] = aux/div;
+        aux = 0;
+    }
+    aux = maiorC(vet, -999999,0);
+    if(aux > 1){
+        //faz uma troca de linha
+    }else{
+        printf("Convergencia garantida!\n");
+    }
+}
 //função módulo
 float mod(float x1, float x2){
     float valor;
@@ -142,5 +178,6 @@ int main()
     printf("Informe o erro: ");
     scanf("%f", &error);
     calcMat(matriz, error, x);
+    criterioLinhas(matriz);
     return 0;
 }
