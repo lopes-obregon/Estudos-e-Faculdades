@@ -220,7 +220,7 @@ int main()
     int aux = 0;
     do{
         aux += criterioLinhas(matriz);
-    }while(aux <= 2);
+    }while(aux < 2);
     calcMat(matriz, error, x);
     return 0;
 }
