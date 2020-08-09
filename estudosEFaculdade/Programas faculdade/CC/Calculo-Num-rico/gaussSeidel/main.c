@@ -74,7 +74,7 @@ int  criterioLinhas(float mat[n][m]){
         return 1;
     }else{
         printf("Convergencia garantida!\n");
-        return 2;
+        return 3;
     }
 }
 //função módulo
@@ -210,8 +210,9 @@ int main()
     printf("Sua matriz é!\n");
     printMat(matriz);
     //insere o dado do xn
+    printf("informe o resultado inicial da matriz:\n");
     for(int i = 0; i < n; i++){
-        printf("Informe o Xn %dº: ", i +1);
+        printf("[%d]\n", i +1);
         scanf("%f", &x[i]);
         printf("\n");
     }
@@ -220,7 +221,7 @@ int main()
     int aux = 0;
     do{
         aux += criterioLinhas(matriz);
-    }while(aux < 2);
+    }while(aux <= 2);
     calcMat(matriz, error, x);
     return 0;
 }
