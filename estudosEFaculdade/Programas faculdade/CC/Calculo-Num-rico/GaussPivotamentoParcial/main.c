@@ -184,14 +184,18 @@ void insere(float mat[linha][coluna]){
 //main
 int main()
 {
-    printf("Informe a Dimenção da sua matriz: ");
-    scanf("%d %d", &linha, &coluna);
-    float matriz[linha][coluna];
-    insere(matriz);
-    printf("Sua matriz é!\n");
-    printMat(matriz);
-    printf("\n");
-    calMat(matriz);
-
+    printf("Informe a Dimencao da sua matriz: ");
+    scanf("%d", &linha);
+    if( linha <= 10){
+        coluna = linha;
+        float matriz[linha][coluna];
+        insere(matriz);
+        printf("Sua matriz eh!\n");
+        printMat(matriz);
+        printf("\n");
+        calMat(matriz);
+    }else{
+        printf("Dimensao nao aceita\n");
+    }
     return 0;
 }

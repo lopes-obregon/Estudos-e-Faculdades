@@ -190,6 +190,8 @@ void calcMat(float mat[n][m], float erro, float *vetIni){
         k += 1;
         dr =  cal_parada(vet, vetIni);
         printf("erro: %f\n", dr);
+        if( k >= 10)
+            break;
     }while(dr  > erro);
     printf("Portanto  a solução do sistema é: \n");
     for(int i = 0; i < n; i++)
@@ -230,27 +232,32 @@ void insere(float mat[n][m]){
 //main
 int main()
 {
-    printf("Informe o tamanho da matriz!\n");
-    scanf("%d %d", &n, &m);
+    printf("Informe a ordem da matriz!\n");
+    scanf("%d", &n);
+    m =  n;
     m += 1;
-    //gera a matriz nova
-    float matriz[n][m], x[n], error;
-    insere(matriz);
-    printf("Sua matriz é!\n");
-    printMat(matriz);
-    //insere o dado do xn
-    printf("informe o resultado inicial da matriz:\n");
-    for(int i = 0; i < n; i++){
-        printf("[%d]\n", i +1);
-        scanf("%f", &x[i]);
-        printf("\n");
+    if(n <= 10){
+        //gera a matriz nova
+        float matriz[n][m], x[n], error;
+        insere(matriz);
+        printf("Sua matriz é!\n");
+        printMat(matriz);
+        //insere o dado do xn
+        printf("informe o resultado inicial da matriz:\n");
+        for(int i = 0; i < n; i++){
+            printf("[%d]\n", i +1);
+            scanf("%f", &x[i]);
+            printf("\n");
+        }
+        printf("Informe o erro: ");
+        scanf("%f", &error);
+        int aux = 0;
+        do{
+            aux += criterioLinhas(matriz);
+        }while(aux < 2);
+        calcMat(matriz, error, x);
+    }else{
+        printf("Matriz de tamanho não aceito\n");
     }
-    printf("Informe o erro: ");
-    scanf("%f", &error);
-    int aux = 0;
-    do{
-        aux += criterioLinhas(matriz);
-    }while(aux < 2);
-    calcMat(matriz, error, x);
     return 0;
 }
