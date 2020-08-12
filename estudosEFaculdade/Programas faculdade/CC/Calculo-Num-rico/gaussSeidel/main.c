@@ -4,6 +4,26 @@
 //n representa as linhas e m representa as colunas
 int n, m;
 //procedimentos
+void contTrocaLinha(float mat[n][m], float matB[n][m],int lMenor, int lMaior){
+    float aux;
+    for(int i = 0; i < m; i++){
+        aux = mat[lMenor][i];
+        mat[lMenor][i] = matB[lMaior][i];
+        mat[lMaior][i] = aux;
+    }
+}
+//função que verifica a linha
+int verificaLinha(float mat[n][m], float value, int coluna){
+    int linhaRetorno;
+    for (int i = 0 ; i < n ; i++){
+        if(value < mat[i][coluna]){
+            linhaRetorno = i;
+        }
+
+    }
+
+    return linhaRetorno;
+}
 //função que copia a matriz
 void copyMat(float mat[n][m], float matB[n][m]){
     for(int i = 0; i < n; i++)
@@ -14,7 +34,23 @@ void copyMat(float mat[n][m], float matB[n][m]){
 //função que troca linha
 void trocaLinha(float mat[n][m]){
     float aux, matB[n][m];
-    int lMenor, lMaior;
+    int lAtual, lMaior;
+    lAtual = 0, lMaior = 0;
+    for (int i = 0 ; i < n ; i++){
+            copyMat(mat, matB);
+        for(int j = 0; j < m; j++){
+            if((i == j) && (j+1 !=m) ){
+                //copia matriz
+
+                lAtual = i;
+                lMaior = verificaLinha(mat,mat[i][j], j);
+                if(lMaior <= n){
+                    contTrocaLinha(mat, matB, lAtual, lMaior);
+                }
+            }
+        }
+    }
+    /*
     for(int i = 0; i < n; i++){
             aux = mat[i][0];
         for(int j = 0; j < n; j++){
@@ -26,15 +62,7 @@ void trocaLinha(float mat[n][m]){
                 }
             }
         }
-    }
-    //copia matriz
-    copyMat(mat, matB);
-    //troca a linha
-    for(int i = 0; i < m; i++){
-        aux = mat[lMenor][i];
-        mat[lMenor][i] = matB[lMaior][i];
-        mat[lMaior][i] = aux;
-    }
+    }*/
 
 }
 //função que encontra o maior do vetor
@@ -68,6 +96,7 @@ int  criterioLinhas(float mat[n][m]){
     aux = maiorC(vet, -999999,0);
     if(aux > 1){
         //faz uma troca de linha
+        printf("Sistema não tem convergencia garantida\n");
         trocaLinha(mat);
         printf("Sistema com a linha trocada!\n");
         printMat(mat);
@@ -172,7 +201,7 @@ void printMat(float mat[n][m]){
  for(int i = 0; i < n; i++){
     for(int j = 0; j < m; j++){
         if(j+ 1 == m){
-            printf("%f",mat[i][j]);
+            printf("| %f",mat[i][j]);
             printf("\n");
 
         }else{
@@ -187,7 +216,7 @@ void insere(float mat[n][m]){
     for(int i = 0; i < n; i++){
         for(int j = 0; j < m; j++){
             if(j+1 == m){
-                printf("b:");
+                printf("b%d:",i +1);
                 scanf("%f", &mat[i][j]);
             }else{
                 printf("a%d%d: ", i + 1, j +1);
@@ -221,7 +250,7 @@ int main()
     int aux = 0;
     do{
         aux += criterioLinhas(matriz);
-    }while(aux <= 2);
+    }while(aux < 2);
     calcMat(matriz, error, x);
     return 0;
 }
