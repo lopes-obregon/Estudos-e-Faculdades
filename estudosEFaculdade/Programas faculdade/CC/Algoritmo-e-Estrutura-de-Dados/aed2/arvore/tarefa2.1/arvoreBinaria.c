@@ -39,6 +39,7 @@ int buscaArvore(int x, No_ab *pt, int f){
 //insere na Arvore
 No_ab *insertArvore(int x, No_ab *pt, int f){
     f = buscaArvore(x, pt, f);
+    int i = 0;//falso para avansar
     if(f == 1){
             //já existe na arvore o valor
         printf("Inserção inválida!\n");
@@ -51,6 +52,25 @@ No_ab *insertArvore(int x, No_ab *pt, int f){
             //arvore vazia
              pt = neww;
         }else{
+            //atualiza o ponteiro das arvores
+             do{
+            if(x < pt->value){
+                if(pt->esq != NULL){
+                    pt = pt->esq;
+                    i = 1;
+                }else{
+                    i = 0;
+                }
+            }else{
+                if(pt->dir != NULL){
+                    pt = pt->dir;
+                    i = 1;
+                }else{
+                    i = 0;
+                }
+            }
+
+        }while(i != 0);
             if( f == 2 ){
                 //não encontrado da esquerda
                 pt->esq = neww;

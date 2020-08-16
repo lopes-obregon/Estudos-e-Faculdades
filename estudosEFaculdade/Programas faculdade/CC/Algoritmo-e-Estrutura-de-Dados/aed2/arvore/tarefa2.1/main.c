@@ -15,6 +15,8 @@ int main()
     insertArvore(2, ptRaiz->raiz, f);
     insertArvore(5, ptRaiz->raiz, f);
     insertArvore(10, ptRaiz->raiz, f);
+    insertArvore(11, ptRaiz->raiz, f);
+    insertArvore(9, ptRaiz->raiz, f);
     printArvorePre(ptRaiz->raiz);
     return 0;
 }
