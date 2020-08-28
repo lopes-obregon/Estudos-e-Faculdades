@@ -7,7 +7,7 @@ typedef struct no_ab{
 //procedimento que faz a busca na arvore
 void buscaArvore(int x, No_ab **pt, unsigned int *f);
 //f deve vir da busca realizada na arvore
-void insertArvore(int x, No_ab **pt, unsigned int f);
+void insertArvore(int x, No_ab **pt, unsigned int *f);
 //imprime a arvore em pré ordem
 void printArvorePre(No_ab *pt);
 #endif // ARVOREBINARIA_H_INCLUDED

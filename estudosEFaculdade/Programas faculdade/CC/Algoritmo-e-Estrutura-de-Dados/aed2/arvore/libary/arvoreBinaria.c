@@ -19,7 +19,7 @@ void buscaArvore(int x, No_ab **pt, unsigned int *f){
                     *f = 2;
                 }else{
                     *pt = (*pt)->esq;
-                    return buscaArvore(x, &(*pt), &f);
+                    return buscaArvore(x, &(*pt), &(*f));
                 }
             }else{
                 if((*pt)->dir == NULL){
@@ -27,7 +27,7 @@ void buscaArvore(int x, No_ab **pt, unsigned int *f){
                     *f = 3;
                 }else{
                     *pt = (*pt)->dir;
-                    return buscaArvore(x, &(*pt), &f);
+                    return buscaArvore(x, &(*pt), &(*f));
 
                 }
             }
@@ -36,10 +36,10 @@ void buscaArvore(int x, No_ab **pt, unsigned int *f){
 
 }
 //insere na Arvore
-void insertArvore(int x, No_ab **pt, unsigned int f){
+void insertArvore(int x, No_ab **pt, unsigned int *f){
     No_ab *aux = *pt;//variavel para armazenar a raiz da arvore
-    buscaArvore(x, pt, &f);
-    if(f == 1){
+    buscaArvore(x, pt, f);
+    if(*f == 1){
             //já existe na arvore o valor
         printf("Inserção inválida!\n");
     }else{
@@ -47,11 +47,11 @@ void insertArvore(int x, No_ab **pt, unsigned int f){
         No_ab *neww = malloc(sizeof(No_ab));
         neww->value = x;
         neww->dir = neww->esq = NULL;
-        if(f == 0 ){
+        if(*f == 0 ){
             //arvore vazia
              *pt = neww;
         }else{
-            if( f == 2 ){
+            if( *f == 2 ){
                 //não encontrado da esquerda
                 (*pt)->esq = neww;
 
