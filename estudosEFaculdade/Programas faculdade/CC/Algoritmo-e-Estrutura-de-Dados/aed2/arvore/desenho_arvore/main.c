@@ -3,6 +3,7 @@
 #include "gfx.h"
 #include <unistd.h>
 #include "../libary/arvoreBinaria.h"
+const RAIO = 30;
 typedef struct raiz{
     struct No_ab *cabeca;
 }Raiz;
@@ -37,7 +38,7 @@ void desenha_arvore(No_ab *pt, unsigned short xi, unsigned short xf, unsigned sh
     snprintf(str, 64, "%i", pt->value);
     gfx_text(xm, y, str);
     insertNo(&(*pos), xm, y, pt->value);
-    gfx_ellipse(xm+30, y+30, 30, 30);
+    gfx_ellipse(xm+RAIO, y+RAIO, RAIO, RAIO);
     desenha_arvore(pt->esq, xi, xm, y+70, pos);
     desenha_arvore(pt->dir, xm, xf, y+70, pos);
 
@@ -52,7 +53,7 @@ void desenha_linha(No_ab *pt, No_ab *ant, No *pos){
         if(pos->prox != NULL){
             if(pt->value == pos->prox->value){
                 if(pt->esq != NULL){
-                    gfx_line(pos->x+60, pos->y+30, pos->prox->x, pos->prox->y+30);
+                    gfx_line(pos->x+(RAIO + RAIO), pos->y+RAIO, pos->prox->x, pos->prox->y+RAIO);
 
                 }
             }
@@ -61,7 +62,7 @@ void desenha_linha(No_ab *pt, No_ab *ant, No *pos){
                 pos = aux;
                 while(pos != NULL){
                     if((pt->value == aux2->value) && (pt->dir->value == pos->value)){
-                        gfx_line(aux2->x+60, aux2->y+30, pos->x, pos->y+30);
+                        gfx_line(aux2->x+(RAIO + RAIO), aux2->y+RAIO, pos->x, pos->y+RAIO);
 
                     }
                     pos = pos->prox;
@@ -74,7 +75,7 @@ void desenha_linha(No_ab *pt, No_ab *ant, No *pos){
                 pos = aux;
                 while(pos != NULL){
                     if((pt->value == aux2->value) && (pt->dir->value == pos->value)){
-                        gfx_line(aux2->x+60, aux2->y+30, pos->x, pos->y+30);
+                        gfx_line(aux2->x+(RAIO + RAIO), aux2->y+RAIO, pos->x, pos->y+RAIO);
 
                     }
                     pos = pos->prox;
@@ -92,15 +93,10 @@ void desenha_linha(No_ab *pt, No_ab *ant, No *pos){
 int main(){
     Raiz *pt = malloc(sizeof(Raiz));
     No *ptLista = NULL;
-    unsigned int f;
-
-    insertArvore(21, &pt->cabeca, &f);
-    insertArvore(17, &pt->cabeca, &f);
-    insertArvore(14, &pt->cabeca, &f);
-    insertArvore(19, &pt->cabeca, &f);
-    insertArvore(23, &pt->cabeca, &f);
-    insertArvore(22, &pt->cabeca, &f);
-    insertArvore(28, &pt->cabeca, &f);
+    unsigned  f;
+    insertArvore(15, &pt->cabeca, &f);
+    insertArvore(6, &pt->cabeca, &f);
+    insertArvore(100, &pt->cabeca, &f);
     printArvorePre(pt->cabeca);
     gfx_init(800, 600, "Arvore Binaria De Busca");
     gfx_set_font_size(40);
