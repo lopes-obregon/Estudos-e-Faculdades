@@ -1,0 +1,114 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include "gfx.h"
+#include <unistd.h>
+#include "../libary/arvoreBinaria.h"
+typedef struct raiz{
+    struct No_ab *cabeca;
+}Raiz;
+typedef struct no{
+    unsigned short x,y;
+    int value;
+    struct no *prox;
+
+}No;
+void insertNo(No **pt, unsigned short x, unsigned short y, int value){
+    No *neww = malloc(sizeof(No));
+    neww->x = x;
+    neww->y = y;
+    neww->value = value;
+    if(*pt == NULL){
+        neww->prox = NULL;
+        *pt = neww;
+
+    }else{
+        neww->prox = *pt;
+        *pt = neww;
+    }
+
+}
+//função que imprime os valores da arvore binaria de busca
+void desenha_arvore(No_ab *pt, unsigned short xi, unsigned short xf, unsigned short y, No *pos){
+    char str[64];
+    unsigned short xm;
+    if(pt == NULL)
+        return;
+    xm = (xi+xf)/2;
+    snprintf(str, 64, "%i", pt->value);
+    gfx_text(xm, y, str);
+    insertNo(&(*pos), xm, y, pt->value);
+    gfx_ellipse(xm+30, y+30, 30, 30);
+    desenha_arvore(pt->esq, xi, xm, y+70, pos);
+    desenha_arvore(pt->dir, xm, xf, y+70, pos);
+
+}
+//desenha a linha
+void desenha_linha(No_ab *pt, No_ab *ant, No *pos){
+    if(pt == NULL)
+        return;
+
+    No *aux = pos;
+    while(pos != NULL){
+        if(pos->prox != NULL){
+            if(pt->value == pos->prox->value){
+                if(pt->esq != NULL){
+                    gfx_line(pos->x+60, pos->y+30, pos->prox->x, pos->prox->y+30);
+
+                }
+            }
+            if(pt->dir != NULL){
+                No *aux2 = pos;
+                pos = aux;
+                while(pos != NULL){
+                    if((pt->value == aux2->value) && (pt->dir->value == pos->value)){
+                        gfx_line(aux2->x+60, aux2->y+30, pos->x, pos->y+30);
+
+                    }
+                    pos = pos->prox;
+                }
+                pos = aux2;
+            }
+        }else{
+            if(pt->dir != NULL){
+                No *aux2 = pos;
+                pos = aux;
+                while(pos != NULL){
+                    if((pt->value == aux2->value) && (pt->dir->value == pos->value)){
+                        gfx_line(aux2->x+60, aux2->y+30, pos->x, pos->y+30);
+
+                    }
+                    pos = pos->prox;
+                }
+                pos = aux2;
+            }
+
+        }
+        pos = pos->prox;
+    }
+    pos = aux;
+    desenha_linha(pt->esq, ant->esq, aux);
+    desenha_linha(pt->dir, ant->dir, aux);
+}
+int main(){
+    Raiz *pt = malloc(sizeof(Raiz));
+    No *ptLista = NULL;
+    unsigned int f;
+
+    insertArvore(21, &pt->cabeca, &f);
+    insertArvore(17, &pt->cabeca, &f);
+    insertArvore(14, &pt->cabeca, &f);
+    insertArvore(19, &pt->cabeca, &f);
+    insertArvore(23, &pt->cabeca, &f);
+    insertArvore(22, &pt->cabeca, &f);
+    insertArvore(28, &pt->cabeca, &f);
+    printArvorePre(pt->cabeca);
+    gfx_init(800, 600, "Arvore Binaria De Busca");
+    gfx_set_font_size(40);
+    gfx_set_color(255, 0, 0);
+    desenha_arvore(pt->cabeca, 0, 800, 70, &ptLista);
+    desenha_linha(pt->cabeca,  pt->cabeca,ptLista);
+    gfx_paint();
+    sleep(5);
+    gfx_quit();
+    return 0;
+}
