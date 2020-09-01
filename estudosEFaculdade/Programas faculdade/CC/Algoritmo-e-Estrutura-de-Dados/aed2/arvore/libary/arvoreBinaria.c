@@ -107,7 +107,7 @@ void removeTree(No_ab **pt, int x, unsigned int *f){
     searchAntTree(pt,&aux, f, x);
     if(*f  == 1){
         //caso 1: valor a ser removido é uma folha
-        if(((*pt)->esq  && (*pt)->dir) == NULL){
+        if(((*pt)->dir == NULL) && ((*pt)->esq) == NULL){
             if(aux->dir == (*pt)){
                 aux->dir = NULL;
                 free(*pt);

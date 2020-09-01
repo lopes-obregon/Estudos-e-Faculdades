@@ -106,7 +106,7 @@ int main(){
     insertArvore(17, &pt->cabeca, &f);
     insertArvore(20, &pt->cabeca, &f);
     printArvorePre(pt->cabeca);
-    removeTree(&pt->cabeca, 17, &f);
+    removeTree(&pt->cabeca, 7, &f);
     printf("\ndepois de remover!\n");
     printArvorePre(pt->cabeca);
     gfx_init(800, 600, "Arvore Binaria De Busca");
