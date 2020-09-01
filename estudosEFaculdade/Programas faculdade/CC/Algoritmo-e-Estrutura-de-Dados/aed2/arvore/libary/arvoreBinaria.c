@@ -127,7 +127,11 @@ void removeTree(No_ab **pt, int x, unsigned int *f){
                 //caso 2.1: tem apenas um filho
                 if((*pt)->dir == NULL){
                     aux->esq = (*pt)->esq;
+                    if(aux->dir == (*pt)){
+                        aux->dir = NULL;
+                    }
                     free(*pt);
+
                 }
             }
         }
