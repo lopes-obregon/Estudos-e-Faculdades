@@ -75,3 +75,62 @@ void printArvorePre(No_ab *pt){
     }
 
 }
+//função que busca o anterior
+void searchAntTree(No_ab **pt, No_ab **ant, unsigned int *f, int value){
+    if(*pt == NULL){
+        //arvore vazia ou folha
+        return;
+    }else{
+        if(value == (*pt)->value){
+            //então achou o valor
+            *f = 1;
+        }else{
+            if(value < (*pt)->value){
+                *ant = *pt;
+                *pt = (*pt)->esq;
+                return searchAntTree(&(*pt), &(*ant), &(*f), value);
+            }else{
+                *ant = *pt;
+                *pt = (*pt)->dir;
+                return searchAntTree(&(*pt), &(*ant), &(*f), value);
+            }
+
+        }
+    }
+
+}
+//função que deleta a arvore
+void removeTree(No_ab **pt, int x, unsigned int *f){
+    //variavel para guardar a raiz
+    No_ab *temp = *pt;
+    No_ab *aux = *pt;
+    searchAntTree(pt,&aux, f, x);
+    if(*f  == 1){
+        //caso 1: valor a ser removido é uma folha
+        if(((*pt)->esq  && (*pt)->dir) == NULL){
+            if(aux->dir == (*pt)){
+                aux->dir = NULL;
+                free(*pt);
+            }else{
+                if(aux->esq == (*pt)){
+                    aux->esq = NULL;
+                    free(*pt);
+                }
+            }
+        }else{
+            //caso 2: tem apenas um filho
+            if((*pt)->esq == NULL ) {
+                //substitui pelo filho a direita
+                aux->dir = (*pt)->dir;
+                free(*pt);
+            }else{
+                //caso 2.1: tem apenas um filho
+                if((*pt)->dir == NULL){
+                    aux->esq = (*pt)->esq;
+                    free(*pt);
+                }
+            }
+        }
+    }
+    *pt = temp;
+}
