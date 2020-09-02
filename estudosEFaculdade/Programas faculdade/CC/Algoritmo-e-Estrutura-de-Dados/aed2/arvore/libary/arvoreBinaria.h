@@ -14,4 +14,6 @@ void printArvorePre(No_ab *pt);
 void removeTree(No_ab **pt, int x, unsigned int *f);
 //pesquisa na arvore com o anterior
 void searchAntTree(No_ab **pt, No_ab **ant, unsigned int *f, int value);
+//acha sucessor
+void sucessor(No_ab **pt, No_ab **ant, int x);
 #endif // ARVOREBINARIA_H_INCLUDED
