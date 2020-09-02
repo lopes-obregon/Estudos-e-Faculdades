@@ -1,12 +1,12 @@
 # depslib dependency file v1.0
-1598920464 source:/home/renan/Documentos/Estudos-e-Faculdades/estudosEFaculdade/Programas faculdade/CC/Algoritmo-e-Estrutura-de-Dados/aed2/arvore/desenho_arvore/main.c
+1599005234 source:/home/renan/Documentos/Estudos-e-Faculdades/estudosEFaculdade/Programas faculdade/CC/Algoritmo-e-Estrutura-de-Dados/aed2/arvore/desenho_arvore/main.c
 	<stdio.h>
 	<stdlib.h>
 	"gfx.h"
 	<unistd.h>
 	"../libary/arvoreBinaria.h"
 
-1598920415 source:/home/renan/Documentos/Estudos-e-Faculdades/estudosEFaculdade/Programas faculdade/CC/Algoritmo-e-Estrutura-de-Dados/aed2/arvore/libary/arvoreBinaria.c
+1599005180 source:/home/renan/Documentos/Estudos-e-Faculdades/estudosEFaculdade/Programas faculdade/CC/Algoritmo-e-Estrutura-de-Dados/aed2/arvore/libary/arvoreBinaria.c
 	"arvoreBinaria.h"
 	<stdio.h>
 	<stdlib.h>

@@ -99,6 +99,31 @@ void searchAntTree(No_ab **pt, No_ab **ant, unsigned int *f, int value){
     }
 
 }
+//acha sucessor
+void sucessor(No_ab **pt, No_ab **ant, int x){
+    if(pt == NULL){
+        return;
+    }else{
+        if(x < (*pt)->value){
+            *ant = *pt;
+            *pt = (*pt)->esq;
+            return sucessor(&(*pt), &(*ant), x+1);
+        }else{
+            if(x > (*pt)->value){
+                *ant = *pt;
+                *pt = (*pt)->dir;
+                return sucessor(&(*pt), &(*ant), x+1);
+            }else{
+                if(x == (*pt)->value){
+                    //achei o sucessor
+                    return;
+                }
+            }
+        }
+
+    }
+
+}
 //função que deleta a arvore
 void removeTree(No_ab **pt, int x, unsigned int *f){
     //variavel para guardar a raiz
@@ -122,6 +147,9 @@ void removeTree(No_ab **pt, int x, unsigned int *f){
             if((*pt)->esq == NULL ) {
                 //substitui pelo filho a direita
                 aux->dir = (*pt)->dir;
+                if(aux->esq == *pt){
+                    aux->esq = NULL;
+                }
                 free(*pt);
             }else{
                 //caso 2.1: tem apenas um filho
@@ -132,6 +160,74 @@ void removeTree(No_ab **pt, int x, unsigned int *f){
                     }
                     free(*pt);
 
+                }else{
+                    //caso 3: tem filhos ambos os lados
+                    if(((*pt)->esq != NULL) && ((*pt)->dir != NULL)){
+                            /*
+                            *encontrar o sucessor filho que está a direita
+                            *Caso 3
+                            */
+                            if(x+1 == (*pt)->dir->value){
+                                No_ab *aux2 = aux;//anterior a aux
+                                aux = *pt;
+                                *pt  = (*pt)->dir;
+                                if((*pt)->esq == NULL){
+                                    (*pt)->esq = aux->esq;
+                                    if(aux2->dir == aux){
+                                        aux2->dir = *pt;
+                                    }else{
+                                        if(aux2->esq == aux){
+                                            aux2->esq = *pt;
+                                        }
+                                    }
+                                    free(aux);
+                                }
+
+                            }else{
+                            //caso 3.1
+                                No_ab *aux2 = aux;
+                                //sucessor maior
+                                aux = *pt;
+                                *pt = (*pt)->dir;
+                                if(((*pt)->dir) == NULL && ((*pt)->esq) == NULL){
+                                    //já achei o sucessor
+                                    if(aux2->dir == aux){
+                                        aux2->dir = *pt;
+                                    }else{
+                                        if(aux2->esq == aux){
+                                            aux2->esq = *pt;
+                                        }
+                                    }
+                                    if(aux->esq != NULL){
+                                        (*pt)->esq = aux->esq;
+                                    }else{
+                                        if(aux->dir != NULL){
+                                            (*pt)->dir = aux->dir;
+                                        }
+                                    }
+                                    free(aux);
+                                }else{
+                                    //me garante o sucessor
+                                    sucessor(pt, &aux, x+1);
+                                    if(((*pt)->dir) == NULL && ((*pt)->esq) == NULL){
+                                        //se trata de uma folha
+                                        (*pt)->esq = aux2->esq;
+                                        (*pt)->dir = aux2->dir;
+                                        if(aux->dir == *pt){
+                                            aux->dir = NULL;
+                                        }else{
+                                            if(aux->esq == *pt){
+                                                aux->esq = NULL;
+                                            }
+                                        }
+                                        free(aux2);
+                                    }
+
+                                }
+
+                            }
+
+                    }
                 }
             }
         }
