@@ -5,7 +5,7 @@
 #include "../libary/arvoreBinaria.h"
 const RAIO = 30;
 typedef struct raiz{
-    struct No_ab *cabeca;
+    struct No_ab *ptRaiz;
 }Raiz;
 typedef struct no{
     unsigned short x,y;
@@ -90,32 +90,79 @@ void desenha_linha(No_ab *pt, No_ab *ant, No *pos){
     desenha_linha(pt->esq, ant->esq, aux);
     desenha_linha(pt->dir, ant->dir, aux);
 }
-int main(){
-    Raiz *pt = malloc(sizeof(Raiz));
-    No *ptLista = NULL;
-    unsigned  f;
-    insertArvore(15, &pt->cabeca, &f);
-    insertArvore(6, &pt->cabeca, &f);
-    insertArvore(3, &pt->cabeca, &f);
-    insertArvore(2, &pt->cabeca, &f);
-    insertArvore(4, &pt->cabeca, &f);
-    insertArvore(7, &pt->cabeca, &f);
-    insertArvore(13, &pt->cabeca, &f);
-    insertArvore(9, &pt->cabeca, &f);
-    insertArvore(18, &pt->cabeca, &f);
-    insertArvore(17, &pt->cabeca, &f);
-    insertArvore(20, &pt->cabeca, &f);
-    printArvorePre(pt->cabeca);
-    removeTree(&pt->cabeca, 18, &f);
-    printf("\ndepois de remover!\n");
-    printArvorePre(pt->cabeca);
+//insere na arvore
+void menuInsere(Raiz *pt){
+    unsigned  f, n;
+    int valor=0;
+    printf("Informe  a quantidade de elementos a ser inserido na arvore!\n");
+    scanf("%d", &n);
+    for(int i = 0; i < n; i++){
+        printf("Informe o %d valor da arvore: ", i+1);
+        scanf("%d", &valor);
+        //insere na arvore
+        insertArvore(valor, &pt->ptRaiz, &f);
+    }
+
+}
+//remove o elemento da arvore
+void menuRemoveArvore(Raiz *pt){
+    int valor = 0;// recebe zero para não ficar o lixo
+    unsigned f;
+    printf("Qual elemento deseja remover da arvore?\n");
+    scanf("%d", &valor);
+    removeTree(&pt->ptRaiz, valor, &f);
+
+
+}
+//funpção que faz a chamada para desenhar a arvore
+void menuDesenhaAzrvore(Raiz *pt, No *ptLista){
     gfx_init(800, 600, "Arvore Binaria De Busca");
     gfx_set_font_size(40);
     gfx_set_color(255, 0, 0);
-    desenha_arvore(pt->cabeca, 0, 800, 70, &ptLista);
-    desenha_linha(pt->cabeca,  pt->cabeca,ptLista);
+    desenha_arvore(pt->ptRaiz, 0, 800, 70, &ptLista);
+    desenha_linha(pt->ptRaiz,  pt->ptRaiz,ptLista);
     gfx_paint();
     sleep(5);
     gfx_quit();
+}
+int main(){
+    Raiz *pt = malloc(sizeof(Raiz));
+    No *ptLista = NULL;//variavel para armazenar as posições dos elementos no plano
+
+    int valor = 0;
+    printf("\n-------manu-------\n");
+    do{
+        printf("0-Sair 1-Inserir arvore 2-Remover Elemento Arvore 3-Desenha arvore 4-Salvar Arvore\n");
+        scanf("%d", &valor);
+        if(valor == 1){
+            menuInsere(pt);
+
+        }else{
+            if(valor == 2){
+                menuRemoveArvore(pt);
+            }else{
+                if(valor == 3){
+                    menuDesenhaAzrvore(pt, ptLista);
+
+                }
+            }
+
+        }
+
+    }while(valor != 0);
+
+
+    //removeTree(&pt->cabeca, 6, &f);
+
+    printf("\narvoreLimpa!\n");
+    clearTree(&pt->ptRaiz);//limpa a arvore da memoria
+    printArvorePre(pt->ptRaiz);
     return 0;
 }
+/**
+    Busca, inserção e remoção de chaves inteiras;ok
+    Visualização da árvore em modo gráfico usando a biblioteca gfx;ok
+    Leitura e gravação da árvore em arquivo formato binário usando percurso em pré-ordem. A árvore não deve ser reconstruída através de operações de inserção;
+    Desalocação da árvore completa.ok
+
+*/

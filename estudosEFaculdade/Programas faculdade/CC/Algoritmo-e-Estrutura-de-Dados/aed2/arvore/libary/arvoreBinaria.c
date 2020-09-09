@@ -1,6 +1,4 @@
 #include "arvoreBinaria.h"
-#include <stdio.h>
-#include <stdlib.h>
 //busca na arvore
 void buscaArvore(int x, No_ab **pt, unsigned int *f){
     if(*pt == NULL){
@@ -233,4 +231,16 @@ void removeTree(No_ab **pt, int x, unsigned int *f){
         }
     }
     *pt = temp;
+}
+//função que limpa a ARVORE
+void clearTree(No_ab **pt){
+   //quando chega em folha ou nulo ele retorna nada
+   if(*pt == NULL){
+        return;
+   }
+   clearTree(&(*pt)->esq);
+   clearTree(&(*pt)->dir);
+   //remove o elemento conforme for chamanado mas na volta ou seja recursivamente;
+   free(*pt);
+   *pt = NULL;
 }
