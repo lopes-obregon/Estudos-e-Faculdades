@@ -1,0 +1,11 @@
+#ifndef LISTA_INCLUDED
+#define LISTA_INCLUDED
+typedef struct s_arq_no{
+    int32_t chave:30;
+    uint32_t esq:1;
+    uint32_t dir:1;
+
+}arqNo;
+
+
+#endif // LISTA_INCLUDED

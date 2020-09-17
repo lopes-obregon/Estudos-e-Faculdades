@@ -35,6 +35,11 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="../libary/arvoreBinaria.h" />
+		<Unit filename="../libary/lista" />
+		<Unit filename="../libary/lista.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../libary/lista.h" />
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
 		</Unit>

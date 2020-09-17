@@ -13,6 +13,9 @@ typedef struct no{
     struct no *prox;
 
 }No;
+typedef struct ponteiro{
+    struct arqNo *cabeca;
+}Ponteiro;
 void insertNo(No **pt, unsigned short x, unsigned short y, int value){
     No *neww = malloc(sizeof(No));
     neww->x = x;
@@ -125,9 +128,29 @@ void menuDesenhaAzrvore(Raiz *pt, No *ptLista){
     sleep(5);
     gfx_quit();
 }
+/*
+{15,1,0}{4,1,0}...
+
+
+*/
+//gravação no arquivo binario
+void menuArquivoBinario(Raiz *pt){
+    Ponteiro *ptCabeca = NULL;
+    printArvorePre(pt,&ptCabeca->cabeca);
+
+
+
+}
 int main(){
     Raiz *pt = malloc(sizeof(Raiz));
     No *ptLista = NULL;//variavel para armazenar as posições dos elementos no plano
+    FILE *arq;
+    char buffer[100];
+    char str[] = "testando";
+    arq = fopen("arvore", "wb");
+    if(arq == NULL){
+        printf("Problema na criação do arquivo\n");
+    }
 
     int valor = 0;
     printf("\n-------manu-------\n");
@@ -144,6 +167,10 @@ int main(){
                 if(valor == 3){
                     menuDesenhaAzrvore(pt, ptLista);
 
+                }else{
+                    if(valor == 4){
+                        menuArquivoBinario(pt);
+                    }
                 }
             }
 
@@ -156,7 +183,6 @@ int main(){
 
     printf("\narvoreLimpa!\n");
     clearTree(&pt->ptRaiz);//limpa a arvore da memoria
-    printArvorePre(pt->ptRaiz);
     return 0;
 }
 /**

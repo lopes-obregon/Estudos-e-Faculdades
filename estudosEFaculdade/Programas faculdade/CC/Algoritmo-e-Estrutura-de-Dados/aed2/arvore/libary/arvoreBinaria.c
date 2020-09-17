@@ -63,15 +63,31 @@ void insertArvore(int x, No_ab **pt, unsigned int *f){
 
 }
 //procedimento que imprime a arvore em pre ordem
-void printArvorePre(No_ab *pt){
-    if(pt == NULL){
+void printArvorePre(No_ab **pt, arqNo **ptCabeca){
+    //variavel  para armazenar verdadeuiro ou falso 0-verdadeiro 1-para falso
+    uint32_t esq;
+    uint32_t dir;
+    esq = dir = 1;
+    if(*pt == NULL){
         return;
     }else{
-        printf("%i ", pt->value);
-        printArvorePre(pt->esq);
-        printArvorePre(pt->dir);
+        if((*pt)->esq != NULL){
+            esq = 0;
+        }else{
+            if((*pt)->dir != NULL){
+                dir = 0;
+            }
+
+        }
+
+
     }
 
+
+    reservaMemoria(&ptCabeca, (*pt)->value, esq, dir);
+    escreveNoArquivo(&ptCabeca);
+    printArvorePre((*pt)->esq, ptCabeca);
+    printArvorePre((*pt)->dir, ptCabeca);
 }
 //função que busca o anterior
 void searchAntTree(No_ab **pt, No_ab **ant, unsigned int *f, int value){

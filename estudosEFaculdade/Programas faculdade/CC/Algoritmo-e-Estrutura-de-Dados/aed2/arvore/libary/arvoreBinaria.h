@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdint.h>
+#include "lista.h"
 /*typedef struct no_ab{
     int value;
     struct no_ab *dir, *esq;
@@ -21,7 +22,7 @@ void buscaArvore(int x, No_ab **pt, unsigned int *f);
 //f deve vir da busca realizada na arvore
 void insertArvore(int x, No_ab **pt, unsigned int *f);
 //imprime a arvore em pré ordem
-void printArvorePre(No_ab *pt);
+void printArvorePre(No_ab **pt, arqNo **ptCabeca);
 //remove a arvore
 void removeTree(No_ab **pt, int x, unsigned int *f);
 //pesquisa na arvore com o anterior
