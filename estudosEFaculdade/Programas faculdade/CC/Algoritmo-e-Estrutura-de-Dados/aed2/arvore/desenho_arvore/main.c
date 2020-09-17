@@ -135,9 +135,22 @@ void menuDesenhaAzrvore(Raiz *pt, No *ptLista){
 */
 //gravação no arquivo binario
 void menuArquivoBinario(Raiz *pt){
-    Ponteiro *ptCabeca = NULL;
-    printArvorePre(pt,&ptCabeca->cabeca);
+    FILE *fp;//declaração do ponteiro do tipo arquivo
+    fp = fopen("arvore", "wb");
+    if(fp == NULL){
+        printf("Erro na abertura do arquivo\n");
 
+    }else{
+        Ponteiro *ptCabeca = NULL;
+        printArvorePre(pt,&ptCabeca->cabeca, fp);
+        fclose(fp);//fecha o arquivo binario  em modo escrita.
+    }
+
+
+
+}
+//menu que lê do arquivo
+void menuArquivoBinarioLeitura(Raiz *pt){
 
 
 }
@@ -155,7 +168,7 @@ int main(){
     int valor = 0;
     printf("\n-------manu-------\n");
     do{
-        printf("0-Sair 1-Inserir arvore 2-Remover Elemento Arvore 3-Desenha arvore 4-Salvar Arvore\n");
+        printf("0-Sair 1-Inserir arvore 2-Remover Elemento Arvore 3-Desenha arvore 4-Salvar Arvore  5-Ler Do Arquivo \n");
         scanf("%d", &valor);
         if(valor == 1){
             menuInsere(pt);
@@ -170,6 +183,11 @@ int main(){
                 }else{
                     if(valor == 4){
                         menuArquivoBinario(pt);
+                    }else{
+                        if(valor == 5){
+
+
+                        }
                     }
                 }
             }
@@ -188,7 +206,7 @@ int main(){
 /**
     Busca, inserção e remoção de chaves inteiras;ok
     Visualização da árvore em modo gráfico usando a biblioteca gfx;ok
-    Leitura e gravação da árvore em arquivo formato binário usando percurso em pré-ordem. A árvore não deve ser reconstruída através de operações de inserção;
+    Leitura e gravação(ok) da árvore em arquivo formato binário usando percurso em pré-ordem. A árvore não deve ser reconstruída através de operações de inserção;
     Desalocação da árvore completa.ok
 
 */
