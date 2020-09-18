@@ -151,9 +151,17 @@ void menuArquivoBinario(Raiz *pt){
 }
 //menu que lê do arquivo
 void menuArquivoBinarioLeitura(Raiz *pt){
-
+    FILE *fp;
+    fp = fopen("arvore", "rb");
+    if(fp == NULL){
+        printf("Erro na abertura do arquivo\n");
+    }else{
+        leituraPreOrdemArquivo(&pt->ptRaiz, fp);
+        fclose(fp);
+    }
 
 }
+//principal
 int main(){
     Raiz *pt = malloc(sizeof(Raiz));
     No *ptLista = NULL;//variavel para armazenar as posições dos elementos no plano
@@ -185,7 +193,9 @@ int main(){
                         menuArquivoBinario(pt);
                     }else{
                         if(valor == 5){
-
+                            clearTree(&pt->ptRaiz);//limpa a arvore da memoria
+                            pt->ptRaiz = NULL;//arvore vazia então deve apontar para null
+                            menuArquivoBinarioLeitura(pt);
 
                         }
                     }
