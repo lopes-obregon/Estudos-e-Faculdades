@@ -26,29 +26,7 @@ void reservaMemoria(arqNo **pt, int32_t chave, uint32_t esq, uint32_t dir){
 }
 //função que escreve no arquivo
 void escreveNoArquivo(arqNo **pt, FILE *fp){
-    /*char txt[100]; //declaração de uma string formatada do arquivo no
-    char temp[64]; //variavel temporaria para armazenar o texto convertido de inteiro para caracter
-    snprintf(txt, 64, "%s", "{");
-    snprintf(temp, 64, "%i", (*pt)->chave);
-    strConcatenar(txt, temp);
-    snprintf(temp,64, "%s", ",");
-    strConcatenar(txt, temp);
-    snprintf(temp, 64, "%i", (*pt)->esq);
-    strConcatenar(txt, temp);
-    snprintf(temp, 64, "%s", ",");
-    strConcatenar(txt, temp);
-    snprintf(temp, 64, "%i", (*pt)->dir);
-    strConcatenar(txt, temp);
-    snprintf(temp, 64, "%s", "}");
-    strConcatenar(txt, temp);*/
     fwrite(*pt, sizeof(arqNo), 1, fp);
-   /*
-    //fseek(fp, 0, SEEK_SET);
-    fp = fopen("arvore", "rb");
-    char conteudo[100];
-    fread(&conteudo, sizeof(char), 100, fp);
-    printf("\nO CONTEÚDO DO ARQUIVO É:\n %s \n", conteudo);
-    fclose(fp);*/
     free(*pt);
     *pt = NULL;
 

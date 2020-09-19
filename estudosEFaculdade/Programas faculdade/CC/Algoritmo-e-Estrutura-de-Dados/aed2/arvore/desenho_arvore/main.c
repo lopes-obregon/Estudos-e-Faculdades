@@ -157,13 +157,12 @@ void menuArquivoBinarioLeitura(Raiz *pt){
     if(fp == NULL){
         printf("Erro na abertura do arquivo\n");
     }else{
-        while(fread(&conteudo, sizeof(arqNo), 1, fp)){
-            leituraPreOrdemArquivo(&pt->ptRaiz, conteudo);
-        }
+        leituraPreOrdemArquivo(&pt->ptRaiz, conteudo, &pt->ptRaiz, fp);
         fclose(fp);
     }
 
 }
+//limpa a lista
 //principal
 int main(){
     Raiz *pt = malloc(sizeof(Raiz));

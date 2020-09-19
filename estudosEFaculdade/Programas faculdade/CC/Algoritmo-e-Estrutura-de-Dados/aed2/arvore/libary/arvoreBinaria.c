@@ -62,68 +62,54 @@ void insertArvore(int x, No_ab **pt, unsigned int *f){
     }
 
 }
+//pré ordem
+/*
+    procedimento pre()
+        visita;;
+        se pt^.esq != lambda pre(pt^.esq)
+        se pt^.dir != lambda pre(pt^.dir)
+    se ptRaiz != lambda então pre(ptRaiz)
+
+*/
 //procedimento leitura em pré-ordem apartir de um arquivo
-void leituraPreOrdemArquivo(No_ab **ptArvore, arqNo conteudo){
-    //quando 0- tem alguem na esquerda ou direita quando 1-não tem ninguem;
-    No_ab *aux = *ptArvore; //variavel para segurar a raiz
-    No_ab *neww = malloc(sizeof(No_ab));
-    neww->value = conteudo.chave;
-    if(*ptArvore == NULL){
-        //siginifica  que o conteúdo se refere a raiz
-        neww->dir = neww->esq = NULL;
-        //aux = neww;//recebe o valor da raiz;
-        //0 para vazio, 1-para esquerdo, 2- para direito
+void leituraPreOrdemArquivo(No_ab **ptArvore, arqNo conteudo, No_ab **ant, FILE *fp){
+    //quando 0-não tem filho 1-tem filho esquerdo 2-tem filho direito;
+    // 0-tem filho 1-não tem filho
+    //No_ab *aux = *ptArvore; //variavel para segurar a raiz
+    if(fread(&conteudo, sizeof(arqNo), 1, fp)){
+        No_ab *neww = malloc(sizeof(No_ab));
+        neww->value = conteudo.chave;
+        neww->esq = neww->dir = NULL;
+        //Nó alocado recebe 0 em reservado indiciando que não tem filho e não fez a analise do conteudo do arquivo relacionado ao nó
+        neww->reservado = 0;
+        //se o conteudo esquerdo então reservado recebe 1
         if(conteudo.esq == 0){
             neww->reservado = 1;
         }else{
+            //se o conteúdo direito tem filho então reservado recebe 2
             if(conteudo.dir == 0){
                 neww->reservado = 2;
-            }else{
-                if((conteudo.esq && conteudo.dir) == 1){
-                    neww->reservado = 0;
-                }
             }
         }
-        aux = neww;
-    }else{
-        if((*ptArvore)->esq != NULL){
-            leituraPreOrdemArquivo(&(*ptArvore), conteudo);
-        }else{
-            if((*ptArvore)->dir != NULL){
-                leituraPreOrdemArquivo(&(*ptArvore), conteudo);
-            }
-        }
-        if((conteudo.esq && conteudo.dir) == 1){
-            neww->esq = neww->dir = NULL;
-            if((*ptArvore)->reservado == 1){
-                //filho esquerdo de ptArvore
-                (*ptArvore)->esq = neww;
+        if(*ant != NULL){
+            if((*ant)->reservado == 1){
+                (*ant)->esq = neww;
             }else{
-                if((*ptArvore)->reservado == 2){
-                    //fiçho direito de ptArvore
-                    (*ptArvore)->dir = neww;
-                }
-            }
-        }else{
-            if(conteudo.esq == 0){
-                (*ptArvore)->esq = neww;
-            }else{
-                if(conteudo.dir == 0){
-                    (*ptArvore)->dir = neww;
-                }else{
-                    if(conteudo.esq == 1){
-                        neww->esq = NULL;
-                    }else{
-                        if(conteudo.dir == 1){
-                            neww->dir = NULL;
-                        }
-                    }
+                if((*ant)->dir == 2){
+                    (*ant)->dir = neww;
                 }
             }
         }
         *ptArvore = neww;
+    }else{
+        if(*ptArvore == NULL){
+            return;
+        }
     }
-    *ptArvore = aux;
+
+    leituraPreOrdemArquivo(&(*ptArvore)->esq, conteudo, &(*ptArvore), fp);
+    leituraPreOrdemArquivo(&(*ptArvore)->dir, conteudo, &(*ptArvore), fp);
+
 }
 //procedimento que imprime a arvore em pre ordem
 void printArvorePre(No_ab **pt, arqNo **ptCabeca, FILE *fp){
