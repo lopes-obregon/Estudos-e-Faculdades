@@ -13,4 +13,6 @@ typedef struct s_arq_no{
 void reservaMemoria(arqNo **pt, int32_t chave, uint32_t esq, uint32_t dir);
 //concatena as string
 void strConcatenar(char *str, char *str2);
+//função que escreve no arquivo
+void escreveNoArquivo(arqNo **pt, FILE *fp);
 #endif // LISTA_H_INCLUDED
