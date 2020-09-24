@@ -32,5 +32,7 @@ void sucessor(No_ab **pt, No_ab **ant, int x);
 //função que limpa a ARVORE
 void clearTree(No_ab **pt);
 //procedimento leitura em pré-ordem apartir de um arquivo
-void leituraPreOrdemArquivo(No_ab **ptArvore, arqNo conteudo, No_ab **ant, FILE *fp);
+void leituraPreOrdemArquivo(No_ab **ptArvore, arqNo **conteudo, No_ab **ptRaiz, FILE *fp);
+//aloca o nó para a arvore
+void devolveChave(arqNo conteudo, FILE *file, No_ab **pt);
 #endif // ARVOREBINARIA_H_INCLUDED

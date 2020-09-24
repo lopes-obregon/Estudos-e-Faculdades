@@ -62,6 +62,20 @@ void insertArvore(int x, No_ab **pt, unsigned int *f){
     }
 
 }
+//procedimento que aloca o nó para a arvore
+void devolveChave( arqNo conteudo, FILE *file, No_ab **pt){
+    //fazendo a leitura do proximo nó
+    //que é filho do nó atual
+    No_ab *neww = malloc(sizeof(No_ab));
+    neww->dir = neww->esq = NULL;
+    if(fread(&conteudo, sizeof(arqNo), 1, file)){
+       neww->value = conteudo.chave;
+       *pt = neww;
+
+    }
+
+
+}
 //pré ordem
 /*
     procedimento pre()
@@ -72,63 +86,78 @@ void insertArvore(int x, No_ab **pt, unsigned int *f){
 
 */
 //procedimento leitura em pré-ordem apartir de um arquivo
-void leituraPreOrdemArquivo(No_ab **ptArvore, arqNo conteudo, No_ab **ant, FILE *fp){
-    //quando 0-não tem filho 1-tem filho esquerdo 2-tem filho direito;
+void leituraPreOrdemArquivo(No_ab **ptArvore, arqNo **conteudo, No_ab **ptRaiz, FILE *fp){
+    //quando 0-não tem filho 1-tem filho esquerdo 2-tem filho direito 3-te, filho direito esquerdo;
     // 0-tem filho 1-não tem filho
     //No_ab *aux = *ptArvore; //variavel para segurar a raiz
-    if(fread(&conteudo, sizeof(arqNo), 1, fp)){
-        No_ab *neww = malloc(sizeof(No_ab));
-        neww->value = conteudo.chave;
-        neww->esq = neww->dir = NULL;
-        //Nó alocado recebe 0 em reservado indiciando que não tem filho e não fez a analise do conteudo do arquivo relacionado ao nó
-        neww->reservado = 0;
-        //se o conteudo esquerdo então reservado recebe 1
-        if(conteudo.esq == 0){
-            neww->reservado = 1;
-        }else{
-            //se o conteúdo direito tem filho então reservado recebe 2
-            if(conteudo.dir == 0){
-                neww->reservado = 2;
-            }
-        }
-        if(*ant != NULL){
-            if((*ant)->reservado == 1){
-                (*ant)->esq = neww;
-            }else{
-                if((*ant)->dir == 2){
-                    (*ant)->dir = neww;
+    if((*ptArvore == NULL) && (*ptRaiz != NULL)){
+            if((*conteudo)->esq == 0){
+                if( (*conteudo)->esq == 0){
+                    (*conteudo)->esq = 1;
+                    return;
+                }else{
+                    if(((*conteudo)->dir == 0)){
+                        (*conteudo)->dir = 1;
+                        return;
+                    }
                 }
             }
+
+
+    }
+    if(fread(*conteudo, sizeof(arqNo), 1, fp)){
+        No_ab *neww = malloc(sizeof(No_ab));
+        neww->dir = neww->esq = NULL;
+        if(((*conteudo)->esq == 1) && ((*conteudo)->dir == 1)){
+            //me garante a raiz da arvore
+             neww->value = (*conteudo)->chave;
+            if(*ptRaiz == NULL){
+                //signigica que a arvore a inda não tem raiz
+                *ptRaiz = neww;
+            }else{
+                *ptArvore = neww;
+            }
+        }else{
+            //não tem raiz e a primeira leitra é a raiz
+            if(*ptRaiz == NULL){
+                *ptRaiz = neww;
+            }
         }
-        *ptArvore = neww;
-    }else{
+        //é uma folha
+        if(((*conteudo)->esq == 0) && ((*conteudo)->dir == 0)){
+            neww->value = (*conteudo)->chave;
+            *ptArvore = neww;
+        }
         if(*ptArvore == NULL){
-            return;
+            neww->value = (*conteudo)->chave;
+            *ptArvore = neww;
         }
     }
-
-    leituraPreOrdemArquivo(&(*ptArvore)->esq, conteudo, &(*ptArvore), fp);
-    leituraPreOrdemArquivo(&(*ptArvore)->dir, conteudo, &(*ptArvore), fp);
+    leituraPreOrdemArquivo(&(*ptArvore)->esq, &(*conteudo), &(*ptRaiz), fp);
+    leituraPreOrdemArquivo(&(*ptArvore)->dir, &(*conteudo), &(*ptRaiz), fp);
 
 }
 //procedimento que imprime a arvore em pre ordem
 void printArvorePre(No_ab **pt, arqNo **ptCabeca, FILE *fp){
-    //variavel  para armazenar verdadeuiro ou falso 0-verdadeiro 1-para falso
+    //variavel  para armazenar verdadeuiro ou falso 1-verdadeiro 0-para falso
     uint32_t esq;
     uint32_t dir;
-    esq = dir = 1;
+    esq = dir = 0;
     if(*pt == NULL){
         return;
     }else{
-        if((*pt)->esq != NULL){
-            esq = 0;
+        if(((*pt)->esq && (*pt)->dir) != NULL){
+            esq = dir = 1;
         }else{
-            if((*pt)->dir != NULL){
-                dir = 0;
+            if((*pt)->esq != NULL){
+                esq = 1;
+            }else{
+                if((*pt)->dir != NULL){
+                    dir = 1;
+                }
+
             }
-
         }
-
 
     }
 

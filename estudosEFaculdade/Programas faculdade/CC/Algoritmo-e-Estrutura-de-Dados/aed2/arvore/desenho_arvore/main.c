@@ -152,12 +152,12 @@ void menuArquivoBinario(Raiz *pt){
 //menu que lê do arquivo
 void menuArquivoBinarioLeitura(Raiz *pt){
     FILE *fp;
-    arqNo conteudo; //variavel para armazenar o conteúdo do arquivo binário;
+    arqNo *conteudo; //variavel para armazenar o conteúdo do arquivo binário;
     fp = fopen("arvore", "rb");
     if(fp == NULL){
         printf("Erro na abertura do arquivo\n");
     }else{
-        leituraPreOrdemArquivo(&pt->ptRaiz, conteudo, &pt->ptRaiz, fp);
+        leituraPreOrdemArquivo(&pt->ptRaiz, &conteudo, &pt->ptRaiz, fp);
         fclose(fp);
     }
 

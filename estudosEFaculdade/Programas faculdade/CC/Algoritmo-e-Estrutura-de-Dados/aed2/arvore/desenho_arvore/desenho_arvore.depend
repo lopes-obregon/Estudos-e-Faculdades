@@ -1,25 +1,25 @@
 # depslib dependency file v1.0
-1600477505 source:/home/renan/Documentos/Estudos-e-Faculdades/estudosEFaculdade/Programas faculdade/CC/Algoritmo-e-Estrutura-de-Dados/aed2/arvore/desenho_arvore/main.c
+1600903719 source:/home/renan/Documentos/Estudos-e-Faculdades/estudosEFaculdade/Programas faculdade/CC/Algoritmo-e-Estrutura-de-Dados/aed2/arvore/desenho_arvore/main.c
 	<stdio.h>
 	<stdlib.h>
 	"gfx.h"
 	<unistd.h>
 	"../libary/arvoreBinaria.h"
 
-1600477021 source:/home/renan/Documentos/Estudos-e-Faculdades/estudosEFaculdade/Programas faculdade/CC/Algoritmo-e-Estrutura-de-Dados/aed2/arvore/libary/arvoreBinaria.c
+1600907447 source:/home/renan/Documentos/Estudos-e-Faculdades/estudosEFaculdade/Programas faculdade/CC/Algoritmo-e-Estrutura-de-Dados/aed2/arvore/libary/arvoreBinaria.c
 	"arvoreBinaria.h"
 
-1600475928 /home/renan/Documentos/Estudos-e-Faculdades/estudosEFaculdade/Programas faculdade/CC/Algoritmo-e-Estrutura-de-Dados/aed2/arvore/libary/arvoreBinaria.h
+1600906963 /home/renan/Documentos/Estudos-e-Faculdades/estudosEFaculdade/Programas faculdade/CC/Algoritmo-e-Estrutura-de-Dados/aed2/arvore/libary/arvoreBinaria.h
 	<stdio.h>
 	<stdlib.h>
 	<stdint.h>
 	"lista.h"
 
-1600385822 /home/renan/Documentos/Estudos-e-Faculdades/estudosEFaculdade/Programas faculdade/CC/Algoritmo-e-Estrutura-de-Dados/aed2/arvore/libary/lista.h
+1600478093 /home/renan/Documentos/Estudos-e-Faculdades/estudosEFaculdade/Programas faculdade/CC/Algoritmo-e-Estrutura-de-Dados/aed2/arvore/libary/lista.h
 	<stdio.h>
 	<stdlib.h>
 	<stdint.h>
 
-1600477523 source:/home/renan/Documentos/Estudos-e-Faculdades/estudosEFaculdade/Programas faculdade/CC/Algoritmo-e-Estrutura-de-Dados/aed2/arvore/libary/lista.c
+1600478093 source:/home/renan/Documentos/Estudos-e-Faculdades/estudosEFaculdade/Programas faculdade/CC/Algoritmo-e-Estrutura-de-Dados/aed2/arvore/libary/lista.c
 	"lista.h"
 
