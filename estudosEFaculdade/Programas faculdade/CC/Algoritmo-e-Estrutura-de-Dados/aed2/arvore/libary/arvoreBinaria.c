@@ -83,43 +83,46 @@ void leituraPreOrdemArquivo(No_ab **ptArvore, No_ab **ptRaiz, FILE *fp){
     //aloca nó para receber o conteudo do arquivo
     arqNo *conteudo = malloc(sizeof(arqNo));
     //lendo os dados do arquivo
-    if(fread(conteudo, sizeof(arqNo), 1, fp) == 0){
-        //se chegou no final do arquivo libera a memoria alocada, e retorna recursivamente
-        free(conteudo);
-        return;
+    if(fread(conteudo, sizeof(arqNo), 1, fp)){
+        //aloca a estrutura do tipo No_ab
+        No_ab *neww = malloc(sizeof(No_ab));
+        neww->dir = neww->esq = NULL;
+        //se não tem raiz então o ponteiro da raiz aponta para o novo nó
+        //novo nó recebe a chave do conteudo do arquivo
+        neww->value = conteudo->chave;
+        if(*ptRaiz == NULL){
+            *ptRaiz = neww;
+        }
+        *ptArvore = neww;
+        /*
+        *procedimento pre()
+        *    visita;;
+        *    se pt^.esq != lambda pre(pt^.esq)
+        *    se pt^.dir != lambda pre(pt^.dir)
+        *se ptRaiz != lambda então pre(ptRaiz)
 
-    }
-     //aloca a estrutura do tipo No_ab
-    No_ab *neww = malloc(sizeof(No_ab));
-    neww->dir = neww->esq = NULL;
-    //se não tem raiz então o ponteiro da raiz aponta para o novo nó
-    //novo nó recebe a chave do conteudo do arquivo
-    neww->value = conteudo->chave;
-    if(*ptRaiz == NULL){
-        *ptRaiz = neww;
-    }
-    *ptArvore = neww;
-    /*
-    *procedimento pre()
-    *    visita;;
-    *    se pt^.esq != lambda pre(pt^.esq)
-    *    se pt^.dir != lambda pre(pt^.dir)
-    *se ptRaiz != lambda então pre(ptRaiz)
+    */
 
-*/
+        //ponteiro esquerdo
+        //se tem filho a esquerdo chama a função novamente para alocar esse filho
+        if(conteudo->esq != 0){
+            leituraPreOrdemArquivo(&(*ptArvore)->esq, ptRaiz, fp);
+        }
+        //ponteido da direita
+        if(conteudo->dir != 0){
+            leituraPreOrdemArquivo(&(*ptArvore)->dir, ptRaiz, fp);
+        }else{
+            //se direito for lambda então desaloca conteudo
+            free(conteudo);
+        }
 
-    //ponteiro esquerdo
-    //se tem filho a esquerdo chama a função novamente para alocar esse filho
-    if(conteudo->esq != 0){
-        leituraPreOrdemArquivo(&(*ptArvore)->esq, ptRaiz, fp);
-    }
-    //ponteido da direita
-    if(conteudo->dir != 0){
-        leituraPreOrdemArquivo(&(*ptArvore)->dir, ptRaiz, fp);
     }else{
-        //se direito for lambda então desaloca conteudo
-        free(conteudo);
+        //se chegou no final do arquivo libera a memoria alocada, e retorna recursivamente
+            free(conteudo);
+            return;
+
     }
+
 }
 //procedimento que imprime a arvore em pre ordem
 void printArvorePre(No_ab **pt, arqNo **ptCabeca, FILE *fp){
@@ -222,7 +225,7 @@ void removeTree(No_ab **pt, int x, unsigned int *f){
             //caso 2: tem apenas um filho
             if((*pt)->esq == NULL ) {
                 //substitui pelo filho a direita
-                aux->dir = (*pt)->dir;
+                aux->esq = (*pt)->dir;
                 if(aux->esq == *pt){
                     aux->esq = NULL;
                 }
@@ -230,7 +233,7 @@ void removeTree(No_ab **pt, int x, unsigned int *f){
             }else{
                 //caso 2.1: tem apenas um filho
                 if((*pt)->dir == NULL){
-                    aux->esq = (*pt)->esq;
+                    aux->dir = (*pt)->esq;
                     if(aux->dir == (*pt)){
                         aux->dir = NULL;
                     }
