@@ -1,26 +1,30 @@
 # depslib dependency file v1.0
-<<<<<<< HEAD
-1601378467 source:/home/renan/Documentos/Estudos-e-Faculdades/estudosEFaculdade/Programas faculdade/CC/Algoritmo-e-Estrutura-de-Dados/aed2/arvore/desenho_arvore/main.c
-=======
-1601307951 source:/home/renan/Documentos/Estudos-e-Faculdades/estudosEFaculdade/Programas faculdade/CC/Algoritmo-e-Estrutura-de-Dados/aed2/arvore/desenho_arvore/main.c
->>>>>>> c6bfc2b6ad8f9ed0d1d9698e8239079c5d5758e2
+140734371891504 <<<<<<< HEAD
+
+1601381738 source:/home/renan/Documentos/Estudos-e-Faculdades/estudosEFaculdade/Programas faculdade/CC/Algoritmo-e-Estrutura-de-Dados/aed2/arvore/desenho_arvore/main.c
 	<stdio.h>
 	<stdlib.h>
 	"gfx.h"
 	<unistd.h>
 	"../libary/arvoreBinaria.h"
 
-<<<<<<< HEAD
-1601380400 source:/home/renan/Documentos/Estudos-e-Faculdades/estudosEFaculdade/Programas faculdade/CC/Algoritmo-e-Estrutura-de-Dados/aed2/arvore/libary/arvoreBinaria.c
+1601302679 fc2b6ad8f9ed0d1d9698e8239079c5d5758e2
+	<stdio.h>
+	<stdlib.h>
+	"gfx.h"
+	<unistd.h>
+	"../libary/arvoreBinaria.h"
+	<stdio.h>
+	<stdlib.h>
+	<stdint.h>
+	"lista.h"
+
+1601307951 D
+
+1601382042 source:/home/renan/Documentos/Estudos-e-Faculdades/estudosEFaculdade/Programas faculdade/CC/Algoritmo-e-Estrutura-de-Dados/aed2/arvore/libary/arvoreBinaria.c
 	"arvoreBinaria.h"
 
-1601378436 /home/renan/Documentos/Estudos-e-Faculdades/estudosEFaculdade/Programas faculdade/CC/Algoritmo-e-Estrutura-de-Dados/aed2/arvore/libary/arvoreBinaria.h
-=======
-1601316896 source:/home/renan/Documentos/Estudos-e-Faculdades/estudosEFaculdade/Programas faculdade/CC/Algoritmo-e-Estrutura-de-Dados/aed2/arvore/libary/arvoreBinaria.c
-	"arvoreBinaria.h"
-
-1601302679 /home/renan/Documentos/Estudos-e-Faculdades/estudosEFaculdade/Programas faculdade/CC/Algoritmo-e-Estrutura-de-Dados/aed2/arvore/libary/arvoreBinaria.h
->>>>>>> c6bfc2b6ad8f9ed0d1d9698e8239079c5d5758e2
+1601381738 /home/renan/Documentos/Estudos-e-Faculdades/estudosEFaculdade/Programas faculdade/CC/Algoritmo-e-Estrutura-de-Dados/aed2/arvore/libary/arvoreBinaria.h
 	<stdio.h>
 	<stdlib.h>
 	<stdint.h>
