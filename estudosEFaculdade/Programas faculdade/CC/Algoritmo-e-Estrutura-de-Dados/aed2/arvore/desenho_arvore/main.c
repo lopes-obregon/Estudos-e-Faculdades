@@ -3,7 +3,7 @@
 #include "gfx.h"
 #include <unistd.h>
 #include "../libary/arvoreBinaria.h"
-const RAIO = 30;
+const RAIO = 10;
 typedef struct raiz{
     struct No_ab *ptRaiz;
 }Raiz;
@@ -119,14 +119,14 @@ void menuRemoveArvore(Raiz *pt){
 }
 //funpção que faz a chamada para desenhar a arvore
 void menuDesenhaAzrvore(Raiz *pt, No *ptLista){
-    gfx_init(800, 600, "Arvore Binaria De Busca");
-    gfx_set_font_size(40);
+    gfx_init(1000, 800, "Arvore Binaria De Busca");
+    gfx_set_font_size(20);
     gfx_set_color(255, 0, 0);
-    desenha_arvore(pt->ptRaiz, 0, 800, 70, &ptLista);
+    desenha_arvore(pt->ptRaiz, 0, 1000, 70, &ptLista);
     desenha_linha(pt->ptRaiz,  pt->ptRaiz,ptLista);
     gfx_paint();
-    sleep(5);
-    gfx_quit();
+    //sleep(5);
+    //gfx_quit();
 }
 /*
 {15,1,0}{4,1,0}...
@@ -136,7 +136,7 @@ void menuDesenhaAzrvore(Raiz *pt, No *ptLista){
 //gravação no arquivo binario
 void menuArquivoBinario(Raiz *pt){
     FILE *fp;//declaração do ponteiro do tipo arquivo
-    fp = fopen("arvore", "wb");
+    fp = fopen("arvore", "a+b");
     if(fp == NULL){
         printf("Erro na abertura do arquivo\n");
 
@@ -152,12 +152,13 @@ void menuArquivoBinario(Raiz *pt){
 //menu que lê do arquivo
 void menuArquivoBinarioLeitura(Raiz *pt){
     FILE *fp;
-    arqNo *conteudo; //variavel para armazenar o conteúdo do arquivo binário;
-    fp = fopen("arvore", "rb");
+   // unsigned short filhoEsquerdo, filhoDireito;
+    //filhoEsquerdo = filhoDireito = 0;
+    fp = fopen("arvore", "a+b");
     if(fp == NULL){
         printf("Erro na abertura do arquivo\n");
     }else{
-        leituraPreOrdemArquivo(&pt->ptRaiz, &conteudo, &pt->ptRaiz, fp);
+        leituraPreOrdemArquivo(&pt->ptRaiz, &pt->ptRaiz, fp);
         fclose(fp);
     }
 
@@ -212,6 +213,7 @@ int main(){
     //removeTree(&pt->cabeca, 6, &f);
 
     printf("\narvoreLimpa!\n");
+    gfx_quit();
     clearTree(&pt->ptRaiz);//limpa a arvore da memoria
     return 0;
 }
