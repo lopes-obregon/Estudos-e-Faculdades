@@ -16,6 +16,18 @@ typedef struct no{
 typedef struct ponteiro{
     struct arqNo *cabeca;
 }Ponteiro;
+//limpa a lista
+void clearList(No **ptl){
+    No *pt = *ptl;
+    No *ptold;
+    while(pt != NULL){
+        ptold = pt;
+        pt = pt->prox;
+        free(ptold);
+    }
+
+
+}
 void insertNo(No **pt, unsigned short x, unsigned short y, int value){
     No *neww = malloc(sizeof(No));
     neww->x = x;
@@ -125,6 +137,7 @@ void menuDesenhaAzrvore(Raiz *pt, No *ptLista){
     desenha_arvore(pt->ptRaiz, 0, 1000, 70, &ptLista);
     desenha_linha(pt->ptRaiz,  pt->ptRaiz,ptLista);
     gfx_paint();
+    clearList(&ptLista);
     //sleep(5);
     //gfx_quit();
 }
@@ -171,8 +184,8 @@ int main(){
     char buffer[100];
     char str[] = "testando";
     int valor = 0;
-    printf("\n-------manu-------\n");
     do{
+        printf("\n-------manu-------\n");
         printf("0-Sair 1-Inserir arvore 2-Remover Elemento Arvore 3-Desenha arvore 4-Salvar Arvore  5-Ler Do Arquivo \n");
         scanf("%d", &valor);
         if(valor == 1){

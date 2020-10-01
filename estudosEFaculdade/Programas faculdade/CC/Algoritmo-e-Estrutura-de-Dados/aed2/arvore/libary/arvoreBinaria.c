@@ -81,18 +81,15 @@ void devolveChave( arqNo conteudo, FILE *file, No_ab **pt){
 //procedimento leitura em pré-ordem apartir de um arquivo
 void leituraPreOrdemArquivo(No_ab **ptArvore, No_ab **ptRaiz, FILE *fp){
     //aloca nó para receber o conteudo do arquivo
-    arqNo *conteudo = malloc(sizeof(arqNo));
+    arqNo conteudo;
     //lendo os dados do arquivo
-    if(fread(conteudo, sizeof(arqNo), 1, fp)){
+    if(fread(&conteudo, sizeof(arqNo), 1, fp)){
         //aloca a estrutura do tipo No_ab
         No_ab *neww = malloc(sizeof(No_ab));
         neww->dir = neww->esq = NULL;
         //se não tem raiz então o ponteiro da raiz aponta para o novo nó
         //novo nó recebe a chave do conteudo do arquivo
-        neww->value = conteudo->chave;
-        if(*ptRaiz == NULL){
-            *ptRaiz = neww;
-        }
+        neww->value = conteudo.chave;
         *ptArvore = neww;
         /*
         *procedimento pre()
@@ -105,20 +102,15 @@ void leituraPreOrdemArquivo(No_ab **ptArvore, No_ab **ptRaiz, FILE *fp){
 
         //ponteiro esquerdo
         //se tem filho a esquerdo chama a função novamente para alocar esse filho
-        if(conteudo->esq != 0){
+        if(conteudo.esq != 0){
             leituraPreOrdemArquivo(&(*ptArvore)->esq, ptRaiz, fp);
         }
         //ponteido da direita
-        if(conteudo->dir != 0){
+        if(conteudo.dir != 0){
             leituraPreOrdemArquivo(&(*ptArvore)->dir, ptRaiz, fp);
-        }else{
-            //se direito for lambda então desaloca conteudo
-            free(conteudo);
         }
 
     }else{
-        //se chegou no final do arquivo libera a memoria alocada, e retorna recursivamente
-            free(conteudo);
             return;
 
     }
