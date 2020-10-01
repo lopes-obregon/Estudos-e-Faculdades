@@ -178,139 +178,243 @@ void searchAntTree(No_ab **pt, No_ab **ant, unsigned int *f, int value){
     }
 
 }
+//procedimento que caminha o nó e ajusta filhos dos nos
+void ajustaNo(No_ab **pt, No_ab **ant){
+    //se o nó tem o pai que tem filho ambos os lados
+   // e seu sucessor é um dos filhos desse nó então esse nó se transformou em folha
+   // essa função joga esse nó que firou folha para o ultimo bisneto dele
+   //o ajuste compara  esse nó que virou folha se ele for maior que seu antigo filho ele anda para o seu neto, assim sucesivamente
+   if(((*ant)->dir == NULL) && ((*ant)->esq == NULL)){
+        if((*ant)->value > (*pt)->value){
+            if((*pt)->dir == NULL){
+                (*pt)->dir = *ant;
+                return;
+            }else{
+                ajustaNo(&(*pt)->dir, &(*ant));
+            }
+
+        }else{
+             if((*pt)->esq == NULL){
+                (*pt)->esq = *ant;
+                return;
+            }else{
+                ajustaNo(&(*pt)->esq, &(*ant));
+            }
+
+        }
+   }else{
+        //caso o nó não seja folha simplesmente não faz nada
+        return;
+   }
+}
 //acha sucessor
 void sucessor(No_ab **pt, No_ab **ant, int x){
-    if(pt == NULL){
+   //se pt^.esq == lambda achei meu sucessor pq é o maior menor da arvore
+   if((*pt)->esq == NULL){
         return;
-    }else{
+   }else{
+        //se x < pt^.valor então pesquiso o proximo menor que pt
         if(x < (*pt)->value){
             *ant = *pt;
-            *pt = (*pt)->esq;
-            return sucessor(&(*pt), &(*ant), x+1);
-        }else{
-            if(x > (*pt)->value){
-                *ant = *pt;
-                *pt = (*pt)->dir;
-                return sucessor(&(*pt), &(*ant), x+1);
-            }else{
-                if(x == (*pt)->value){
-                    //achei o sucessor
-                    return;
-                }
-            }
+            *pt= (*pt)->esq;
+            sucessor(&(*pt), &(*ant), x);
         }
 
-    }
+   }
 
 }
 //função que deleta o item da arvore
 void removeTree(No_ab **pt, int x, unsigned int *f){
     //variavel para guardar a raiz
-    No_ab *temp = *pt;
-    No_ab *aux = *pt;
-    searchAntTree(pt,&aux, f, x);
+    No_ab *temp= *pt;//varialvel para devolver a raiz
+    No_ab *ant = *pt;//variavel para armazenar o anterior do qual vai ser removido
+    No_ab *pts = *pt; //ponteiro que recebe o sucessor
+    No_ab *aux = *pt ;//variavel para armazenar o anterior do sucessor
+    //função que busca o elemento a ser removido
+    if(*pt == NULL){
+        printf("Arvore vazia imposivel remover\n");
+        return;
+    }
+    searchAntTree(pt,&ant, f, x);
+    //se f = 1 então achou o valor a ser removido
     if(*f  == 1){
-        //caso 1: valor a ser removido é uma folha
-        if(((*pt)->dir == NULL) && ((*pt)->esq) == NULL){
-            if(aux->dir == (*pt)){
-                aux->dir = NULL;
+        //se o valor a ser removido simplesmente for folha simplesmente o remove
+        if(((*pt)->esq == NULL) && ((*pt)->dir == NULL)){
+            if((*pt)->value < ant->value){
+                //filho esquerdo do anterior
+                ant->esq = NULL;
                 free(*pt);
             }else{
-                if(aux->esq == (*pt)){
-                    aux->esq = NULL;
-                    free(*pt);
-                }
+                ant->dir = NULL;
+                free(*pt);
             }
         }else{
-            //caso 2: tem apenas um filho
-            if((*pt)->esq == NULL ) {
-                //substitui pelo filho a direita
-                aux->esq = (*pt)->dir;
-                if(aux->esq == *pt){
-                    aux->esq = NULL;
-                }
-                free(*pt);
-            }else{
-                //caso 2.1: tem apenas um filho
-                if((*pt)->dir == NULL){
-                    aux->dir = (*pt)->esq;
-                    if(aux->dir == (*pt)){
-                        aux->dir = NULL;
-                    }
+            if(((*pt)->esq == NULL) && ((*pt)->dir != NULL)){
+                //tem apenas filho direito
+                 if((*pt)->value < ant->value){
+                    ant->esq = (*pt)->dir;
                     free(*pt);
+                 }else{
+                    ant->dir = (*pt)->dir;
+                    free(*pt);
+                 }
 
+            }else{
+                if(((*pt)->esq != NULL) && ((*pt)->dir == NULL)){
+                    //tem apenas filho esquerdo
+                    if((*pt)->value < ant->value){
+                        ant->esq = (*pt)->esq;
+                        free(*pt);
+                    }else{
+                        ant->dir = (*pt)->esq;
+                        free(*pt);
+                    }
                 }else{
-                    //caso 3: tem filhos ambos os lados
-                    if(((*pt)->esq != NULL) && ((*pt)->dir != NULL)){
-                            /*
-                            *encontrar o sucessor filho que está a direita
-                            *Caso 3
-                            */
-                            if(x+1 == (*pt)->dir->value){
-                                No_ab *aux2 = aux;//anterior a aux
-                                aux = *pt;
-                                *pt  = (*pt)->dir;
-                                if((*pt)->esq == NULL){
-                                    (*pt)->esq = aux->esq;
-                                    if(aux2->dir == aux){
-                                        aux2->dir = *pt;
+                    //tem filhos ambos os lados
+                    pts = (*pt)->dir;
+                    sucessor(&pts, &aux, x);
+                    if((*pt)->value < ant->value){
+                        //lado esquerdo do anterior caso tenha
+                        //caso o sucessor seja uma folha
+                        if((pts->esq == NULL) && (pts->dir == NULL)){
+                            ant->esq = pts;
+                            if(pts->value != (*pt)->dir->value){
+                                pts->esq = (*pt)->esq;
+                                pts->dir = (*pt)->dir;
+                            }else{
+                                pts->esq = (*pt)->esq;
+                            }
+                            //anterior do pts que sempre sai o sucessor da esquerda então o anterior do pts seu filho esquerdo recebe lambda
+                            //se aux == a raiz valor igual da raiz
+                            if(aux->value != temp->value){
+                                aux->esq = NULL;
+                            }
+
+                           /* //se o enderço do esquerdo for o mesmo endereço do ponteiro sucessor (pts) então esquerdo recebe lambda
+                            if(pts->esq == pts){
+                                pts->esq = NULL;
+                            }else{
+                                //caso o direito seja igual recebe lambda
+                                if(pts->dir == pts){
+                                    pts->dir = NULL;
+                                }
+                            }*/
+                            //anterior do pts que sempre sai o sucessor da esquerda então o anterior do pts seu filho esquerdo recebe lambda
+                            free(*pt);
+                        }else{
+                            //tem apenas filho direito
+                            if((pts->esq == NULL) && (pts->dir != NULL)){
+                                ant->esq = pts;
+                                //correção
+                                if(aux != temp){
+                                    pts->esq = (*pt)->esq;
+                                    //se o endereço do filho esquerdo de aux igual a pts(filho de aux)
+                                    if(aux->esq == pts){
+                                        aux->esq = pts->dir;
+                                        pts->dir = aux;
                                     }else{
-                                        if(aux2->esq == aux){
-                                            aux2->esq = *pt;
-                                        }
+                                        aux->esq = NULL;
                                     }
-                                    free(aux);
+                                    //ajustaNo(&pts, &aux);
+                                }else{
+                                    pts->esq = (*pt)->esq;
                                 }
 
+                                free(*pt);
                             }else{
-                            //caso 3.1
-                                No_ab *aux2 = aux;
-                                //sucessor maior
-                                aux = *pt;
-                                *pt = (*pt)->dir;
-                                if(((*pt)->dir) == NULL && ((*pt)->esq) == NULL){
-                                    //já achei o sucessor
-                                    if(aux2->dir == aux){
-                                        aux2->dir = *pt;
-                                    }else{
-                                        if(aux2->esq == aux){
-                                            aux2->esq = *pt;
-                                        }
-                                    }
-                                    if(aux->esq != NULL){
-                                        (*pt)->esq = aux->esq;
-                                    }else{
-                                        if(aux->dir != NULL){
-                                            (*pt)->dir = aux->dir;
-                                        }
-                                    }
-                                    free(aux);
-                                }else{
-                                    //me garante o sucessor
-                                    sucessor(pt, &aux, x+1);
-                                    if(((*pt)->dir) == NULL && ((*pt)->esq) == NULL){
-                                        //se trata de uma folha
-                                        (*pt)->esq = aux2->esq;
-                                        (*pt)->dir = aux2->dir;
-                                        if(aux->dir == *pt){
-                                            aux->dir = NULL;
+                                //tem apenas filho esquerdo
+                                if((pts->esq != NULL) && (pts->dir == NULL)){
+                                    ant->esq = pts;
+                                    if(aux != temp){
+                                        pts->dir = (*pt)->dir;
+                                        //se o endereço do filho esquerdo de aux igual a pts(filho de aux)
+                                        if(aux->dir == pts){
+                                            aux->dir = pts->dir;
+                                            pts->esq = aux;
                                         }else{
-                                            if(aux->esq == *pt){
+                                            aux->esq = NULL;
+                                        }
+                                        //ajustaNo(&pts, &aux);
+                                    }else{
+                                        pts->dir = (*pt)->dir;
+                                    }
+                                    free(*pt);
+                                }
+                            }
+                        }
+                    }else{
+                        //lado direito da arvore
+                        //caso o sucessor seja uma folha
+                        if((pts->esq == NULL) && (pts->dir == NULL)){
+                            ant->dir = pts;
+                            if(pts->value != (*pt)->dir->value){
+                                pts->esq = (*pt)->esq;
+                                pts->dir = (*pt)->dir;
+                            }else{
+                                pts->esq = (*pt)->esq;
+                            }
+
+                            //anterior do pts que sempre sai o sucessor da esquerda então o anterior do pts seu filho esquerdo recebe lambda
+                            //se aux == a raiz valor igual da raiz
+                            if(aux->value != temp->value){
+                                aux->esq = NULL;
+                            }
+
+                            free(*pt);
+                        }else{
+                            //tem apenas filho direito
+                            if((pts->esq == NULL) && (pts->dir != NULL)){
+                                ant->dir = pts;
+                                //correção
+                                if(aux != temp){
+                                    pts->esq = (*pt)->esq;
+                                    //ajustaNo(&pts, &aux);
+                                        //se o endereço do filho esquerdo de aux igual a pts(filho de aux)
+                                        if(aux->esq == pts){
+                                            aux->esq = pts->dir;
+                                            pts->dir = aux;
+                                            }else{
+                                                aux->esq = NULL;
+                                            }
+                                }else{
+                                    pts->esq = (*pt)->esq;
+                                }
+
+                                free(*pt);
+                            }else{
+                                //tem apenas filho esquerdo
+                                if((pts->esq != NULL) && (pts->dir == NULL)){
+                                    ant->dir = pts;
+                                    if(aux != temp){
+                                        //ajustaNo(&pts, &aux);
+                                         if(aux != temp){
+                                            pts->dir = (*pt)->dir;
+                                            //se o endereço do filho esquerdo de aux igual a pts(filho de aux)
+                                            if(aux->dir == pts){
+                                                aux->dir = pts->esq;
+                                                pts->dir = aux;
+                                            }else{
                                                 aux->esq = NULL;
                                             }
                                         }
-                                        free(aux2);
+                                    }else{
+                                        //anterior é a raiz
+                                        pts->dir = (*pt)->dir;
                                     }
 
+                                    free(*pt);
                                 }
-
                             }
-
+                        }
                     }
                 }
             }
         }
-    }
+    }else{
+    //caso não tenha achado o valor a ser removido na arvore escreva a mensagem
+    printf("Valor não encontrado na arvore!\n");
+}
+
     *pt = temp;
 }
 //função que limpa a ARVORE

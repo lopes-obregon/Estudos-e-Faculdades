@@ -152,7 +152,6 @@ void menuArquivoBinario(Raiz *pt){
 //menu que lê do arquivo
 void menuArquivoBinarioLeitura(Raiz *pt){
     FILE *fp;
-<<<<<<< HEAD
    // unsigned short filhoEsquerdo, filhoDireito;
     //filhoEsquerdo = filhoDireito = 0;
     fp = fopen("arvore", "a+b");
@@ -160,19 +159,8 @@ void menuArquivoBinarioLeitura(Raiz *pt){
         printf("Erro na abertura do arquivo\n");
     }else{
         leituraPreOrdemArquivo(&pt->ptRaiz, &pt->ptRaiz, fp);
-=======
-    arqNo *conteudo; //variavel para armazenar o conteúdo do arquivo binário;
-    unsigned short filhoEsquerdo, filhoDireito;
-    filhoEsquerdo = filhoDireito = 0;
-    fp = fopen("arvore", "rb");
-    if(fp == NULL){
-        printf("Erro na abertura do arquivo\n");
-    }else{
-        leituraPreOrdemArquivo(&pt->ptRaiz, &conteudo, &pt->ptRaiz, fp, &filhoEsquerdo, &filhoDireito);
->>>>>>> c6bfc2b6ad8f9ed0d1d9698e8239079c5d5758e2
         fclose(fp);
     }
-
 }
 //limpa a lista
 //principal
@@ -182,11 +170,6 @@ int main(){
     FILE *arq;
     char buffer[100];
     char str[] = "testando";
-    arq = fopen("arvore", "wb");
-    if(arq == NULL){
-        printf("Problema na criação do arquivo\n");
-    }
-
     int valor = 0;
     printf("\n-------manu-------\n");
     do{
