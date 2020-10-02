@@ -1,7 +1,7 @@
 # depslib dependency file v1.0
 140734371891504 <<<<<<< HEAD
 
-1601605320 source:/home/renan/Documentos/Estudos-e-Faculdades/estudosEFaculdade/Programas faculdade/CC/Algoritmo-e-Estrutura-de-Dados/aed2/arvore/desenho_arvore/main.c
+1601605630 source:/home/renan/Documentos/Estudos-e-Faculdades/estudosEFaculdade/Programas faculdade/CC/Algoritmo-e-Estrutura-de-Dados/aed2/arvore/desenho_arvore/main.c
 	<stdio.h>
 	<stdlib.h>
 	"gfx.h"
@@ -30,11 +30,11 @@
 	<stdint.h>
 	"lista.h"
 
-1601604948 /home/renan/Documentos/Estudos-e-Faculdades/estudosEFaculdade/Programas faculdade/CC/Algoritmo-e-Estrutura-de-Dados/aed2/arvore/libary/lista.h
+1601605558 /home/renan/Documentos/Estudos-e-Faculdades/estudosEFaculdade/Programas faculdade/CC/Algoritmo-e-Estrutura-de-Dados/aed2/arvore/libary/lista.h
 	<stdio.h>
 	<stdlib.h>
 	<stdint.h>
 
-1601604903 source:/home/renan/Documentos/Estudos-e-Faculdades/estudosEFaculdade/Programas faculdade/CC/Algoritmo-e-Estrutura-de-Dados/aed2/arvore/libary/lista.c
+1601605558 source:/home/renan/Documentos/Estudos-e-Faculdades/estudosEFaculdade/Programas faculdade/CC/Algoritmo-e-Estrutura-de-Dados/aed2/arvore/libary/lista.c
 	"lista.h"
 

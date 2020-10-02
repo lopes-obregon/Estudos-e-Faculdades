@@ -90,7 +90,7 @@ void menuArquivoBinario(Raiz *pt){
     printf("Informe o nome do Arquivo para salvar: ");
     scanf("%s", buffer);
     addBin(buffer);
-    fp = fopen(buffer, "a+b");
+    fp = fopen(buffer, "rw");
     if(fp == NULL){
         printf("Erro na abertura do arquivo\n");
 
@@ -112,7 +112,7 @@ void menuArquivoBinarioLeitura(Raiz *pt){
     printf("Informe o nome do Arquivo para ler: ");
     scanf("%s", buffer);
     addBin(buffer);
-    fp = fopen(buffer, "a+b");
+    fp = fopen(buffer, "rb");
     if(fp == NULL){
         printf("Erro na abertura do arquivo\n");
     }else{
