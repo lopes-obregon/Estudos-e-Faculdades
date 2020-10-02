@@ -7,107 +7,45 @@ const RAIO = 20;
 typedef struct raiz{
     struct No_ab *ptRaiz;
 }Raiz;
-typedef struct no{
-    unsigned short x,y;
-    int value;
-    struct no *prox;
-
-}No;
 typedef struct ponteiro{
     struct arqNo *cabeca;
 }Ponteiro;
-//limpa a lista
-void clearList(No **ptl){
-    No *pt = *ptl;
-    No *ptold;
-    while(pt != NULL){
-        ptold = pt;
-        pt = pt->prox;
-        free(ptold);
-    }
-
-
-}
-void insertNo(No **pt, unsigned short x, unsigned short y, int value){
-    No *neww = malloc(sizeof(No));
-    neww->x = x;
-    neww->y = y;
-    neww->value = value;
-    if(*pt == NULL){
-        neww->prox = NULL;
-        *pt = neww;
-
-    }else{
-        neww->prox = *pt;
-        *pt = neww;
-    }
-
-}
 //função que imprime os valores da arvore binaria de busca
-void desenha_arvore(No_ab *pt, unsigned short xi, unsigned short xf, unsigned short y, No *pos){
+void desenha_arvore(No_ab *pt, unsigned short xi, unsigned short xf, unsigned short y){
     char str[64];
-    unsigned short xm;
-    if(pt == NULL)
-        return;
-    xm = (xi+xf)/2;
-    snprintf(str, 64, "%i", pt->value);
+    //variavel aux para auxiliar no dezenho da linha
+    unsigned short xm, aux;
 
-    insertNo(&(*pos), xm, y, pt->value);
-    gfx_set_color(173, 255, 47);
-    gfx_filled_ellipse(xm+RAIO, y+RAIO, RAIO, RAIO);
-    gfx_set_color(0, 100, 0);
-    gfx_text(xm + (unsigned int )(strlen(str)*4) , y+7, str);
-    desenha_arvore(pt->esq, xi, xm, y+70, pos);
-    desenha_arvore(pt->dir, xm, xf, y+70, pos);
-
-}
-//desenha a linha
-void desenha_linha(No_ab *pt, No_ab *ant, No *pos){
-    if(pt == NULL)
-        return;
-
-    No *aux = pos;
-    gfx_set_color(220, 20, 60);
-    while(pos != NULL){
-        if(pos->prox != NULL){
-            if(pt->value == pos->prox->value){
-                if(pt->esq != NULL){
-                    gfx_line(pos->x+(RAIO + RAIO), pos->y+RAIO, pos->prox->x, pos->prox->y+RAIO);
-
-                }
-            }
-            if(pt->dir != NULL){
-                No *aux2 = pos;
-                pos = aux;
-                while(pos != NULL){
-                    if((pt->value == aux2->value) && (pt->dir->value == pos->value)){
-                        gfx_line(aux2->x+(RAIO + RAIO), aux2->y+RAIO, pos->x, pos->y+RAIO);
-
-                    }
-                    pos = pos->prox;
-                }
-                pos = aux2;
-            }
+    if(pt != NULL){
+        xm = (xi+xf)/2;
+        snprintf(str, 64, "%i", pt->value);
+        gfx_set_color(220, 20, 60);
+        //parte que desenha linha
+        if(pt->dir != NULL && pt->esq != NULL){
+            aux = (xm + xf)/2;
+            gfx_line(xm, y, aux, y+70);
+        }
+        if(pt->esq != NULL){
+            aux = (xm + xi)/2;
+            gfx_line(xm, y, aux, y+70);
         }else{
             if(pt->dir != NULL){
-                No *aux2 = pos;
-                pos = aux;
-                while(pos != NULL){
-                    if((pt->value == aux2->value) && (pt->dir->value == pos->value)){
-                        gfx_line(aux2->x+(RAIO + RAIO), aux2->y+RAIO, pos->x, pos->y+RAIO);
-
-                    }
-                    pos = pos->prox;
-                }
-                pos = aux2;
+                aux = (xm + xf)/2;
+                gfx_line(xm, y, aux, y+70);
             }
-
         }
-        pos = pos->prox;
+        //insertNo(&(*pos), xm, y, pt->value);
+        gfx_set_color(173, 255, 47);
+        gfx_filled_ellipse(xm, y+9, RAIO, RAIO);
+        gfx_set_color(143, 188, 143);
+        gfx_ellipse(xm, y+9, RAIO, RAIO);
+        gfx_set_color(0, 100, 0);
+        gfx_text(xm - strlen(str)*4, y- strlen(str)*2, str);
+        desenha_arvore(pt->esq, xi, xm, y+70);
+        desenha_arvore(pt->dir, xm, xf, y+70);
     }
-    pos = aux;
-    desenha_linha(pt->esq, ant->esq, aux);
-    desenha_linha(pt->dir, ant->dir, aux);
+
+
 }
 //insere na arvore
 void menuInsere(Raiz *pt){
@@ -134,16 +72,11 @@ void menuRemoveArvore(Raiz *pt){
 
 }
 //funpção que faz a chamada para desenhar a arvore
-void menuDesenhaAzrvore(Raiz *pt, No *ptLista){
+void menuDesenhaAzrvore(Raiz *pt){
     gfx_init(1000, 800, "Arvore Binaria De Busca");
     gfx_set_font_size(20);
-    //gfx_set_color(75, 0, 130);
-    desenha_arvore(pt->ptRaiz, 0, 1000, 70, &ptLista);
-    desenha_linha(pt->ptRaiz,  pt->ptRaiz,ptLista);
+    desenha_arvore(pt->ptRaiz, 0, 1000, 70);
     gfx_paint();
-    clearList(&ptLista);
-    //sleep(5);
-    //gfx_quit();
 }
 /*
 {15,1,0}{4,1,0}...
@@ -153,7 +86,11 @@ void menuDesenhaAzrvore(Raiz *pt, No *ptLista){
 //gravação no arquivo binario
 void menuArquivoBinario(Raiz *pt){
     FILE *fp;//declaração do ponteiro do tipo arquivo
-    fp = fopen("arvore", "a+b");
+    char buffer[64];
+    printf("Informe o nome do Arquivo para salvar: ");
+    scanf("%s", buffer);
+    addBin(buffer);
+    fp = fopen(buffer, "a+b");
     if(fp == NULL){
         printf("Erro na abertura do arquivo\n");
 
@@ -169,9 +106,13 @@ void menuArquivoBinario(Raiz *pt){
 //menu que lê do arquivo
 void menuArquivoBinarioLeitura(Raiz *pt){
     FILE *fp;
+    char buffer[64];
    // unsigned short filhoEsquerdo, filhoDireito;
     //filhoEsquerdo = filhoDireito = 0;
-    fp = fopen("arvore", "a+b");
+    printf("Informe o nome do Arquivo para ler: ");
+    scanf("%s", buffer);
+    addBin(buffer);
+    fp = fopen(buffer, "a+b");
     if(fp == NULL){
         printf("Erro na abertura do arquivo\n");
     }else{
@@ -183,14 +124,13 @@ void menuArquivoBinarioLeitura(Raiz *pt){
 //principal
 int main(){
     Raiz *pt = malloc(sizeof(Raiz));
-    No *ptLista = NULL;//variavel para armazenar as posições dos elementos no plano
     FILE *arq;
     char buffer[100];
     char str[] = "testando";
     int valor = 0;
     do{
         printf("\n-------manu-------\n");
-        printf("0-Sair 1-Inserir arvore 2-Remover Elemento Arvore 3-Desenha arvore 4-Salvar Arvore  5-Ler Do Arquivo \n");
+        printf("0-Sair 1-Inserir arvore\n 2-Remover Elemento Arvore 3-Desenha arvore\n 4-Salvar Arvore  5-Ler Do Arquivo \n");
         scanf("%d", &valor);
         if(valor == 1){
             menuInsere(pt);
@@ -200,7 +140,7 @@ int main(){
                 menuRemoveArvore(pt);
             }else{
                 if(valor == 3){
-                    menuDesenhaAzrvore(pt, ptLista);
+                    menuDesenhaAzrvore(pt);
 
                 }else{
                     if(valor == 4){

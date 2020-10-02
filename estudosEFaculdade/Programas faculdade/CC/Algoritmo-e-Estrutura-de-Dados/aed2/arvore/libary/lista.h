@@ -12,7 +12,7 @@ typedef struct s_arq_no{
 //função que aloca o nó na memoria
 void reservaMemoria(arqNo **pt, int32_t chave, uint32_t esq, uint32_t dir);
 //concatena as string
-void strConcatenar(char *str, char *str2);
+void addBin(char *str);
 //função que escreve no arquivo
 void escreveNoArquivo(arqNo **pt, FILE *fp);
 #endif // LISTA_H_INCLUDED

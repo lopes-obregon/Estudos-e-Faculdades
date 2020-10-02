@@ -1,15 +1,10 @@
 #include "lista.h"
 //concatena as string
-void strConcatenar(char *str, char *str2){
+void addBin(char *str){
     int tamanhoStr = strlen(str);
-    for(int j = 0; j < strlen(str2); j++){
-        str[tamanhoStr+j] = str2[j];
-        if(j+1 == strlen(str2) && strlen(str2) > 1 ){
-            str[strlen(str2)+1] = '\0';
-        }else{
-            str[tamanhoStr+1] = '\0';
-
-        }
+    char bin[4] = ".bin";
+    for(int j = 0; j < strlen(bin); j++){
+        str[tamanhoStr+j] = bin[j];
     }
 }
 //função que aloca o nó na memoria
