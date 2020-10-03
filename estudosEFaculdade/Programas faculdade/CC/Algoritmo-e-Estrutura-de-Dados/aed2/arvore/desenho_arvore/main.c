@@ -21,19 +21,15 @@ void desenha_arvore(No_ab *pt, unsigned short xi, unsigned short xf, unsigned sh
         snprintf(str, 64, "%i", pt->value);
         gfx_set_color(220, 20, 60);
         //parte que desenha linha
-        if(pt->dir != NULL && pt->esq != NULL){
-            aux = (xm + xf)/2;
-            gfx_line(xm, y, aux, y+70);
-        }
         if(pt->esq != NULL){
             aux = (xm + xi)/2;
             gfx_line(xm, y, aux, y+70);
-        }else{
-            if(pt->dir != NULL){
-                aux = (xm + xf)/2;
-                gfx_line(xm, y, aux, y+70);
-            }
         }
+        if(pt->dir != NULL){
+            aux = (xm + xf)/2;
+            gfx_line(xm, y, aux, y+70);
+        }
+
         //insertNo(&(*pos), xm, y, pt->value);
         gfx_set_color(173, 255, 47);
         gfx_filled_ellipse(xm, y+9, RAIO, RAIO);
@@ -59,6 +55,7 @@ void menuInsere(Raiz *pt){
         //insere na arvore
         insertArvore(valor, &pt->ptRaiz, &f);
     }
+    printf("Para visualizar a alteração feita solicite a opção 3\n");
 
 }
 //remove o elemento da arvore
@@ -68,6 +65,7 @@ void menuRemoveArvore(Raiz *pt){
     printf("Qual elemento deseja remover da arvore?\n");
     scanf("%d", &valor);
     removeTree(&pt->ptRaiz, valor, &f);
+    printf("Para visualizar a alteração feita solicite a opção 3\n");
 
 
 }
@@ -98,6 +96,7 @@ void menuArquivoBinario(Raiz *pt){
         Ponteiro *ptCabeca = NULL;
         printArvorePre(pt,&ptCabeca->cabeca, fp);
         fclose(fp);//fecha o arquivo binario  em modo escrita.
+        printf("Arquivo Salvo com sucesso!\n");
     }
 
 
@@ -118,9 +117,45 @@ void menuArquivoBinarioLeitura(Raiz *pt){
     }else{
         leituraPreOrdemArquivo(&pt->ptRaiz, &pt->ptRaiz, fp);
         fclose(fp);
+        printf("Arquivo lido com sucesso!\n");
     }
 }
-//limpa a lista
+//menu da busca
+void menuBusca(Raiz *pt){
+    No_ab *temp = pt->ptRaiz; //variavel para armazenar a raiz
+    int valorBuscar, aux;//variavel que recebe um valor a ser buscado
+    unsigned short f;//variavel f usada para indicar se  vazia, achou ou não variavel op para indicar se deseja inserir na arvore ou não
+    unsigned short op;
+    printf("\n Informe Qual Valor Devo Buscar: \n");
+    scanf("%d", &valorBuscar);
+    //busca a arvore
+    buscaArvore(valorBuscar, &pt->ptRaiz, &f);
+    //se o resultado da busca armazenado em f for igual a zero então essa arvore está vazia
+    if(f == 0){
+        printf("Arvore vazia!\n");
+    }else{
+        //se o resultado da busca igual a um o elemento foi encontrado
+        if(f == 1){
+            printf("Chave encontrada!\n");
+            pt->ptRaiz = temp;//seta para a raiz
+        }else{
+            //senão o valor não existe na arvore e pode ser inserido
+            printf("Chave não encontrada!\n");
+            printf("Deseja inserir na arvore?\n 0-não 1-sim \n:");
+            //variavel aux serve para corrigir o bug de valorBuscar receber lixo
+            aux = valorBuscar;
+            scanf("%d", &op);
+            valorBuscar = aux;
+            //se op igual a um então insere na arvora
+            if(op == 1){
+                //seta a arvore para a raiz pq na hora que foi feita a busca foi para a posição buscada da arvore
+                pt->ptRaiz = temp;
+                insertArvore(valorBuscar, &pt->ptRaiz, &f);
+            }
+
+        }
+    }
+}
 //principal
 int main(){
     Raiz *pt = malloc(sizeof(Raiz));
@@ -130,7 +165,7 @@ int main(){
     int valor = 0;
     do{
         printf("\n-------manu-------\n");
-        printf("0-Sair 1-Inserir arvore\n 2-Remover Elemento Arvore 3-Desenha arvore\n 4-Salvar Arvore  5-Ler Do Arquivo \n");
+        printf("0-Sair 1-Inserir arvore\n 2-Remover Elemento Arvore 3-Desenha arvore\n 4-Salvar Arvore  5-Ler Do Arquivo \n 6-Buscar Elemento Na Arvore 7-Imprimir No Terminal\n");
         scanf("%d", &valor);
         if(valor == 1){
             menuInsere(pt);
@@ -151,6 +186,14 @@ int main(){
                             pt->ptRaiz = NULL;//arvore vazia então deve apontar para null
                             menuArquivoBinarioLeitura(pt);
 
+                        }else{
+                            if(valor == 6){
+                                menuBusca(pt);
+                            }else{
+                                if(valor == 7){
+                                    printTerminal(pt->ptRaiz);
+                                }
+                            }
                         }
                     }
                 }

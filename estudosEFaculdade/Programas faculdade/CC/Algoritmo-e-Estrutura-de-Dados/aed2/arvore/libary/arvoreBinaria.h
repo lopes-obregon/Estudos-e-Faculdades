@@ -34,8 +34,6 @@ void sucessor(No_ab **pt, No_ab **ant, int x);
 void clearTree(No_ab **pt);
 //procedimento leitura em pré-ordem apartir de um arquivo
 void leituraPreOrdemArquivo(No_ab **ptArvore, No_ab **ptRaiz, FILE *fp);
-//aloca o nó para a arvore
-void devolveChave(arqNo conteudo, FILE *file, No_ab **pt);
-//procedimento que caminha o nó e ajusta filhos dos nos
-void ajustaNo(No_ab **pt, No_ab **ant);
+//procedimento que imprime a arvore no terminal
+void printTerminal(No_ab *ptArvore);
 #endif // ARVOREBINARIA_H_INCLUDED

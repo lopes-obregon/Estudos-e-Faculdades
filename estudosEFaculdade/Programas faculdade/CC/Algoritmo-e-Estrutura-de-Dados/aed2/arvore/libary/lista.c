@@ -5,6 +5,10 @@ void addBin(char *str){
     char bin[4] = ".bin";
     for(int j = 0; j < strlen(bin); j++){
         str[tamanhoStr+j] = bin[j];
+        //corrigi a parte que le o 1000000 para não pegar lixo
+        if(j+1 == strlen(bin)){
+            str[tamanhoStr+j+1] = '\0';
+        }
     }
 }
 //função que aloca o nó na memoria

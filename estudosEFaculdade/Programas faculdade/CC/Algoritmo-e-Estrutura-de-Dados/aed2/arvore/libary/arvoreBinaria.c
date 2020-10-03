@@ -63,19 +63,6 @@ void insertArvore(int x, No_ab **pt, unsigned int *f){
 
 }
 //procedimento que aloca o nó para a arvore
-void devolveChave( arqNo conteudo, FILE *file, No_ab **pt){
-    //fazendo a leitura do proximo nó
-    //que é filho do nó atual
-    No_ab *neww = malloc(sizeof(No_ab));
-    neww->dir = neww->esq = NULL;
-    if(fread(&conteudo, sizeof(arqNo), 1, file)){
-       neww->value = conteudo.chave;
-       *pt = neww;
-
-    }
-
-
-}
 //pré ordem
 
 //procedimento leitura em pré-ordem apartir de um arquivo
@@ -169,35 +156,6 @@ void searchAntTree(No_ab **pt, No_ab **ant, unsigned int *f, int value){
         }
     }
 
-}
-//procedimento que caminha o nó e ajusta filhos dos nos
-void ajustaNo(No_ab **pt, No_ab **ant){
-    //se o nó tem o pai que tem filho ambos os lados
-   // e seu sucessor é um dos filhos desse nó então esse nó se transformou em folha
-   // essa função joga esse nó que firou folha para o ultimo bisneto dele
-   //o ajuste compara  esse nó que virou folha se ele for maior que seu antigo filho ele anda para o seu neto, assim sucesivamente
-   if(((*ant)->dir == NULL) && ((*ant)->esq == NULL)){
-        if((*ant)->value > (*pt)->value){
-            if((*pt)->dir == NULL){
-                (*pt)->dir = *ant;
-                return;
-            }else{
-                ajustaNo(&(*pt)->dir, &(*ant));
-            }
-
-        }else{
-             if((*pt)->esq == NULL){
-                (*pt)->esq = *ant;
-                return;
-            }else{
-                ajustaNo(&(*pt)->esq, &(*ant));
-            }
-
-        }
-   }else{
-        //caso o nó não seja folha simplesmente não faz nada
-        return;
-   }
 }
 //acha sucessor
 void sucessor(No_ab **pt, No_ab **ant, int x){
@@ -402,6 +360,7 @@ void removeTree(No_ab **pt, int x, unsigned int *f){
                 }
             }
         }
+        printf("Valor Removido com Sucesso!\n");
     }else{
     //caso não tenha achado o valor a ser removido na arvore escreva a mensagem
     printf("Valor não encontrado na arvore!\n");
@@ -421,5 +380,13 @@ void clearTree(No_ab **pt){
    free(*pt);
    *pt = NULL;
 }
+//procedimento que imprime a arvore no terminal
+void printTerminal(No_ab *ptArvore){
+    if(ptArvore == NULL)
+        return;
+    printf("[%i] ", ptArvore->value);
+    printTerminal(ptArvore->esq);
+    printTerminal(ptArvore->dir);
 
+}
 
