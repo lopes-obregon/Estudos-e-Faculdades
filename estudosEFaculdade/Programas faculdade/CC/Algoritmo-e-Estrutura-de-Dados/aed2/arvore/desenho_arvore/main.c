@@ -3,22 +3,23 @@
 #include "gfx.h"
 #include <unistd.h>
 #include "../libary/arvoreBinaria.h"
+#include "../libary/arvoreAvl.h"
 const RAIO = 20;
 typedef struct raiz{
-    struct No_ab *ptRaiz;
+    struct Avl *ptRaiz;
 }Raiz;
 typedef struct ponteiro{
     struct arqNo *cabeca;
 }Ponteiro;
 //função que imprime os valores da arvore binaria de busca
-void desenha_arvore(No_ab *pt, unsigned short xi, unsigned short xf, unsigned short y){
+void desenha_arvore(Avl *pt, unsigned short xi, unsigned short xf, unsigned short y){
     char str[64];
     //variavel aux para auxiliar no dezenho da linha
     unsigned short xm, aux;
 
     if(pt != NULL){
         xm = (xi+xf)/2;
-        snprintf(str, 64, "%i", pt->value);
+        snprintf(str, 64, "%i", pt->chave);
         gfx_set_color(220, 20, 60);
         //parte que desenha linha
         if(pt->esq != NULL){
@@ -45,7 +46,8 @@ void desenha_arvore(No_ab *pt, unsigned short xi, unsigned short xf, unsigned sh
 }
 //insere na arvore
 void menuInsere(Raiz *pt){
-    unsigned  f, n;
+    unsigned  n;
+    unsigned short f;
     int valor=0;
     printf("Informe  a quantidade de elementos a ser inserido na arvore!\n");
     scanf("%d", &n);
@@ -53,7 +55,8 @@ void menuInsere(Raiz *pt){
         printf("Informe o %d valor da arvore: ", i+1);
         scanf("%d", &valor);
         //insere na arvore
-        insertArvore(valor, &pt->ptRaiz, &f);
+        //insertArvore(valor, &pt->ptRaiz, &f);
+        insertAvl(valor, &pt->ptRaiz, f);
     }
     printf("Para visualizar a alteração feita solicite a opção 3\n");
 
