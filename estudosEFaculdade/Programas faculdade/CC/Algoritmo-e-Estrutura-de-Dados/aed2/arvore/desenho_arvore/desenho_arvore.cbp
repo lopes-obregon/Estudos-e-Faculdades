@@ -31,6 +31,10 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
+		<Unit filename="../libary/arvoreAvl.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../libary/arvoreAvl.h" />
 		<Unit filename="../libary/arvoreBinaria.c">
 			<Option compilerVar="CC" />
 		</Unit>

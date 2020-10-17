@@ -47,16 +47,30 @@ void desenha_arvore(Avl *pt, unsigned short xi, unsigned short xf, unsigned shor
 //insere na arvore
 void menuInsere(Raiz *pt){
     unsigned  n;
+    FILE *fp;
     unsigned short f;
     int valor=0;
-    printf("Informe  a quantidade de elementos a ser inserido na arvore!\n");
-    scanf("%d", &n);
-    for(int i = 0; i < n; i++){
+    //printf("Informe  a quantidade de elementos a ser inserido na arvore!\n");
+    //scanf("%d", &n);
+    //leitura do usuario
+    /*for(int i = 0; i < n; i++){
         printf("Informe o %d valor da arvore: ", i+1);
         scanf("%d", &valor);
         //insere na arvore
         //insertArvore(valor, &pt->ptRaiz, &f);
-        insertAvl(valor, &pt->ptRaiz, f);
+        insertAvl(valor, &pt->ptRaiz, &f);
+    }*/
+    //leitura do arquivo
+    fp = fopen("dados", "r");
+    if(fp == NULL){
+        printf("Erro na abertura do arquivo");
+    }else{
+        while(!feof(fp)){
+            fscanf(fp, "%d", &valor);
+            insertAvl(valor, &pt->ptRaiz, &f);
+
+        }
+
     }
     printf("Para visualizar a alteração feita solicite a opção 3\n");
 
@@ -68,6 +82,7 @@ void menuRemoveArvore(Raiz *pt){
     printf("Qual elemento deseja remover da arvore?\n");
     scanf("%d", &valor);
     removeTree(&pt->ptRaiz, valor, &f);
+
     printf("Para visualizar a alteração feita solicite a opção 3\n");
 
 

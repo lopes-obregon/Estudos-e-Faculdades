@@ -20,13 +20,13 @@ typedef struct s_arq_noo{
     uint32_t dir:1;
 }ArqNo;
 //insere em uma arvore avl
-void insertAvl(int x, Avl **pt, unsigned short h);
+void insertAvl(int x, Avl **pt, unsigned short *h);
 //procedimento que inicia o nó
 void inicioNo(Avl **pt, int x);
 //caso 1
 //rotação direita ou dubla direita
-void caso1(Avl *pt, unsigned short h);
+void caso1(Avl **pt, unsigned short *h);
 //rotação esquerda e depla direita
-void caso2(Avl *pt, unsigned short h);
+void caso2(Avl **pt, unsigned short *h);
 
 #endif // ARVOREAVL_H_INCLUDED
