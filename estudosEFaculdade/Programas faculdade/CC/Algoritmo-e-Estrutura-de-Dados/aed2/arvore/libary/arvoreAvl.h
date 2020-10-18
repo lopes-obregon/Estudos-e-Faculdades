@@ -25,8 +25,10 @@ void insertAvl(int x, Avl **pt, unsigned short h);
 void inicioNo(Avl **pt, int x);
 //caso 1
 //rotação direita ou dubla direita
-void caso1(Avl *pt, unsigned short h);
+void caso1(Avl **pt, unsigned short *h);
 //rotação esquerda e depla direita
-void caso2(Avl *pt, unsigned short h);
+void caso2(Avl **pt, unsigned short *h);
+//calcula a altura
+void calcAltura(Avl *pt, int alturaE, int alturaD);
 
 #endif // ARVOREAVL_H_INCLUDED
