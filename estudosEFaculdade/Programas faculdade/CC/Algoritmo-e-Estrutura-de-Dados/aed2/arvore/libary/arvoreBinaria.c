@@ -1,17 +1,17 @@
 #include "arvoreBinaria.h"
 //busca na arvore
-void buscaArvore(int x, No_ab **pt, unsigned int *f){
+void buscaArvore(int x, Avl **pt, unsigned int *f){
     if(*pt == NULL){
             //a arvore é vazia
         *f = 0;
     }else{
-        if(x == (*pt)->value){
+        if(x == (*pt)->chave){
             //encontrou o valor
             *f = 1;
 
 
         }else{
-            if(x < (*pt)->value){
+            if(x < (*pt)->chave){
                 if((*pt)->esq == NULL){
                     //não encontrado do lado esquerdo
                     *f = 2;
@@ -134,16 +134,16 @@ void printArvorePre(No_ab **pt, arqNo **ptCabeca, FILE *fp){
     printArvorePre(&(*pt)->dir, ptCabeca, fp);
 }
 //função que busca o anterior
-void searchAntTree(No_ab **pt, No_ab **ant, unsigned int *f, int value){
+void searchAntTree(Avl **pt, Avl **ant, unsigned int *f, int value){
     if(*pt == NULL){
         //arvore vazia ou folha
         return;
     }else{
-        if(value == (*pt)->value){
+        if(value == (*pt)->chave){
             //então achou o valor
             *f = 1;
         }else{
-            if(value < (*pt)->value){
+            if(value < (*pt)->chave){
                 *ant = *pt;
                 *pt = (*pt)->esq;
                 return searchAntTree(&(*pt), &(*ant), &(*f), value);
@@ -158,13 +158,13 @@ void searchAntTree(No_ab **pt, No_ab **ant, unsigned int *f, int value){
 
 }
 //acha sucessor
-void sucessor(No_ab **pt, No_ab **ant, int x){
+void sucessor(Avl **pt, No_ab **ant, int x){
    //se pt^.esq == lambda achei meu sucessor pq é o maior menor da arvore
    if((*pt)->esq == NULL){
         return;
    }else{
         //se x < pt^.valor então pesquiso o proximo menor que pt
-        if(x < (*pt)->value){
+        if(x < (*pt)->chave){
             *ant = *pt;
             *pt= (*pt)->esq;
             sucessor(&(*pt), &(*ant), x);
@@ -174,12 +174,12 @@ void sucessor(No_ab **pt, No_ab **ant, int x){
 
 }
 //função que deleta o item da arvore
-void removeTree(No_ab **pt, int x, unsigned int *f){
+void removeTree(Avl **pt, int x, unsigned int *f){
     //variavel para guardar a raiz
-    No_ab *temp= *pt;//varialvel para devolver a raiz
-    No_ab *ant = *pt;//variavel para armazenar o anterior do qual vai ser removido
-    No_ab *pts = *pt; //ponteiro que recebe o sucessor
-    No_ab *aux = *pt ;//variavel para armazenar o anterior do sucessor
+    Avl *temp= *pt;//varialvel para devolver a raiz
+    Avl *ant = *pt;//variavel para armazenar o anterior do qual vai ser removido
+    Avl *pts = *pt; //ponteiro que recebe o sucessor
+    Avl *aux = *pt ;//variavel para armazenar o anterior do sucessor
     //função que busca o elemento a ser removido
     if(*pt == NULL){
         printf("Arvore vazia imposivel remover\n");
@@ -190,7 +190,7 @@ void removeTree(No_ab **pt, int x, unsigned int *f){
     if(*f  == 1){
         //se o valor a ser removido simplesmente for folha simplesmente o remove
         if(((*pt)->esq == NULL) && ((*pt)->dir == NULL)){
-            if((*pt)->value < ant->value){
+            if((*pt)->chave < ant->chave){
                 //filho esquerdo do anterior
                 ant->esq = NULL;
                 free(*pt);
@@ -201,7 +201,7 @@ void removeTree(No_ab **pt, int x, unsigned int *f){
         }else{
             if(((*pt)->esq == NULL) && ((*pt)->dir != NULL)){
                 //tem apenas filho direito
-                 if((*pt)->value < ant->value){
+                 if((*pt)->chave < ant->chave){
                     ant->esq = (*pt)->dir;
                     free(*pt);
                  }else{
@@ -212,7 +212,7 @@ void removeTree(No_ab **pt, int x, unsigned int *f){
             }else{
                 if(((*pt)->esq != NULL) && ((*pt)->dir == NULL)){
                     //tem apenas filho esquerdo
-                    if((*pt)->value < ant->value){
+                    if((*pt)->chave < ant->chave){
                         ant->esq = (*pt)->esq;
                         free(*pt);
                     }else{
@@ -223,12 +223,12 @@ void removeTree(No_ab **pt, int x, unsigned int *f){
                     //tem filhos ambos os lados
                     pts = (*pt)->dir;
                     sucessor(&pts, &aux, x);
-                    if((*pt)->value < ant->value){
+                    if((*pt)->chave < ant->chave){
                         //lado esquerdo do anterior caso tenha
                         //caso o sucessor seja uma folha
                         if((pts->esq == NULL) && (pts->dir == NULL)){
                             ant->esq = pts;
-                            if(pts->value != (*pt)->dir->value){
+                            if(pts != (*pt)->dir){
                                 pts->esq = (*pt)->esq;
                                 pts->dir = (*pt)->dir;
                             }else{
@@ -236,7 +236,7 @@ void removeTree(No_ab **pt, int x, unsigned int *f){
                             }
                             //anterior do pts que sempre sai o sucessor da esquerda então o anterior do pts seu filho esquerdo recebe lambda
                             //se aux == a raiz valor igual da raiz
-                            if(aux->value != temp->value){
+                            if(aux->chave != temp->chave){
                                 aux->esq = NULL;
                             }
 
@@ -297,7 +297,7 @@ void removeTree(No_ab **pt, int x, unsigned int *f){
                         //caso o sucessor seja uma folha
                         if((pts->esq == NULL) && (pts->dir == NULL)){
                             ant->dir = pts;
-                            if(pts->value != (*pt)->dir->value){
+                            if(pts != (*pt)->dir){
                                 pts->esq = (*pt)->esq;
                                 pts->dir = (*pt)->dir;
                             }else{
@@ -306,7 +306,7 @@ void removeTree(No_ab **pt, int x, unsigned int *f){
 
                             //anterior do pts que sempre sai o sucessor da esquerda então o anterior do pts seu filho esquerdo recebe lambda
                             //se aux == a raiz valor igual da raiz
-                            if(aux->value != temp->value){
+                            if(aux->chave != temp->chave){
                                 aux->esq = NULL;
                             }
 
@@ -369,7 +369,7 @@ void removeTree(No_ab **pt, int x, unsigned int *f){
     *pt = temp;
 }
 //função que limpa a ARVORE
-void clearTree(No_ab **pt){
+void clearTree(Avl **pt){
    //quando chega em folha ou nulo ele retorna nada
    if(*pt == NULL){
         return;

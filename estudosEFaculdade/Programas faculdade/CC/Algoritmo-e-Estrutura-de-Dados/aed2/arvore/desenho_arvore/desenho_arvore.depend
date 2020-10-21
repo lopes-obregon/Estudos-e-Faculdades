@@ -1,13 +1,24 @@
 # depslib dependency file v1.0
 140734371891504 <<<<<<< HEAD
 
-1603019423 source:/home/renan/Documentos/Estudos-e-Faculdades/estudosEFaculdade/Programas faculdade/CC/Algoritmo-e-Estrutura-de-Dados/aed2/arvore/desenho_arvore/main.c
+1603048998 source:/home/renan/Documentos/Estudos-e-Faculdades/estudosEFaculdade/Programas faculdade/CC/Algoritmo-e-Estrutura-de-Dados/aed2/arvore/desenho_arvore/main.c
 	<stdio.h>
 	<stdlib.h>
 	"gfx.h"
 	<unistd.h>
 	"../libary/arvoreBinaria.h"
 	"../libary/arvoreAvl.h"
+
+1602862290 ter
+	<stdio.h>
+	<stdlib.h>
+	"gfx.h"
+	<unistd.h>
+	"../libary/arvoreBinaria.h"
+	"../libary/arvoreAvl.h"
+	<stdio.h>
+	<stdlib.h>
+	<stdint.h>
 
 1601302679 fc2b6ad8f9ed0d1d9698e8239079c5d5758e2
 	<stdio.h>
@@ -20,16 +31,17 @@
 	<stdint.h>
 	"lista.h"
 
-1601307951 D
+1602369911 D
 
-1602369911 source:/home/renan/Documentos/Estudos-e-Faculdades/estudosEFaculdade/Programas faculdade/CC/Algoritmo-e-Estrutura-de-Dados/aed2/arvore/libary/arvoreBinaria.c
+1603049962 source:/home/renan/Documentos/Estudos-e-Faculdades/estudosEFaculdade/Programas faculdade/CC/Algoritmo-e-Estrutura-de-Dados/aed2/arvore/libary/arvoreBinaria.c
 	"arvoreBinaria.h"
 
-1602369911 /home/renan/Documentos/Estudos-e-Faculdades/estudosEFaculdade/Programas faculdade/CC/Algoritmo-e-Estrutura-de-Dados/aed2/arvore/libary/arvoreBinaria.h
+1603050264 /home/renan/Documentos/Estudos-e-Faculdades/estudosEFaculdade/Programas faculdade/CC/Algoritmo-e-Estrutura-de-Dados/aed2/arvore/libary/arvoreBinaria.h
 	<stdio.h>
 	<stdlib.h>
 	<stdint.h>
 	"lista.h"
+	"arvoreAvl.h"
 
 1601605558 /home/renan/Documentos/Estudos-e-Faculdades/estudosEFaculdade/Programas faculdade/CC/Algoritmo-e-Estrutura-de-Dados/aed2/arvore/libary/lista.h
 	<stdio.h>
@@ -39,10 +51,10 @@
 1602369911 source:/home/renan/Documentos/Estudos-e-Faculdades/estudosEFaculdade/Programas faculdade/CC/Algoritmo-e-Estrutura-de-Dados/aed2/arvore/libary/lista.c
 	"lista.h"
 
-1603019559 source:/home/renan/Documentos/Estudos-e-Faculdades/estudosEFaculdade/Programas faculdade/CC/Algoritmo-e-Estrutura-de-Dados/aed2/arvore/libary/arvoreAvl.c
+1603050135 source:/home/renan/Documentos/Estudos-e-Faculdades/estudosEFaculdade/Programas faculdade/CC/Algoritmo-e-Estrutura-de-Dados/aed2/arvore/libary/arvoreAvl.c
 	"arvoreAvl.h"
 
-1603019426 /home/renan/Documentos/Estudos-e-Faculdades/estudosEFaculdade/Programas faculdade/CC/Algoritmo-e-Estrutura-de-Dados/aed2/arvore/libary/arvoreAvl.h
+1603038808 /home/renan/Documentos/Estudos-e-Faculdades/estudosEFaculdade/Programas faculdade/CC/Algoritmo-e-Estrutura-de-Dados/aed2/arvore/libary/arvoreAvl.h
 	<stdio.h>
 	<stdlib.h>
 	<stdint.h>

@@ -19,16 +19,15 @@ typedef struct s_arq_noo{
     uint32_t esq:1;
     uint32_t dir:1;
 }ArqNo;
+//verifica a arvore
+void verificaAvl(Avl **pt);
 //insere em uma arvore avl
-void insertAvl(int x, Avl **pt, unsigned short h);
+void insertAvl(int x, Avl **pt);
 //procedimento que inicia o nó
 void inicioNo(Avl **pt, int x);
 //caso 1
 //rotação direita ou dubla direita
-void caso1(Avl **pt, unsigned short *h);
+void caso1(Avl **pt);
 //rotação esquerda e depla direita
-void caso2(Avl **pt, unsigned short *h);
-//calcula a altura
-void calcAltura(Avl *pt, int alturaE, int alturaD);
-
+void caso2(Avl **pt);
 #endif // ARVOREAVL_H_INCLUDED

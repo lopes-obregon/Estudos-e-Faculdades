@@ -1,14 +1,16 @@
 #include "arvoreAvl.h"
 //caso 2
 //rotação esquerda e depla direita
-void caso2(Avl **pt, unsigned short *h){
+void caso2(Avl **pt){
     Avl *ptu = (*pt)->dir;
+    //rotação esquerda
     if(ptu->bal == 1){
         (*pt)->dir = ptu->esq;
         (*pt)->bal = 0;
         ptu->esq = *pt;
         *pt = ptu;
     }else{
+        //rotação dupla esquerda
         Avl *ptv = (*pt)->esq;
         ptu->esq = ptv->dir;
         (*pt)->dir = ptv->esq;
@@ -27,21 +29,22 @@ void caso2(Avl **pt, unsigned short *h){
         *pt = ptv;
     }
     (*pt)->bal = 0;
-    *h = 0;
 }
 
 
 
 //caso 1
 //rotação direita ou dubla direita
-void caso1(Avl **pt, unsigned short *h){
+void caso1(Avl **pt){
     Avl *ptu = (*pt)->esq;
+    //rotação direita
     if(ptu->bal == -1){
        (*pt)->esq  = ptu->dir;
         ptu->dir  = *pt;
         (*pt)->bal = 0;
         *pt = ptu;
     }else{
+        //rotação dupla direita
         if(ptu->dir != NULL){
             Avl *ptv = ptu->dir;
             ptu->dir = ptv->esq;
@@ -60,7 +63,6 @@ void caso1(Avl **pt, unsigned short *h){
             }
             *pt = ptv;
             (*pt)->bal = 0;
-        *h = 0;
         }
         }
 
@@ -77,37 +79,64 @@ void inicioNo(Avl **pt, int x){
     neww->bal = 0;
     neww->chave = x;
     //pt aponta para o novo nó
+    neww->bal = 0;
     *pt = neww;
-}
-//calcula a altura da arvore
-void calcAltura(Avl *pt, int alturaE, int alturaD){
-    //percurso em pré ordem
-    if(pt->esq != NULL){
-        calcAltura(pt->esq, alturaE+1, alturaD+1);
-    }
-    if(pt->dir != NULL){
-        calcAltura(pt->dir, alturaE +1, alturaD+1);
-    }
-
 }
 //procedimento que insere na arvore avl
 //obs: 0-falso 1-verdadeiro
-void insertAvl(int x, Avl **pt, unsigned short h){
+void insertAvl(int x, Avl **pt){
     if (*pt == NULL){
         inicioNo(&(*pt), x);
-        h  = 1;
-        return h;
     }else{
         if( x == (*pt)->chave){
             //pare
             printf("Valor já existe");
-        }
-        if(x < (*pt)->chave){
-            insertAvl(x, &(*pt)->esq, &h);
-            }else{
-            insertAvl(x, &(*pt)->dir, &h);
-            printf("valor h:%d", h);
+        }else{
+             if(x < (*pt)->chave){
+                insertAvl(x, &(*pt)->esq);
+                switch ((*pt)->bal){
+                    case 1:
+                        (*pt)->bal = 0;
+                        break;
+                    case 0:
+                        (*pt)->bal =  -1;
+                        break;
+                    default:
+                        caso1(&(*pt));
+                }
 
+            }else{
+                insertAvl(x, &(*pt)->dir);
+                switch ((*pt)->bal){
+                    case -1:
+                        (*pt)->bal = 0;
+                        break;
+                    case 0:
+                        (*pt)->bal =  1;
+                        break;
+                    default:
+                        caso2(&(*pt));
+                }
+            }
+        }
+
+    }
+
+}
+//alutra esquerda avl;
+//verifica a arvore
+void verificaAvl(Avl **pt){
+    if(*pt == NULL){
+        return;
+    }
+    verificaAvl(&(*pt)->esq);
+    if((*pt)->bal == -1){
+        caso1(&(*pt));
+    }else{
+        if((*pt)->bal == 1){
+            caso2(&(*pt));
         }
     }
+    verificaAvl(&(*pt)->dir);
+
 }

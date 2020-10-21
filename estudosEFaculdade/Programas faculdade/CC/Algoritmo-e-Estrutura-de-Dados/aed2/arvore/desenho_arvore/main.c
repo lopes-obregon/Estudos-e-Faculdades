@@ -19,7 +19,7 @@ void desenha_arvore(Avl *pt, unsigned short xi, unsigned short xf, unsigned shor
 
     if(pt != NULL){
         xm = (xi+xf)/2;
-        snprintf(str, 64, "%i", pt->chave);
+        snprintf(str, 64, "%i|%i", pt->chave, pt->bal);
         gfx_set_color(220, 20, 60);
         //parte que desenha linha
         if(pt->esq != NULL){
@@ -66,13 +66,18 @@ void menuInsere(Raiz *pt){
         printf("Erro na abertura do arquivo");
     }else{
         while(!feof(fp)){
+            n = valor;
             fscanf(fp, "%d", &valor);
-            insertAvl(valor, &pt->ptRaiz, f);
-           // calcAltura(pt->ptRaiz, 0, 0);
+            if(n != valor){
+                insertAvl(valor, &pt->ptRaiz);
+            }
 
+            //calcAltura(pt->ptRaiz, 0, 0);
+           menuDesenhaAzrvore(pt);
         }
 
     }
+   //verificaAvl(&pt->ptRaiz);
     printf("Para visualizar a alteração feita solicite a opção 3\n");
 
 }

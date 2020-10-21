@@ -4,6 +4,7 @@
 #include <stdlib.h>
 #include <stdint.h>
 #include "lista.h"
+#include "arvoreAvl.h"
 /*typedef struct no_ab{
     int value;
     struct no_ab *dir, *esq;
@@ -19,19 +20,19 @@ typedef struct s_no{
 //tipo de dado definido como No_ab para fins de estudo, para não me confudir
 
 //procedimento que faz a busca na arvore
-void buscaArvore(int x, No_ab **pt, unsigned int *f);
+void buscaArvore(int x, Avl **pt, unsigned int *f);
 //f deve vir da busca realizada na arvore
 void insertArvore(int x, No_ab **pt, unsigned int *f);
 //imprime a arvore em pré ordem
 void printArvorePre(No_ab **pt, arqNo **ptCabeca, FILE *fp);
 //remove a arvore
-void removeTree(No_ab **pt, int x, unsigned int *f);
+void removeTree(Avl **pt, int x, unsigned int *f);
 //pesquisa na arvore com o anterior
-void searchAntTree(No_ab **pt, No_ab **ant, unsigned int *f, int value);
+void searchAntTree(Avl **pt, Avl **ant, unsigned int *f, int value);
 //acha sucessor
-void sucessor(No_ab **pt, No_ab **ant, int x);
+void sucessor(Avl **pt, No_ab **ant, int x);
 //função que limpa a ARVORE
-void clearTree(No_ab **pt);
+void clearTree(Avl **pt);
 //procedimento leitura em pré-ordem apartir de um arquivo
 void leituraPreOrdemArquivo(No_ab **ptArvore, No_ab **ptRaiz, FILE *fp);
 //procedimento que imprime a arvore no terminal
