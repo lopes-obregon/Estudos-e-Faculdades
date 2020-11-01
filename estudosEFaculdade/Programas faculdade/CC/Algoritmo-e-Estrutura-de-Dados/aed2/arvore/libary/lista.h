@@ -4,13 +4,14 @@
 #include <stdlib.h>
 #include <stdint.h>
 typedef struct s_arq_no{
-    int32_t chave:30;
+    int32_t chave:28;
+    int32_t bal:2;
     uint32_t esq:1;
     uint32_t dir:1;
 
 }arqNo;
 //função que aloca o nó na memoria
-void reservaMemoria(arqNo **pt, int32_t chave, uint32_t esq, uint32_t dir);
+void reservaMemoria(arqNo **pt, int32_t chave, uint32_t esq, uint32_t dir, int32_t bal);
 //concatena as string
 void addBin(char *str);
 //função que escreve no arquivo

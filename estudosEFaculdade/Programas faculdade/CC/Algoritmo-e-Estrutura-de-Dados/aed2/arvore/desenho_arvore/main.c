@@ -48,7 +48,8 @@ void desenha_arvore(Avl *pt, unsigned short xi, unsigned short xf, unsigned shor
 void menuInsere(Raiz *pt){
     unsigned  n;
     FILE *fp;
-    unsigned short f;
+    //unsigned short f;
+    bool f;
     int valor=0;
     //printf("Informe  a quantidade de elementos a ser inserido na arvore!\n");
     //scanf("%d", &n);
@@ -69,35 +70,31 @@ void menuInsere(Raiz *pt){
             n = valor;
             fscanf(fp, "%d", &valor);
             if(n != valor){
-                insertAvl(valor, &pt->ptRaiz);
+                insertAvl(valor, &pt->ptRaiz, &f);
             }
-
-            //calcAltura(pt->ptRaiz, 0, 0);
-           menuDesenhaAzrvore(pt);
         }
 
     }
-   //verificaAvl(&pt->ptRaiz);
     printf("Para visualizar a alteração feita solicite a opção 3\n");
 
 }
 //remove o elemento da arvore
 void menuRemoveArvore(Raiz *pt){
     int valor = 0;// recebe zero para não ficar o lixo
-    unsigned f;
+    bool f;
     printf("Qual elemento deseja remover da arvore?\n");
     scanf("%d", &valor);
-    removeTree(&pt->ptRaiz, valor, &f);
-
+    //removeTree(&pt->ptRaiz, valor, &f);
+    removeAvl(valor, &pt->ptRaiz, &pt->ptRaiz, &f);
     printf("Para visualizar a alteração feita solicite a opção 3\n");
 
 
 }
 //funpção que faz a chamada para desenhar a arvore
 void menuDesenhaAzrvore(Raiz *pt){
-    gfx_init(1000, 800, "Arvore Binaria De Busca");
+    gfx_init(800, 600, "Arvore Binaria De Busca");
     gfx_set_font_size(20);
-    desenha_arvore(pt->ptRaiz, 0, 1000, 70);
+    desenha_arvore(pt->ptRaiz, 0, 800, 70);
     gfx_paint();
 }
 /*
@@ -112,7 +109,7 @@ void menuArquivoBinario(Raiz *pt){
     printf("Informe o nome do Arquivo para salvar: ");
     scanf("%s", buffer);
     addBin(buffer);
-    fp = fopen(buffer, "rw");
+    fp = fopen(buffer, "wb");
     if(fp == NULL){
         printf("Erro na abertura do arquivo\n");
 
@@ -162,21 +159,9 @@ void menuBusca(Raiz *pt){
         if(f == 1){
             printf("Chave encontrada!\n");
             pt->ptRaiz = temp;//seta para a raiz
-        }else{
-            //senão o valor não existe na arvore e pode ser inserido
-            printf("Chave não encontrada!\n");
-            printf("Deseja inserir na arvore?\n 0-não 1-sim \n:");
-            //variavel aux serve para corrigir o bug de valorBuscar receber lixo
-            aux = valorBuscar;
-            scanf("%d", &op);
-            valorBuscar = aux;
-            //se op igual a um então insere na arvora
-            if(op == 1){
-                //seta a arvore para a raiz pq na hora que foi feita a busca foi para a posição buscada da arvore
-                pt->ptRaiz = temp;
-                insertArvore(valorBuscar, &pt->ptRaiz, &f);
-            }
 
+        }else{
+            printf("Chave não encontrada!\n");
         }
     }
 }

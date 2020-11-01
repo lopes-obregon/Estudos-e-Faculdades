@@ -4,57 +4,64 @@
 	<ActiveTarget name="Debug" />
 	<File name="../libary/lista.h" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="399" topLine="2" />
+			<Cursor1 position="348" topLine="3" />
 		</Cursor>
 	</File>
-	<File name="../libary/arvoreAvl.c" open="1" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="1" zoom_2="0">
+	<File name="../libary/arvoreAvl.h" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="2" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="3273" topLine="114" />
-		</Cursor>
-		<Folding>
-			<Collapse line="70" />
-		</Folding>
-	</File>
-	<File name="main.c" open="1" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="2" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="4479" topLine="30" />
-		</Cursor>
-		<Folding>
-			<Collapse line="14" />
-			<Collapse line="47" />
-			<Collapse line="84" />
-			<Collapse line="96" />
-			<Collapse line="108" />
-			<Collapse line="129" />
-		</Folding>
-	</File>
-	<File name="../libary/arvoreBinaria.h" open="1" top="1" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="998" topLine="24" />
-		</Cursor>
-	</File>
-	<File name="../libary/arvoreBinaria.c" open="1" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="13999" topLine="37" />
-		</Cursor>
-		<Folding>
-			<Collapse line="36" />
-			<Collapse line="68" />
-			<Collapse line="106" />
-			<Collapse line="136" />
-			<Collapse line="160" />
-			<Collapse line="176" />
-			<Collapse line="383" />
-		</Folding>
-	</File>
-	<File name="../libary/arvoreAvl.h" open="1" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="2" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="455" topLine="19" />
+			<Cursor1 position="1018" topLine="28" />
 		</Cursor>
 	</File>
 	<File name="../libary/lista.c" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="916" topLine="17" />
+			<Cursor1 position="766" topLine="9" />
 		</Cursor>
+	</File>
+	<File name="../libary/arvoreAvl.c" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="1" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="4859" topLine="7" />
+		</Cursor>
+		<Folding>
+			<Collapse line="3" />
+			<Collapse line="38" />
+			<Collapse line="73" />
+			<Collapse line="89" />
+			<Collapse line="134" />
+			<Collapse line="168" />
+			<Collapse line="204" />
+			<Collapse line="250" />
+		</Folding>
+	</File>
+	<File name="main.c" open="1" top="1" tabpos="1" split="0" active="1" splitpos="0" zoom_1="2" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="5622" topLine="21" />
+		</Cursor>
+		<Folding>
+			<Collapse line="14" />
+			<Collapse line="47" />
+			<Collapse line="81" />
+			<Collapse line="93" />
+			<Collapse line="126" />
+			<Collapse line="144" />
+		</Folding>
+	</File>
+	<File name="../libary/arvoreBinaria.h" open="0" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="677" topLine="24" />
+		</Cursor>
+	</File>
+	<File name="../libary/arvoreBinaria.c" open="0" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="3566" topLine="51" />
+		</Cursor>
+		<Folding>
+			<Collapse line="2" />
+			<Collapse line="36" />
+			<Collapse line="137" />
+			<Collapse line="161" />
+			<Collapse line="177" />
+			<Collapse line="372" />
+			<Collapse line="384" />
+		</Folding>
 	</File>
 </CodeBlocks_layout_file>

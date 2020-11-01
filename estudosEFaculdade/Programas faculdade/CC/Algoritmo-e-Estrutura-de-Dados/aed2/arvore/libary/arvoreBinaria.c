@@ -66,17 +66,18 @@ void insertArvore(int x, No_ab **pt, unsigned int *f){
 //pré ordem
 
 //procedimento leitura em pré-ordem apartir de um arquivo
-void leituraPreOrdemArquivo(No_ab **ptArvore, No_ab **ptRaiz, FILE *fp){
+void leituraPreOrdemArquivo(Avl **ptArvore, Avl **ptRaiz, FILE *fp){
     //aloca nó para receber o conteudo do arquivo
     arqNo conteudo;
     //lendo os dados do arquivo
     if(fread(&conteudo, sizeof(arqNo), 1, fp)){
         //aloca a estrutura do tipo No_ab
-        No_ab *neww = malloc(sizeof(No_ab));
+        Avl *neww = malloc(sizeof(Avl));
         neww->dir = neww->esq = NULL;
         //se não tem raiz então o ponteiro da raiz aponta para o novo nó
         //novo nó recebe a chave do conteudo do arquivo
-        neww->value = conteudo.chave;
+        neww->chave = conteudo.chave;
+        neww->bal = conteudo.bal;
         *ptArvore = neww;
         /*
         *procedimento pre()
@@ -104,7 +105,7 @@ void leituraPreOrdemArquivo(No_ab **ptArvore, No_ab **ptRaiz, FILE *fp){
 
 }
 //procedimento que imprime a arvore em pre ordem
-void printArvorePre(No_ab **pt, arqNo **ptCabeca, FILE *fp){
+void printArvorePre(Avl **pt, arqNo **ptCabeca, FILE *fp){
     //variavel  para armazenar verdadeuiro ou falso 1-verdadeiro 0-para falso
     uint32_t esq;
     uint32_t dir;
@@ -128,7 +129,7 @@ void printArvorePre(No_ab **pt, arqNo **ptCabeca, FILE *fp){
     }
 
 
-    reservaMemoria(&ptCabeca, (*pt)->value, esq, dir);
+    reservaMemoria(&ptCabeca, (*pt)->chave, esq, dir, (*pt)->bal);
     escreveNoArquivo(&ptCabeca, fp);
     printArvorePre(&(*pt)->esq, ptCabeca, fp);
     printArvorePre(&(*pt)->dir, ptCabeca, fp);
@@ -381,10 +382,10 @@ void clearTree(Avl **pt){
    *pt = NULL;
 }
 //procedimento que imprime a arvore no terminal
-void printTerminal(No_ab *ptArvore){
+void printTerminal(Avl *ptArvore){
     if(ptArvore == NULL)
         return;
-    printf("[%i] ", ptArvore->value);
+    printf("[%i] ", ptArvore->chave);
     printTerminal(ptArvore->esq);
     printTerminal(ptArvore->dir);
 

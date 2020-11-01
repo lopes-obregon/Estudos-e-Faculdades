@@ -24,7 +24,7 @@ void buscaArvore(int x, Avl **pt, unsigned int *f);
 //f deve vir da busca realizada na arvore
 void insertArvore(int x, No_ab **pt, unsigned int *f);
 //imprime a arvore em pré ordem
-void printArvorePre(No_ab **pt, arqNo **ptCabeca, FILE *fp);
+void printArvorePre(Avl **pt, arqNo **ptCabeca, FILE *fp);
 //remove a arvore
 void removeTree(Avl **pt, int x, unsigned int *f);
 //pesquisa na arvore com o anterior
@@ -34,7 +34,7 @@ void sucessor(Avl **pt, No_ab **ant, int x);
 //função que limpa a ARVORE
 void clearTree(Avl **pt);
 //procedimento leitura em pré-ordem apartir de um arquivo
-void leituraPreOrdemArquivo(No_ab **ptArvore, No_ab **ptRaiz, FILE *fp);
+void leituraPreOrdemArquivo(Avl**ptArvore, Avl **ptRaiz, FILE *fp);
 //procedimento que imprime a arvore no terminal
-void printTerminal(No_ab *ptArvore);
+void printTerminal(Avl *ptArvore);
 #endif // ARVOREBINARIA_H_INCLUDED

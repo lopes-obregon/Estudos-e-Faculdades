@@ -12,13 +12,14 @@ void addBin(char *str){
     }
 }
 //função que aloca o nó na memoria
-void reservaMemoria(arqNo **pt, int32_t chave, uint32_t esq, uint32_t dir){
+void reservaMemoria(arqNo **pt, int32_t chave, uint32_t esq, uint32_t dir, int32_t bal){
     arqNo *neww = malloc(sizeof(arqNo));
     //caso o ponteiro esteja apontado para lugar nem um aloca na memória o espaço referente ao endereço procurado
     if(*pt == NULL){
         neww->chave = chave;
         neww->esq = esq;
         neww->dir = dir;
+        neww->bal = bal;
         *pt = neww;
 
     }
