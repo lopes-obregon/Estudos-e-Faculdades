@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1608552348 source:/home/renan/Documentos/Estudos-e-Faculdades/estudosEFaculdade/Programas faculdade/CC/Algoritmo-e-Estrutura-de-Dados/aed2/ordenacao/ordena/main.c
+	<stdio.h>
+	<stdlib.h>
+
