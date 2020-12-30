@@ -6,7 +6,7 @@
 #include <math.h>
 
 //procedimento que imprime os elementos apenas para conferir os valores
-void printVector(uint32_t *vector, int vectorSize){
+void printVector(int32_t *vector, int vectorSize){
     for(int i = 0; i < vectorSize; i++)
         printf("%d\n", vector[i]);
 }
@@ -16,6 +16,137 @@ void troca(uint32_t *vector, int index){
     vector[index] = vector[index + 1];
     vector[index + 1] = aux;
 }
+//particiona aleatorio
+int particionaAle(int32_t *vector, int32_t inicio, int32_t fim){
+    int32_t i = inicio, aux,indexPivo, pivo;
+    int k;
+    double valor;
+    valor = (double) rand()/((double) RAND_MAX +1);
+    k = valor * (fim - inicio +1 );
+    indexPivo = inicio + k;
+    //troca colocando o valor no ultimo
+    aux = vector[indexPivo];
+    vector[indexPivo] = vector[fim];
+    vector[fim] = aux;
+    //pivo elemento final
+    pivo = vector[fim];
+    for(int32_t j = inicio; j < fim; j++){
+        if(vector[j] < pivo){
+            aux = vector[i];
+            vector[i] = vector[j];
+            vector[j] = aux;
+            i++;
+        }
+    }
+    aux = vector[i];
+    vector[i] = vector[fim];
+    vector[fim] = aux;
+    return i;
+}
+//quicksort pivo aleatorio
+void quickSortAle(int32_t *vector, int32_t inicio, int32_t fim){
+    int indice; // indice do pico
+    if(inicio < fim){
+        indice = particionaAle(vector, inicio, fim);
+        quickSortAle(vector, inicio, indice - 1);
+        quickSortAle(vector, indice +1, fim);
+    }
+}
+void quickSortAleMenu(FILE *file, char *argv[]){
+    int32_t *vector; // vetor que recebe os elementos
+    int Nelemento = 0;//variavel que recebe a quantidade de elementos
+    clock_t end, start;
+    
+    //conta os elementos
+    fseek(file, 0, SEEK_END);
+    Nelemento = ftell(file);
+    Nelemento = Nelemento/sizeof(int32_t);
+    fseek(file, 0, SEEK_SET);
+    //aloca o vetor
+    vector = (int32_t *) malloc(Nelemento * sizeof(int32_t));
+    //le os elementos do vetor
+    fread(&vector[0], sizeof(int32_t), Nelemento, file);
+    printf("Antes\n");
+    printVector(vector, Nelemento);
+    start = clock();
+    quickSortAle(vector, 0, Nelemento -1);
+    end = clock();
+    printf("Depois!\n");
+    printVector(vector, Nelemento);
+    fclose(file);
+    file = fopen(argv[3], "wb");
+    if(file == NULL){
+        printf("Problema na abertura do arquivo\n");
+    }else{
+        fwrite(vector, sizeof(int32_t), Nelemento, file);
+        fclose(file);
+    }
+    printf("tempo gasto: %.3f ms\n\n", 1000*(double)(end-start)/(double)(CLOCKS_PER_SEC));
+    //libera a memoria alocada
+    free(vector);
+}
+//proceddimento que particiona 
+int particiona(int32_t *vector, int32_t inicio, int32_t fim){
+    int32_t pivo = vector[fim];
+    int32_t i = inicio, aux;
+    for(int32_t j = inicio; j < fim; j++){
+        if(vector[j] < pivo ){
+            aux = vector[i];
+            vector[i] = vector[j];
+            vector[j] = aux;
+            i++;
+        }
+    }
+    aux = vector[i];
+    vector[i] = vector[fim];
+    vector[fim] = aux;
+    return i;
+}
+//procedimento quicksort com pivo sendo o ultimo elmento
+void quickSort(int32_t *vector, int32_t inicio, int32_t fim){
+    int indice; // indice do pico
+    if(inicio < fim){
+        indice = particiona(vector, inicio, fim);
+        quickSort(vector, inicio, indice - 1);
+        quickSort(vector, indice +1, fim);
+    }
+    
+ }
+ //procedimento quickmenu
+ void quickSortMenu(FILE *file,char  *argv[]){
+    int32_t *vector; // vetor que recebe os elementos
+    int Nelemento = 0;//variavel que recebe a quantidade de elementos
+    clock_t end, start;
+    
+    //conta os elementos
+    fseek(file, 0, SEEK_END);
+    Nelemento = ftell(file);
+    Nelemento = Nelemento/sizeof(int32_t);
+    fseek(file, 0, SEEK_SET);
+    //aloca o vetor
+    vector = (int32_t *) malloc(Nelemento * sizeof(int32_t));
+    //le os elementos do vetor
+    fread(&vector[0], sizeof(int32_t), Nelemento, file);
+    printf("Antes\n");
+    printVector(vector, Nelemento);
+    start = clock();
+    quickSort(vector, 0, Nelemento -1);
+    end = clock();
+    printf("Depois!\n");
+    printVector(vector, Nelemento);
+    fclose(file);
+    file = fopen(argv[3], "wb");
+    if(file == NULL){
+        printf("Problema na abertura do arquivo\n");
+    }else{
+        fwrite(vector, sizeof(int32_t), Nelemento, file);
+        fclose(file);
+    }
+    printf("tempo gasto: %.3f ms\n\n", 1000*(double)(end-start)/(double)(CLOCKS_PER_SEC));
+    //libera a memoria alocada
+    free(vector);
+
+ }
 //procedimento intercalar
 void intercalar(int32_t *vector, int32_t esq, int32_t centro,  int32_t dir){
      int32_t *E = NULL, *D = NULL, Tam1 = centro - esq + 1, Tam2 = dir - centro;
@@ -262,10 +393,10 @@ int main(int argc, char *argv[])
                             mergesortMenu(file, argv);
                         }else{
                             if(atoi(argv[1]) == 5 ){
-
+                                quickSortMenu(file, argv);
                             }else{
                                 if(atoi(argv[1]) == 6 ){
-
+                                    quickSortAleMenu(file, argv);
                                 }else{
                                     if(atoi(argv[1]) == 7 ){
 
