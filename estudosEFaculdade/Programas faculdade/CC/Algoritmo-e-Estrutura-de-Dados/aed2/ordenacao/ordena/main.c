@@ -16,6 +16,164 @@ void troca(uint32_t *vector, int index){
     vector[index] = vector[index + 1];
     vector[index + 1] = aux;
 }
+void constroiHeap(int32_t m, int32_t *vector){
+    int32_t aux;
+    for(int32_t i = 1; i < m; i++){
+        int f = i+1;
+        while(f > 1 && vector[f/2]  < vector[f]){
+            aux = vector[f/2];
+            vector[f/2] = vector[f];
+            vector[f] = aux;
+            f /=2;
+        }
+    }
+}
+void peneira(int32_t m, int32_t *vector){
+    int f = 2;
+    int32_t aux;
+    while(f <= m){
+        if(f < m && vector[f] < vector[f+1]){
+            f++;
+        }
+        if(vector[f/2] >= vector[f]){
+            break;
+        }
+        aux = vector[f/2];
+        vector[f/2] = vector[f];
+        vector[f] = aux;
+        f*=2;
+    }
+}
+void heapSort(int32_t n, int32_t *vector){
+    int32_t aux;
+    constroiHeap(n, vector);
+    for(int i = n; i >= 2; i--){
+        aux = vector[1];
+        vector[1] = vector[i];
+        vector[i] = aux;
+        peneira(i-1, vector);
+    }
+}
+void heapMenu(FILE *file, char *argv[]){
+    int32_t *vector; // vetor que recebe os elementos
+    int Nelemento = 0;//variavel que recebe a quantidade de elementos
+    clock_t end, start;
+    
+    //conta os elementos
+    fseek(file, 0, SEEK_END);
+    Nelemento = ftell(file);
+    Nelemento = Nelemento/sizeof(int32_t);
+    fseek(file, 0, SEEK_SET);
+    //aloca o vetor
+    vector = (int32_t *) malloc(Nelemento * sizeof(int32_t));
+    //le os elementos do vetor
+    fread(&vector[0], sizeof(int32_t), Nelemento, file);
+    printf("Antes\n");
+    printVector(vector, Nelemento);
+    start = clock();
+    heapSort(Nelemento, vector);
+    end = clock();
+    printf("Depois!\n");
+    printVector(vector, Nelemento);
+    fclose(file);
+    file = fopen(argv[3], "wb");
+    if(file == NULL){
+        printf("Problema na abertura do arquivo\n");
+    }else{
+        fwrite(vector, sizeof(int32_t), Nelemento, file);
+        fclose(file);
+    }
+    printf("tempo gasto: %.3f ms\n\n", 1000*(double)(end-start)/(double)(CLOCKS_PER_SEC));
+    //libera a memoria alocada
+    free(vector);
+}
+int32_t particionaM3(int32_t *vector, int32_t inicio, int32_t fim){
+    int32_t meio = floor((inicio + fim)/2);
+    int32_t a = vector[inicio];
+    int32_t b = vector[meio];
+    int32_t c = vector[fim];
+    int32_t indicieMedia, aux, i=inicio, pivo;
+    //abaixo verifica qual é a media
+    if(a < b){
+        if(b < c){
+            indicieMedia = meio;
+        }else{
+            if(a < c){
+                indicieMedia = fim;
+            }else{
+                indicieMedia = inicio;
+            }
+        }
+    }else{
+        if(c < b){
+            indicieMedia = meio;
+        }else{
+            if(c < a){
+                indicieMedia = fim;
+            }else{
+                indicieMedia = inicio;
+            }
+        }
+    }
+    aux = vector[indicieMedia];
+    vector[indicieMedia] = vector[fim];
+    vector[fim] = aux;
+    pivo = vector[fim];
+    for(int32_t j = inicio; j < fim; j++){
+        if(vector[j] < pivo ){
+            aux = vector[i];
+            vector[i] = vector[j];
+            vector[j] = aux;
+            i++;
+        }
+    }
+    aux = vector[i];
+    vector[i] = vector[fim];
+    vector[fim] = aux;
+    return i;
+}
+void quickSortM(int32_t *vector, int32_t inicio, int32_t fim){
+    int indice; // indice do pico
+    if(inicio < fim){
+        indice = particionaM3(vector, inicio, fim);
+        quickSortM(vector, inicio, indice - 1);
+        quickSortM(vector, indice +1, fim);
+    }
+}
+//quick media de 3 menu
+void quickSortM3Menu(FILE *file,char  *argv[]){
+     int32_t *vector; // vetor que recebe os elementos
+    int Nelemento = 0;//variavel que recebe a quantidade de elementos
+    clock_t end, start;
+    
+    //conta os elementos
+    fseek(file, 0, SEEK_END);
+    Nelemento = ftell(file);
+    Nelemento = Nelemento/sizeof(int32_t);
+    fseek(file, 0, SEEK_SET);
+    //aloca o vetor
+    vector = (int32_t *) malloc(Nelemento * sizeof(int32_t));
+    //le os elementos do vetor
+    fread(&vector[0], sizeof(int32_t), Nelemento, file);
+    printf("Antes\n");
+    printVector(vector, Nelemento);
+    start = clock();
+    quickSortM(vector, 0, Nelemento -1);
+    end = clock();
+    printf("Depois!\n");
+    printVector(vector, Nelemento);
+    fclose(file);
+    file = fopen(argv[3], "wb");
+    if(file == NULL){
+        printf("Problema na abertura do arquivo\n");
+    }else{
+        fwrite(vector, sizeof(int32_t), Nelemento, file);
+        fclose(file);
+    }
+    printf("tempo gasto: %.3f ms\n\n", 1000*(double)(end-start)/(double)(CLOCKS_PER_SEC));
+    //libera a memoria alocada
+    free(vector);
+}
 //particiona aleatorio
 int particionaAle(int32_t *vector, int32_t inicio, int32_t fim){
     int32_t i = inicio, aux,indexPivo, pivo;
@@ -399,10 +557,10 @@ int main(int argc, char *argv[])
                                     quickSortAleMenu(file, argv);
                                 }else{
                                     if(atoi(argv[1]) == 7 ){
-
+                                       quickSortM3Menu(file, argv);
                                     }else{
                                         if(atoi(argv[1]) == 8 ){
-
+                                            heapMenu(file, argv);
                                         }
                                     }
                                 }
