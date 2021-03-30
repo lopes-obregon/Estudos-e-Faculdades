@@ -1,0 +1,377 @@
+tempo aleatorio
+arquivo : 10.a
+ 0.004 ms
+
+ 0.003 ms
+
+ 0.003 ms
+
+ 0.004 ms
+
+ 0.003 ms
+
+ 0.003 ms
+
+ 0.003 ms
+
+ 0.003 ms
+
+arquivo : 1000.a
+ 6.162 ms
+
+ 7.392 ms
+
+ 2.531 ms
+
+ 0.216 ms
+
+ 0.145 ms
+
+ 0.160 ms
+
+ 0.142 ms
+
+ 0.217 ms
+
+arquivo : 10000.a
+ 763.372 ms
+
+ 572.308 ms
+
+ 121.721 ms
+
+ 3.086 ms
+
+ 1.898 ms
+
+ 2.424 ms
+
+ 2.672 ms
+
+ 4.596 ms
+
+arquivo : 100000.a
+ 82294.170 ms
+
+ 60479.836 ms
+
+ 11447.827 ms
+
+ 41.010 ms
+
+ 24.677 ms
+
+ 26.362 ms
+
+ 23.541 ms
+
+ 40.588 ms
+
+arquivo : 500000.a
+ 2021890.141 ms
+
+ 1542196.736 ms
+
+ 285457.724 ms
+
+ 200.318 ms
+
+ 136.301 ms
+
+ 146.349 ms
+
+ 132.969 ms
+
+ 219.242 ms
+---------------------------------------------------------------------------
+tempo em ordem crescente
+
+Gerados com sucesso!
+arquivo : 10.c
+ 0.003 ms
+
+ 0.003 ms
+
+ 0.003 ms
+
+ 0.004 ms
+
+ 0.003 ms
+
+ 0.005 ms
+
+ 0.003 ms
+
+ 0.004 ms
+
+arquivo : 1000.c
+ 4.624 ms
+
+ 0.008 ms
+
+ 0.013 ms
+
+ 0.302 ms
+
+ 5.913 ms
+
+ 0.200 ms
+
+ 0.086 ms
+
+ 0.442 ms
+
+arquivo : 10000.c
+ 436.199 ms
+
+ 0.057 ms
+
+ 0.143 ms
+
+ 1.950 ms
+
+ 391.082 ms
+
+ 2.275 ms
+
+ 0.906 ms
+
+ 5.465 ms
+
+arquivo : 100000.c
+ 39321.674 ms
+
+ 0.523 ms
+
+ 0.742 ms
+
+ 30.064 ms
+
+ 31930.961 ms
+
+ 18.025 ms
+
+ 12.173 ms
+
+ 36.739 ms
+
+arquivo : 500000.c
+ 982792.486 ms
+
+ 2.473 ms
+
+ 7.286 ms
+
+ 124.668 ms
+
+Segmentation fault (core dumped)
+ 108.095 ms
+
+ 60.927 ms
+
+ 214.229 ms
+
+Ordenado com sucesso!
+
+------------------------------------------------------------------
+ordem   derecente
+Gerados com sucesso!
+arquivo : 10.d
+ 0.004 ms
+
+ 0.002 ms
+
+ 0.003 ms
+
+ 0.003 ms
+
+ 0.006 ms
+
+ 0.003 ms
+
+ 0.002 ms
+
+ 0.005 ms
+
+arquivo : 1000.d
+ 10.760 ms
+
+ 5.376 ms
+
+ 5.009 ms
+
+ 0.167 ms
+
+ 3.484 ms
+
+ 0.120 ms
+
+ 0.102 ms
+
+ 0.168 ms
+
+arquivo : 10000.d
+ 731.788 ms
+
+ 558.954 ms
+
+ 241.537 ms
+
+ 2.962 ms
+
+ 298.986 ms
+
+ 1.674 ms
+
+ 1.588 ms
+
+ 2.615 ms
+
+arquivo : 100000.d
+ 71974.798 ms
+
+ 52926.603 ms
+
+ 22694.388 ms
+
+ 32.484 ms
+
+ 26216.297 ms
+
+ 18.127 ms
+
+ 21.405 ms
+
+ 33.789 ms
+
+arquivo : 500000.d
+ 1797986.127 ms
+
+ 1319382.945 ms
+
+ 568488.608 ms
+
+ 130.696 ms
+
+Segmentation fault (core dumped)
+ 89.657 ms
+
+ 112.984 ms
+
+ 142.273 ms
+
+------------------------------------
+tempo crescente
+Gerados com sucesso!
+rodando  1000000.c4
+ 261.253 ms
+
+rodando  1000000.c6
+ 178.839 ms
+
+rodando  1000000.c7
+ 111.261 ms
+
+rodando  1000000.c8
+ 416.507 ms
+
+rodando  10000000.c4
+ 3167.575 ms
+
+rodando  10000000.c6
+ 1979.257 ms
+
+rodando  10000000.c7
+ 1310.180 ms
+
+rodando  10000000.c8
+ 4877.913 ms
+
+rodando  100000000.c4
+Killed
+rodando  100000000.c6
+ 22485.155 ms
+
+rodando  100000000.c7
+ 15024.959 ms
+
+rodando  100000000.c8
+ 53367.929 ms
+
+----------------------------------------------------------------------------------------
+tempo decresente
+Gerados com sucesso!
+rodando  1000000.d4
+ 264.363 ms
+
+rodando  1000000.d6
+ 192.662 ms
+
+rodando  1000000.d7
+ 240.054 ms
+
+rodando  1000000.d8
+ 287.568 ms
+
+rodando  10000000.d4
+ 2922.755 ms
+
+rodando  10000000.d6
+ 2152.925 ms
+
+rodando  10000000.d7
+ 2869.769 ms
+
+rodando  10000000.d8
+ 3248.401 ms
+
+rodando  100000000.d4
+Killed
+rodando  100000000.d6
+ 23048.054 ms
+
+rodando  100000000.d7
+ 32828.911 ms
+
+rodando  100000000.d8
+ 35159.946 ms
+
+Ordenado com sucesso!
+-------------------------------------------------------------------------------------------
+tempo aleatorio
+
+Gerados com sucesso!
+rodando  1000000.a4
+ 393.641 ms
+
+rodando  1000000.a6
+ 291.715 ms
+
+rodando  1000000.a7
+ 267.255 ms
+
+rodando  1000000.a8
+ 468.422 ms
+
+rodando  10000000.a4
+ 4615.333 ms
+
+rodando  10000000.a6
+ 3341.340 ms
+
+rodando  10000000.a7
+ 3140.126 ms
+
+rodando  10000000.a8
+ 6736.424 ms
+
+rodando  100000000.a4
+Killed
+rodando  100000000.a6
+ 37859.390 ms
+
+rodando  100000000.a7
+ 34546.108 ms
+
+rodando  100000000.a8
+ 88907.505 ms

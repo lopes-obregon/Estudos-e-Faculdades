@@ -21,6 +21,7 @@ int main( int argc, char *argv[]){
         for(int i  = 0; i < Nelemento; i++){
             printf("%d\n", vector[i]);
         }
+        printf("\n\n");
     }
     
     

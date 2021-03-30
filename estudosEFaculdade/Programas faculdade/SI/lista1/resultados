@@ -1,0 +1,20 @@
+02. Olá mundo! => pulo de linha no final
+03.Linguagem ␣C =>sem pulo de linha
+04)a../a.out 
+
+        Bom dia ! Shirley.
+04)b../a.out 
+Voce ja tomou cafe?
+
+04)c. ./a.out 
+
+
+A solucao nao existe!
+Nao insista. => não pula linha no final da frase
+04)d../a.out 
+Duas    linhass de      saida   ou      uma?=>sem pulo de linha no final
+
+04)e../a.out 
+um
+dois
+tres => pulo de linha no final

@@ -68,13 +68,9 @@ void heapMenu(FILE *file, char *argv[]){
     vector = (int32_t *) malloc(Nelemento * sizeof(int32_t));
     //le os elementos do vetor
     fread(&vector[0], sizeof(int32_t), Nelemento, file);
-    printf("Antes\n");
-    printVector(vector, Nelemento);
     start = clock();
     heapSort(Nelemento, vector);
     end = clock();
-    printf("Depois!\n");
-    printVector(vector, Nelemento);
     fclose(file);
     file = fopen(argv[3], "wb");
     if(file == NULL){
@@ -155,13 +151,9 @@ void quickSortM3Menu(FILE *file,char  *argv[]){
     vector = (int32_t *) malloc(Nelemento * sizeof(int32_t));
     //le os elementos do vetor
     fread(&vector[0], sizeof(int32_t), Nelemento, file);
-    printf("Antes\n");
-    printVector(vector, Nelemento);
     start = clock();
     quickSortM(vector, 0, Nelemento -1);
     end = clock();
-    printf("Depois!\n");
-    printVector(vector, Nelemento);
     fclose(file);
     file = fopen(argv[3], "wb");
     if(file == NULL){
@@ -224,13 +216,9 @@ void quickSortAleMenu(FILE *file, char *argv[]){
     vector = (int32_t *) malloc(Nelemento * sizeof(int32_t));
     //le os elementos do vetor
     fread(&vector[0], sizeof(int32_t), Nelemento, file);
-    printf("Antes\n");
-    printVector(vector, Nelemento);
     start = clock();
     quickSortAle(vector, 0, Nelemento -1);
     end = clock();
-    printf("Depois!\n");
-    printVector(vector, Nelemento);
     fclose(file);
     file = fopen(argv[3], "wb");
     if(file == NULL){
@@ -285,13 +273,9 @@ void quickSort(int32_t *vector, int32_t inicio, int32_t fim){
     vector = (int32_t *) malloc(Nelemento * sizeof(int32_t));
     //le os elementos do vetor
     fread(&vector[0], sizeof(int32_t), Nelemento, file);
-    printf("Antes\n");
-    printVector(vector, Nelemento);
     start = clock();
     quickSort(vector, 0, Nelemento -1);
     end = clock();
-    printf("Depois!\n");
-    printVector(vector, Nelemento);
     fclose(file);
     file = fopen(argv[3], "wb");
     if(file == NULL){
@@ -377,14 +361,10 @@ void mergesortMenu(FILE *file, char *argv[]){
     vector = (int32_t *) malloc(Nelemento * sizeof(int32_t));
     //le os elementos do vetor
     fread(&vector[0], sizeof(int32_t), Nelemento, file);
-    printf("Antes\n");
-    printVector(vector, Nelemento);
     start = clock();
     //margesort
     mergesort(0, Nelemento-1, vector);
     end = clock();
-    printf("Depois!\n");
-    printVector(vector, Nelemento);
     fclose(file);
     file = fopen(argv[3], "wb");
     if(file == NULL){
@@ -414,7 +394,6 @@ void insertion_sort(FILE *file, char *argv[]){
     vector = (int32_t *) malloc(Nelemento * sizeof(int32_t));
     //le os elementos do vetor
     fread(&vector[0], sizeof(int32_t), Nelemento, file);
-    printVector(vector, Nelemento);
     start = clock();
     for(int i = 1; i < Nelemento; i++){
         prov =  valor = vector[i];
@@ -427,8 +406,6 @@ void insertion_sort(FILE *file, char *argv[]){
         vector[j + 1] = prov;
     } 
     end = clock();
-    printf("Depois!\n");
-    printVector(vector, Nelemento);
     fclose(file);
     file = fopen(argv[3], "wb");
     if(file == NULL){
@@ -456,8 +433,6 @@ void bubble_sortMelhorado(FILE *file, char *argv[]){
     vector = (int32_t *) malloc(Nelemento * sizeof(int32_t));
     //le os elementos do vetor
     fread(&vector[0], sizeof(int32_t), Nelemento, file);
-    printf("Antes\n");
-    printVector(vector, Nelemento);
     start = clock();
     for(int i = 0; i < Nelemento; i++){
         estaOrdenado = true;
@@ -473,8 +448,6 @@ void bubble_sortMelhorado(FILE *file, char *argv[]){
         }
     }
     end = clock();
-    printf("Depois!\n");
-    printVector(vector, Nelemento);
     fclose(file);
     file = fopen(argv[3], "wb");
     if(file == NULL){
@@ -501,8 +474,6 @@ void bubble_sort(FILE *file, char *argv[]){
     vector = (int32_t *) malloc(Nelemento * sizeof(int32_t));
     //le os elementos do vetor
     fread(&vector[0], sizeof(int32_t), Nelemento, file);
-    printf("Antes\n");
-    printVector(vector, Nelemento);
     start = clock();
     for(int i = 0; i < Nelemento; i++){
         for(int j = 0; j < Nelemento-1; j++){
@@ -512,8 +483,6 @@ void bubble_sort(FILE *file, char *argv[]){
         }
     }
     end = clock();
-    printf("Depois!\n");
-    printVector(vector, Nelemento);
     fclose(file);
     file = fopen(argv[3], "wb");
     if(file == NULL){
