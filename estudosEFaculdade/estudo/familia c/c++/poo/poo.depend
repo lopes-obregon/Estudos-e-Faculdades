@@ -1,0 +1,15 @@
+# depslib dependency file v1.0
+1617543073 source:/home/renan/Documentos/Estudos-e-Faculdades/estudosEFaculdade/estudo/familia c/c++/poo/main.cpp
+	<iostream>
+	<string>
+	<cstdlib>
+	"Carro.h"
+
+1617543688 /home/renan/Documentos/Estudos-e-Faculdades/estudosEFaculdade/estudo/familia c/c++/poo/include/Carro.h
+	<string>
+
+1617543686 source:/home/renan/Documentos/Estudos-e-Faculdades/estudosEFaculdade/estudo/familia c/c++/poo/src/Carro.cpp
+	<string>
+	"Carro.h"
+	<iostream>
+
