@@ -47,7 +47,7 @@ public class CadastroAlunos {
         System.out.println("\n---Filtros:"
         + "- Estado Civil:"+ estado_civil
         + " - Estrangeiro=" + estrangeiro
-        + " = Ano Inicial:" + ano_inicial + "\n");
+        + " - Ano Inicial:" + ano_inicial + "\n");
         for (Aluno aluno : alunos_cadastrados) {
             estado_civil_aluno = aluno.getEstadiCivil();
             is_estrangeiro = aluno.getEstrangeiro();
