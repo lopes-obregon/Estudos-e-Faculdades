@@ -15,9 +15,13 @@ public class ClinicaVeterinaria {
     static ArrayList<Cirurgia> cirurgia_selecionadas = new ArrayList();
     public static void main(String[] args) {
         cadastrarCirurgia();
-        imprime("-----Cirurgia Cadastrados-------", cirurgia_cadastrados);
-        /*cirurgia_selecionadas = filtro(-1, 'x', -1,15);
-        imprimePaciente("\n----Paciente Filtrados----", cirurgia_selecionadas);*/
+        imprime("-----Cirurgias Cadastradas-------", cirurgia_cadastrados);
+        cirurgia_selecionadas = filtro(-1, 'x',null);
+        imprime("\n----Cirurgias Filtradas----", cirurgia_selecionadas);
+        cirurgia_selecionadas = filtro(2, 'x',null);
+        imprime("\n----Cirurgias Filtradas----", cirurgia_selecionadas);
+        cirurgia_selecionadas = filtro(2, 'T',Anestesia.local);
+        imprime("\n----Cirurgias Filtradas----", cirurgia_selecionadas);
     }
 // public Cirurgia(Anestesia anestesia, int hora_entrada, int hora_saida, boolean urgente, int tempo_internação)
     private static void cadastrarCirurgia() {
@@ -38,21 +42,24 @@ public class ClinicaVeterinaria {
         for (Cirurgia cirurgia : lista_cirurgia) {
             System.out.println(++n +"-"+cirurgia);
         }
+// int tempo_minimo_de_internação  boolean urgente  anestesia
     }
 
-    /*private static ArrayList<Cirurgia> filtro(int idade, char aplicou_anestesia, int hora_entrada, int hora_saida) {
-        ArrayList<Cirurgia> filtros = new ArrayList();
-
-        for (Cirurgia paciente : paciente_cadastrados) {
-            if((idade != -1) && (paciente.getIdadePaciente() < idade)) continue;
-            if((hora_entrada != -1) &&(paciente.getHoraEntrada() < hora_entrada))continue;
-            if((hora_saida != -1) && (paciente.getHoraSaida() < hora_saida) ) continue;
-            if((aplicou_anestesia == 'T') && !paciente.isAplicouAnestesia())continue;
-            if((aplicou_anestesia == 'F') && paciente.isAplicouAnestesia()) continue;
-            filtros.add(paciente);
+    private static ArrayList<Cirurgia> filtro(int tempo_minimo_de_internação, char urgente, Anestesia anestesia) {
+        ArrayList<Cirurgia> cirurgia_filtrado = new ArrayList();
+        System.out.println("Tempo minimo de Internação:" + tempo_minimo_de_internação + " --Urgente:" +urgente+ " --Anestesia:"+ anestesia );
+        for (Cirurgia cirurgia : cirurgia_cadastrados) {
+            if((tempo_minimo_de_internação != -1) && (cirurgia.getTempo_internação() < tempo_minimo_de_internação)) continue;
+            if((anestesia != null) && (anestesia != cirurgia.getAnestesia())) continue;
+            if((urgente == 'T') && (!cirurgia.isUrgente())) continue;
+            if((urgente == 'F') && (cirurgia.isUrgente()) ) continue;
+            cirurgia_filtrado.add(cirurgia);
         }
-        return filtros;
-    }*/
+        return cirurgia_filtrado;
+    }
+
+    
+    
 
     
 }

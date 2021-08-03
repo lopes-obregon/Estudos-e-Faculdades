@@ -66,13 +66,14 @@ public class Cirurgia {
 
     @Override
     public String toString() {
-        return "Hora De Entrada:" + toStringHora(hora_entrada)+ "Hora De Saida:"+ toStringHora(hora_saida)+ "Tempo De Internação:" + tempo_internação;
+        return "Hora De Entrada:" + toStringHora(hora_entrada)+ " --Hora De Saida:"+ toStringHora(hora_saida)+ " --Tempo De Internação:" + toStringHora(tempo_internação);
     }
+    //formata a hora
     private String toStringHora(int hora){
-        if(hora == 0 ){
-            return "Meia Noite -";
+        if(hora < 10 ){
+            return "0" +hora +":00" ;
         }else{
-            return Integer.toString(hora) +"h -";
+            return hora+":00";
         }
     }
 }
