@@ -2,7 +2,8 @@
 package controle;
 
 import entidade.Cirurgia;
-import entidade.Cirurgia.tipoAnestesia;
+import entidade.Cirurgia.Anestesia;
+
 import java.util.ArrayList;
 
 /**
@@ -10,32 +11,36 @@ import java.util.ArrayList;
  * @author renan
  */
 public class ClinicaVeterinaria {
-    static ArrayList<Cirurgia> paciente_cadastrados = new ArrayList();
-    static ArrayList<Cirurgia> paciente_cadastrados_com_filtro;
+    static ArrayList<Cirurgia> cirurgia_cadastrados = new ArrayList();
+    static ArrayList<Cirurgia> cirurgia_selecionadas = new ArrayList();
     public static void main(String[] args) {
-        cadastraPaciente();
-        imprimePaciente("-----Paciente cadastrados-------", paciente_cadastrados);
-        paciente_cadastrados_com_filtro = filtro(-1, 'x', -1,15);
-        imprimePaciente("\n----Paciente Filtrados----", paciente_cadastrados_com_filtro);
+        cadastrarCirurgia();
+        imprime("-----Cirurgia Cadastrados-------", cirurgia_cadastrados);
+        /*cirurgia_selecionadas = filtro(-1, 'x', -1,15);
+        imprimePaciente("\n----Paciente Filtrados----", cirurgia_selecionadas);*/
     }
-//Cirurgia(String nome_do_paciente, int idade_paciente, tipoAnestesia anestesia, int hora_entrada, int hora_saida) 
-    private static void cadastraPaciente() {
-        paciente_cadastrados.add(new Cirurgia("Sofia", 3, tipoAnestesia.inalatória, 12, 15, true));
-        paciente_cadastrados.add(new Cirurgia("Morgana", 3, tipoAnestesia.inalatória, 12, 16, true));
-        paciente_cadastrados.add(new Cirurgia("Lola", 3, tipoAnestesia.geral, 19, 20, true));
-        paciente_cadastrados.add(new Cirurgia("Lambe coça", 2, tipoAnestesia.nada, 10, 15, false));
-        paciente_cadastrados.add(new Cirurgia("Faisca", 1, tipoAnestesia.nada, 9, 10, false));
+// public Cirurgia(Anestesia anestesia, int hora_entrada, int hora_saida, boolean urgente, int tempo_internação)
+    private static void cadastrarCirurgia() {
+        cirurgia_cadastrados.add(new Cirurgia(Anestesia.nem_uma,15, 16, false,1 ));
+        cirurgia_cadastrados.add(new Cirurgia(Anestesia.geral,7, 8, false,1 ));
+        cirurgia_cadastrados.add(new Cirurgia(Anestesia.geral,8, 9, false,1 ));
+        cirurgia_cadastrados.add(new Cirurgia(Anestesia.inalatória,10, 13, false,3 ));
+        cirurgia_cadastrados.add(new Cirurgia(Anestesia.inalatória,14, 17, true,3 ));
+        cirurgia_cadastrados.add(new Cirurgia(Anestesia.local,17, 19, true,2 ));
+        cirurgia_cadastrados.add(new Cirurgia(Anestesia.injetável,20, 0, true,4 ));
+        cirurgia_cadastrados.add(new Cirurgia(Anestesia.local,6, 11, true,5 ));
+       
     }
 
-    private static void imprimePaciente(String mensagem, ArrayList<Cirurgia> paciente_cadastrados0) {
+    private static void imprime(String mensagem, ArrayList<Cirurgia> lista_cirurgia) {
         System.out.println(mensagem);
         int n = 0;
-        for (Cirurgia paciente : paciente_cadastrados0) {
-            System.out.println(++n +"-"+paciente);
+        for (Cirurgia cirurgia : lista_cirurgia) {
+            System.out.println(++n +"-"+cirurgia);
         }
     }
 
-    private static ArrayList<Cirurgia> filtro(int idade, char aplicou_anestesia, int hora_entrada, int hora_saida) {
+    /*private static ArrayList<Cirurgia> filtro(int idade, char aplicou_anestesia, int hora_entrada, int hora_saida) {
         ArrayList<Cirurgia> filtros = new ArrayList();
 
         for (Cirurgia paciente : paciente_cadastrados) {
@@ -47,7 +52,7 @@ public class ClinicaVeterinaria {
             filtros.add(paciente);
         }
         return filtros;
-    }
+    }*/
 
     
 }

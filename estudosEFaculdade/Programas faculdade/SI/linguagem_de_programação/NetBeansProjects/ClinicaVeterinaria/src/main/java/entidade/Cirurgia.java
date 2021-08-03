@@ -6,74 +6,73 @@ package entidade;
  * @author renan
  */
 public class Cirurgia {
-    public enum tipoAnestesia{geral, inalatória, injetável, local, nada};
-    private String nome_do_paciente;
-    private int idade_paciente;
-    tipoAnestesia anestesia;
+    public enum Anestesia{geral, inalatória, injetável, local, nem_uma};
+    
+    Anestesia anestesia;//filtro
     private int hora_entrada;
     private int hora_saida;
-    private boolean aplicou_anestesia;
+    private boolean urgente; //filtro
+    private int tempo_internação;  //tempo_minimo_internação
 
-    public boolean isAplicouAnestesia() {
-        return aplicou_anestesia;
+    public boolean isUrgente() {
+        return urgente;
     }
 
-    public void setAplicouAnestesia(boolean aplicou_anestesia) {
-        this.aplicou_anestesia = aplicou_anestesia;
+    public void setUrgente(boolean urgente) {
+        this.urgente = urgente;
     }
 
-    public Cirurgia(String nome_do_paciente, int idade_paciente, tipoAnestesia anestesia, int hora_entrada, int hora_saida, boolean aplicou_anestesia) {
-        this.nome_do_paciente = nome_do_paciente;
-        this.idade_paciente = idade_paciente;
+    public Cirurgia(Anestesia anestesia, int hora_entrada, int hora_saida, boolean urgente, int tempo_internação) {
         this.anestesia = anestesia;
         this.hora_entrada = hora_entrada;
         this.hora_saida = hora_saida;
-        this.aplicou_anestesia = aplicou_anestesia;
+        this.urgente = urgente;
+        this.tempo_internação = tempo_internação;
     }
 
-    public String getNomeDoPaciente() {
-        return nome_do_paciente;
-    }
-
-    public void setNomeDoPaciente(String nome_do_paciente) {
-        this.nome_do_paciente = nome_do_paciente;
-    }
-
-    public int getIdadePaciente() {
-        return idade_paciente;
-    }
-
-    public void setIdadePaciente(int idade_paciente) {
-        this.idade_paciente = idade_paciente;
-    }
-
-    public tipoAnestesia getAnestesia() {
+    public Anestesia getAnestesia() {
         return anestesia;
     }
 
-    public void setAnestesia(tipoAnestesia anestesia) {
+    public void setAnestesia(Anestesia anestesia) {
         this.anestesia = anestesia;
     }
 
-    public int getHoraEntrada() {
+    public int getHora_entrada() {
         return hora_entrada;
     }
 
-    public void setHoraEntrada(int hora_entrada) {
+    public void setHora_entrada(int hora_entrada) {
         this.hora_entrada = hora_entrada;
     }
 
-    public int getHoraSaida() {
+    public int getHora_saida() {
         return hora_saida;
     }
 
-    public void setHoraSaida(int hora_saida) {
+    public void setHora_saida(int hora_saida) {
         this.hora_saida = hora_saida;
     }
 
+    public int getTempo_internação() {
+        return tempo_internação;
+    }
+
+    public void setTempo_internação(int tempo_internação) {
+        this.tempo_internação = tempo_internação;
+    }
+
+    
+
     @Override
     public String toString() {
-        return "Cirurgia{" + "Nome Do Paciente=" + nome_do_paciente + ", Idade Paciente=" + idade_paciente + ", Anestesia=" + anestesia + ", Hora Entrada=" + hora_entrada + ", Hora Saida=" + hora_saida + '}';
+        return "Hora De Entrada:" + toStringHora(hora_entrada)+ "Hora De Saida:"+ toStringHora(hora_saida)+ "Tempo De Internação:" + tempo_internação;
     }
-    
+    private String toStringHora(int hora){
+        if(hora == 0 ){
+            return "Meia Noite -";
+        }else{
+            return Integer.toString(hora) +"h -";
+        }
+    }
 }
