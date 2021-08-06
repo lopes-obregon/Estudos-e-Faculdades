@@ -2,18 +2,13 @@
 #include <stdlib.h>
 #include <string.h>
 //enumerado
-enum TipoPariticipacao {A = 1, B, C, D};
+enum pariticipacaos {A = 1, B, C, D}participacao;
 //estruturas
-typedef struct{
-    char string[3];
-}boolean;
-
-
 typedef struct{
     char nome[15];
     char sobrenome[15];
-    enum TipoPariticipacao participacao;
-    boolean socio_da_sbc;
+    enum pariticipacaos pariticipacao_do_aluno;
+    char socio_da_sbc[3];
 }erbase;
 //prot�tipos
 void cadastroPariticipante(erbase participante);
@@ -38,7 +33,7 @@ void cadastroPariticipante(erbase participante){
     //scanf("%d%*c", &participante.participacao);
     getEnum(participante);
     printf("Socio SBC S-SIM OU N-NAO: ");
-    scanf("%s%*c", participante.socio_da_sbc.string);
+    scanf("%s%*c", participante.socio_da_sbc);
 }
 void imprimeParitcipantes(erbase participante){
     printf("---PARTICIPANTES CADASTRADOS---\n");
@@ -46,40 +41,41 @@ void imprimeParitcipantes(erbase participante){
     printEnum(participante);
 }
 float calculoDoPreco(erbase participante){
-    if(participante.participacao == A){
+    if(participante.pariticipacao_do_aluno == A){
         return 30;
-    }else if(participante.participacao == B){
+    }else if(participante.pariticipacao_do_aluno == B){
         return 60;
-    }else if(participante.participacao == C){
+    }else if(participante.pariticipacao_do_aluno == C){
         return 90;
-    }else if(participante.participacao == D){
+    }else if(participante.pariticipacao_do_aluno == D){
         return 100;
     }
 
 }
 void getEnum(erbase participante){
-    char string[2];
+   
     printf("Entre com o tipo de participacao: ");
-    scanf("%s%*c", string);
-    if((strcmp(string, "A") ||(strcmp(string, "a") || (strcmp(string, "1"))))){
-        participante.participacao = A;
-    }else if((strcmp(string, "B") ||(strcmp(string, "b") || (strcmp(string, "2"))))){
-        participante.participacao = B;
-    }else if((strcmp(string, "C") ||(strcmp(string, "c") || (strcmp(string, "3"))))){
-        participante.participacao = C;
-    }else if((strcmp(string, "D") ||(strcmp(string, "d") || (strcmp(string, "4"))))){
-        participante.participacao = D;
+    scanf("%d%*c", &participacao);
+    if(participacao == A){
+        participante.pariticipacao_do_aluno = A;
+    }else if(participacao == B){
+        participante.pariticipacao_do_aluno = B;
+    }else if(participacao == C){
+        participante.pariticipacao_do_aluno = C;
+    }else{
+        participante.pariticipacao_do_aluno = D;
     }
+    
 }
 //imprime o enum
 void printEnum(erbase participante){
-    if(participante.participacao == A){
+    if(participante.pariticipacao_do_aluno == A){
         printf("Tipo participacao: A\n");
-    }else if(participante.participacao == B){
+    }else if(participante.pariticipacao_do_aluno == B){
         printf("Tipo participacao: B\n");
-    }else if(participante.participacao == C){
+    }else if(participante.pariticipacao_do_aluno == C){
         printf("Tipo participacao: C\n");
-    } else if(participante.participacao == D){
+    } else if(participante.pariticipacao_do_aluno == D){
         printf("Tipo participacao: D\n");
     }
 }
