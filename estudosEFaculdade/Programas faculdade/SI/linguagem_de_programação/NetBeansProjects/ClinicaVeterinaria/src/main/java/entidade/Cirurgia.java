@@ -1,4 +1,3 @@
-
 package entidade;
 
 /**
@@ -6,7 +5,7 @@ package entidade;
  * @author renan
  */
 public class Cirurgia {
-    public enum Anestesia{geral, inalatória, injetável, local, nem_uma};
+    public enum Anestesia{geral, inalatória, injetável, local, nenhuma};
     
     Anestesia anestesia;//filtro
     private int hora_entrada;
@@ -38,27 +37,27 @@ public class Cirurgia {
         this.anestesia = anestesia;
     }
 
-    public int getHora_entrada() {
+    public int getHoraEntrada() {
         return hora_entrada;
     }
 
-    public void setHora_entrada(int hora_entrada) {
+    public void setHoraEntrada(int hora_entrada) {
         this.hora_entrada = hora_entrada;
     }
 
-    public int getHora_saida() {
+    public int getHoraSaida() {
         return hora_saida;
     }
 
-    public void setHora_saida(int hora_saida) {
+    public void setHoraSaida(int hora_saida) {
         this.hora_saida = hora_saida;
     }
 
-    public int getTempo_internação() {
+    public int getTempoInternação() {
         return tempo_internação;
     }
 
-    public void setTempo_internação(int tempo_internação) {
+    public void setTempoInternação(int tempo_internação) {
         this.tempo_internação = tempo_internação;
     }
 
