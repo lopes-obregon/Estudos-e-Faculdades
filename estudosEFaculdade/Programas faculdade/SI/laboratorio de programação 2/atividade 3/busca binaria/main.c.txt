@@ -1,0 +1,28 @@
+#include <stdio.h>
+
+int main()
+{
+    int vet[] = {2, 5, 10, 15, 53, 96, 150};
+   int low, high, mid, x, resultado;
+    low = 0;
+    high = sizeof(vet)/ sizeof(int);
+    x = 151;
+    resultado = 0;
+    while((resultado != -1)|| (resultado != (sizeof(vet)/sizeof(int)))){
+        mid = (high + low) / 2;
+        if(low > high){
+            resultado = -1;
+            break;
+        }else if (x == vet[mid]){
+            resultado = mid;
+            break;
+        }else if (x < vet[mid]){
+            high = mid - 1;
+        }else{
+            low = mid + 1;
+        }
+    }
+    printf("%d", resultado);
+
+    return 0;
+}
