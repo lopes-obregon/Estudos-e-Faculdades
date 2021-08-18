@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1629249413 source:/home/renan/Documentos/programas em c/atividade 4/swap/main.c
+	<stdio.h>
+	<stdlib.h>
+
