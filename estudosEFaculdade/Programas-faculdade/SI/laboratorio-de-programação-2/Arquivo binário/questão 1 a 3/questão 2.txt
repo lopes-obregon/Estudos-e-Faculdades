@@ -1,0 +1,2 @@
+arquivo não pode ser lido quando aberto porque contém caractere especial imposivel de serem lidos de forma correta para nós.
+só pode ser lido por um programa feito para ler esse tipo de arquivo.
