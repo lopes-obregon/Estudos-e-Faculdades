@@ -17,7 +17,9 @@ public class Proprietário {
     public String getCpf(){
         return cpf;
     }
-
+    public Endereço getEndereço(){
+        return endereço;
+    }
     @Override
     public String toString() {
         String dados = " \n--Nome:"+nome + " --Cpf:" + cpf +  "\nEndereço:\n" + endereço;

@@ -9,7 +9,7 @@ public class Animal {
 
    private String nome, raça, pelagem;
    private Data data_nascimento;
-   private  char sexo;
+   private  char sexo;//filtro
    Proprietário proprietário;
    private String código;//código de identificação
     public Animal(String nome, String raça, String pelagem, Data data_nascimento, char sexo, Proprietário proprietário, String código) {
@@ -22,7 +22,9 @@ public class Animal {
         this.código = código;
     }
 
-    
+    public Proprietário getProprietário(){
+        return proprietário;
+    }
 
     public String getCódigo(){
         return código;
@@ -30,7 +32,7 @@ public class Animal {
 
     @Override
     public String toString() {
-        String dados = " \n--Nome:" + nome + " --Raça:" + raça+ " --Idade:"+ data_nascimento.calcularIdade()+"\n" + "Proprietário:" + proprietário;
+        String dados = " \n Código"+ código  +"--Nome:" + nome + " --Raça:" + raça+ " --Idade:"+ data_nascimento.calcularIdade()+"\n" + "Proprietário:" + proprietário;
         
         return dados;
     }

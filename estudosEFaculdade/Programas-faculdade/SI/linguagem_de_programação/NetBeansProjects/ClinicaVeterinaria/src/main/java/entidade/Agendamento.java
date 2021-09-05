@@ -8,7 +8,7 @@ package entidade;
 public class Agendamento {
 
     //data de agendamento
-    Data data_de_agendamento;
+    Data data_de_agendamento;//filtro
     Cirurgia cirurgia;
     Animal animal;
     Hora hora_do_agendamento;
@@ -19,11 +19,20 @@ public class Agendamento {
         this.animal = animal;
         this.hora_do_agendamento = hora_do_agendamento;
     }
-
+    public Data getDataAgendada(){
+        return data_de_agendamento;
+    }
+    public Animal getAnimal(){
+        return animal;
+    }
     @Override
     public String toString() {
         String dados = "Data do agendamento:" + data_de_agendamento + "\nCirurgia:" + cirurgia + "\nAnimal:"+animal + "\n Hora do agendamento:" + hora_do_agendamento;
         return dados;
+    }
+
+    public Cirurgia getCirurgia() {
+        return cirurgia;
     }
     
 }

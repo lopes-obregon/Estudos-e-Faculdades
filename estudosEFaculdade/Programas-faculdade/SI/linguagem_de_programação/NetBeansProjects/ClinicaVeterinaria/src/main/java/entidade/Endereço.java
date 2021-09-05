@@ -18,7 +18,9 @@ public class Endereço {
         this.cep = cep;
         this.número = número;
     }
-
+    public String getCidade(){
+        return cidade;
+    }
     @Override
     public String toString() {
         String dados  = " --Logradouro: " + logradouro + " --Complemento: " + complemento + " --Bairro: " + bairro + " --Cidade:" + cidade + " --Cep:" + cep;
