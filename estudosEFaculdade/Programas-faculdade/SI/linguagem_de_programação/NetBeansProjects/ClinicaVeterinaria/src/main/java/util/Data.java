@@ -1,5 +1,5 @@
 
-package entidade;
+package util;
 
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -28,25 +28,26 @@ public class Data {
     }
     public int compareTo(Data outraData){
        
-        if(ano == outraData.getAno())return  1;
-        if(ano < outraData.getAno()) return -1;
-        if(mês == outraData.getMês())return 1;
-        if(mês < outraData.getMês()) return -1;
-        if(dia == outraData.getDia())return  1;
-        if(dia < outraData.getDia()) return  -1;
+       
+        if(dia > outraData.getDia())return  1;
+        if(dia <= outraData.getDia()) return  -1;
+        if(ano > outraData.getAno())return  1;
+        if(ano <= outraData.getAno()) return -1;
+        if(mês > outraData.getMês())return 1;
+        if(mês <= outraData.getMês()) return -1;
         return 0;
      
     }
 
-    private int getAno() {
+    public int getAno() {
        return ano;
     }
 
-    private int getMês() {
+    public int getMês() {
         return mês;
     }
 
-    private int getDia() {
+    public int getDia() {
         return dia;
     }
     public int calcularIdade(){

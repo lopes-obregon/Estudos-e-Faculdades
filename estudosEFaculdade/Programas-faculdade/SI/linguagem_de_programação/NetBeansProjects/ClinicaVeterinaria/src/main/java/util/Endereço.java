@@ -1,5 +1,5 @@
 
-package entidade;
+package util;
 
 /**
  *
@@ -23,7 +23,7 @@ public class Endereço {
     }
     @Override
     public String toString() {
-        String dados  = " --Logradouro: " + logradouro + " --Complemento: " + complemento + " --Bairro: " + bairro + " --Cidade:" + cidade + " --Cep:" + cep;
+        String dados  = "Logradouro: " + logradouro + "\tComplemento: " + complemento + "\tBairro: " + bairro + "\tCidade:" + cidade + "\tCep:" + cep;
         
         return dados;
     }

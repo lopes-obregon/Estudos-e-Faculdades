@@ -1,6 +1,8 @@
 
 package entidade;
 
+import util.Endereço;
+
 /**
  *
  * @author renan
@@ -22,7 +24,7 @@ public class Proprietário {
     }
     @Override
     public String toString() {
-        String dados = " \n--Nome:"+nome + " --Cpf:" + cpf +  "\nEndereço:\n" + endereço;
+        String dados = " \nNome:"+nome + "\tCpf:" + cpf +  "\nEndereço:\n" + endereço;
         return dados;
     }
     
