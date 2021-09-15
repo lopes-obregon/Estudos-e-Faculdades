@@ -14,7 +14,7 @@ public class Endereço {
         this.logradouro = logradouro;
         this.complemento = complemento;
         this.bairro = bairro;
-        this.cidade = cidade;
+        this.cidade = cidade;//filtro
         this.cep = cep;
         this.número = número;
     }

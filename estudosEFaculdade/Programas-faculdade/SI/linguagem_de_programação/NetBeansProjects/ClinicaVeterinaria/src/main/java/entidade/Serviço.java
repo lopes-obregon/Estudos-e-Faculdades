@@ -11,7 +11,7 @@ package entidade;
  */
 public class Serviço {
     protected String código_do_animal;
-    protected boolean urgente;
+    protected boolean urgente;//filtro
     public Serviço(String código_do_animal, boolean urgente){
         this.código_do_animal = código_do_animal;
         this.urgente = urgente;

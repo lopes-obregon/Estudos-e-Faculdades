@@ -27,16 +27,9 @@ public class Cirurgia extends Serviço {
     public Anestesia getAnestesia() {
         return anestesia;
     }
-
-    public void setAnestesia(Anestesia anestesia) {
-        this.anestesia = anestesia;
-    }
- 
-    
-
     @Override
     public String toString() {
-        String dados = "\nCirurgia:\nHora De Entrada:" + hora_entrada+ "\tHora De Saida:"+ hora_saida + "\tTipo da cirurgia:" + tipo_de_cirurgia;
+        String dados = "\nCirurgia\t Código do animal"+super.getCódigoDoAnimal()+"\nHora De Entrada:" + hora_entrada+ "\tHora De Saida:"+ hora_saida + "\tTipo da cirurgia:" + tipo_de_cirurgia+"\tAnestesia:"+anestesia ;
         if(super.isUrgente() == true)dados += "\tUrgente: " + "Sim";
         else
             dados += "\tUrgente:" + "Não";
