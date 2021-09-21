@@ -26,15 +26,15 @@ public class Data {
         else data += "/"+mês+"/";
         return  data += ano;
     }
-    public int compareTo(Data outraData){
+    public int compareTo(Data outra_data){
        
        
-        if(dia > outraData.getDia())return  1;
-        if(dia <= outraData.getDia()) return  -1;
-        if(ano > outraData.getAno())return  1;
-        if(ano <= outraData.getAno()) return -1;
-        if(mês > outraData.getMês())return 1;
-        if(mês <= outraData.getMês()) return -1;
+        if(dia >= outra_data.getDia())return  -1;
+        if(dia < outra_data.getDia()) return  1;
+        if(ano >= outra_data.getAno())return  -1;
+        if(ano < outra_data.getAno()) return 1;
+        if(mês >= outra_data.getMês())return -1;
+        if(mês < outra_data.getMês()) return 1;
         return 0;
      
     }

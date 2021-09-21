@@ -13,7 +13,7 @@ public class Agendamento {
     //data de agendamento
     private Data data_de_agendamento;//filtro
     private Serviço serviço;
-    private Animal animal; //filtro
+    private Animal animal;
     private Hora hora_do_agendamento;//filtro
 
     public Agendamento(Data data_de_agendamento,  Hora hora_do_agendamento, Serviço serviço, Animal animal) {
@@ -27,6 +27,9 @@ public class Agendamento {
     }
     public Animal getAnimal(){
         return animal;
+    }
+    public Hora getHoraDoAgendamento(){
+        return hora_do_agendamento;
     }
     public Serviço getServiço(){
         return serviço;

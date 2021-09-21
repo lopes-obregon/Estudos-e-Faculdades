@@ -14,8 +14,8 @@ public class Cirurgia extends Serviço {
     private Hora hora_saida;
     private String tipo_de_cirurgia;
   
-    public Cirurgia(Anestesia anestesia, Hora hora_entrada, Hora hora_saida, boolean urgente, String tipo_de_cirurgia, String código_do_animal) {
-        super(código_do_animal, urgente);
+    public Cirurgia(Anestesia anestesia, Hora hora_entrada, Hora hora_saida, String tipo_de_cirurgia, boolean urgente, String código_do_serviço) {
+        super(urgente, código_do_serviço);
         this.anestesia = anestesia;
         this.hora_entrada = hora_entrada;
         this.hora_saida = hora_saida;
@@ -29,7 +29,10 @@ public class Cirurgia extends Serviço {
     }
     @Override
     public String toString() {
-        String dados = "\nCirurgia\t Código do animal"+super.getCódigoDoAnimal()+"\nHora De Entrada:" + hora_entrada+ "\tHora De Saida:"+ hora_saida + "\tTipo da cirurgia:" + tipo_de_cirurgia+"\tAnestesia:"+anestesia ;
+       
+        String dados = "\nCirurgia";
+        dados += "\tCódigo do serviço: " + super.getChaveDoServiço();
+        dados += "\n Hora De Entrada:" + hora_entrada + "\tHora De Saida:"+ hora_saida + "\tTipo da cirurgia:" + tipo_de_cirurgia+"\tAnestesia:"+anestesia ;
         if(super.isUrgente() == true)dados += "\tUrgente: " + "Sim";
         else
             dados += "\tUrgente:" + "Não";

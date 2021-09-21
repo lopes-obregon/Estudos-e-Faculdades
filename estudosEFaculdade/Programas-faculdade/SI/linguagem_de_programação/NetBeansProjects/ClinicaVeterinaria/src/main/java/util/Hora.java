@@ -12,6 +12,19 @@ public class Hora {
         this.hora = hora;
         this.minuto = minuto;
     }
+    public int getHora(){
+        return hora;
+    }
+    public int getMinuto(){
+        return minuto;
+    }
+    public int compareTo(Hora outra_hora){
+        if(hora >= outra_hora.getHora()) return -1;
+        if(hora < outra_hora.getHora()) return 1;
+        if(minuto >= outra_hora.getMinuto()) return -1;
+        if(minuto < outra_hora.getMinuto()) return 1;
+        return 0;
+    }
 
     @Override
     public String toString() {

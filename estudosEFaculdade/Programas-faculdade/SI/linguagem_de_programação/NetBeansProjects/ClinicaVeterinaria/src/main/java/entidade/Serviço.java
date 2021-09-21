@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package entidade;
 
 /**
@@ -10,22 +6,22 @@ package entidade;
  * @author renan
  */
 public class Serviço {
-    protected String código_do_animal;
     protected boolean urgente;//filtro
-    public Serviço(String código_do_animal, boolean urgente){
-        this.código_do_animal = código_do_animal;
+    protected  String chave_do_serviço; //chave
+    public Serviço( boolean urgente, String chave_do_serviço){
         this.urgente = urgente;
-    }
-    public String getCódigoDoAnimal(){
-        return código_do_animal;
+        this.chave_do_serviço = chave_do_serviço;
     }
     public boolean isUrgente(){
         return urgente;
     }
+    public String getChaveDoServiço(){
+        return chave_do_serviço;
+    }
     @Override
     public String toString() {
-        String dado = "\n Código do animal:" + código_do_animal;
-        return dado;
+        String dados = "\n Urgente:" + isUrgente() + "Código ou chave do Serviço" + chave_do_serviço;
+        return dados;
     }
     
 }

@@ -23,7 +23,7 @@ public class Endereço {
     }
     @Override
     public String toString() {
-        String dados  = "Logradouro: " + logradouro + "\tComplemento: " + complemento + "\tBairro: " + bairro + "\tCidade:" + cidade + "\tCep:" + cep;
+        String dados  = "Logradouro: " + logradouro + "\tComplemento: " + complemento + "\tBairro: " + bairro + "\tCidade:" + cidade + "\tCep:" + cep+ "\tNúmero:"+ número;
         
         return dados;
     }
