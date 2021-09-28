@@ -33,9 +33,9 @@ public class Cirurgia extends Serviço {
         String dados = "\nCirurgia";
         dados += "\tCódigo do serviço: " + super.getChaveDoServiço();
         dados += "\n Hora De Entrada:" + hora_entrada + "\tHora De Saida:"+ hora_saida + "\tTipo da cirurgia:" + tipo_de_cirurgia+"\tAnestesia:"+anestesia ;
-        if(super.isUrgente() == true)dados += "\tUrgente: " + "Sim";
+        if(super.isUrgente() == true)dados += "\t Entrada urgente: " + "Sim";
         else
-            dados += "\tUrgente:" + "Não";
+            dados += "\tEntrada Urgente:" + "Não";
         return dados;
     }
    

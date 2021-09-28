@@ -24,7 +24,8 @@ public class Vacinação extends Serviço {
         if(vacina == Vacina.contra_a_gripe) dados += "contra a giardíase";
         if(vacina == Vacina.contra_a_leishmaniose) dados += "contra a leishmaniose";
         if(vacina == Vacina.contra_a_giardíase) dados += "contra a giardíase";
-        dados += "\t Data da vacina:" + data_da_vacina + "\t Urgente:";
+        else dados += vacina;
+        dados += "\t Data da vacina:" + data_da_vacina + "\t Entrada urgente:";
         if(super.isUrgente() == true) dados += "True";
         else dados += "False";
         return dados;

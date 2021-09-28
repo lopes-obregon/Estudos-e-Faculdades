@@ -141,16 +141,16 @@ public class ClinicaVeterinaria {
     //falta agendamento e animal
     //agendamento hora_agendada
     //animal -> idade
-    private static  ArrayList<Agendamento> selecionarAgendamentos(String cidade_do_proprietário, Vacina vacina_aplicada ,Data data_mínima, Anestesia anestesia_aplicada , Hora hora_mínima_agendada, int idade_mínima_do_animal,char urgente ){
+    private static  ArrayList<Agendamento> selecionarAgendamentos(String cidade_do_proprietário, Vacina vacina_aplicada ,Data data_mínima, Anestesia anestesia_aplicada , Hora hora_mínima_agendada, int idade_mínima_do_animal,char entrada_urgente ){
         ArrayList<Agendamento> agendamento_selecionados = new ArrayList();
        System.out.println("Filtros de Obras:"
         + "\n - Cidade do proprietário:" + cidade_do_proprietário
         + "\n - vacina aplicada:" + vacina_aplicada
         + "\n - Data minima de hospedagem: " + data_mínima
-        +"\n - Anestesia:" + anestesia_aplicada
+        +"\n - Anestesia aplicada:" + anestesia_aplicada
         + "\n - Hora  mínima agendada: " + hora_mínima_agendada
-        + "\n - Idade  do animal: " + idade_mínima_do_animal
-        + "\n - urgete: " + urgente
+        + "\n - Idade mínima  do animal: " + idade_mínima_do_animal
+        + "\n - Entrada urgente: " + entrada_urgente
         + "\n");
         for (Agendamento agendamento : agendamentos) {
             Serviço serviço = agendamento.getServiço();
@@ -160,8 +160,8 @@ public class ClinicaVeterinaria {
             if((idade_mínima_do_animal > -1) && (idade_do_animal < idade_mínima_do_animal) )continue;
             if((hora_mínima_agendada != null) && (hora_agendada.compareTo(hora_mínima_agendada) != -1))continue;
             if((cidade_do_proprietário != null) && (!cidade_do_proprietário.equals(cidade)))continue;
-            if((urgente == 'T') && (!serviço.isUrgente()))continue;
-            if((urgente == 'F') && (serviço.isUrgente()))continue;
+            if((entrada_urgente == 'T') && (!serviço.isUrgente()))continue;
+            if((entrada_urgente == 'F') && (serviço.isUrgente()))continue;
             if(serviço instanceof Vacinação){
                 Vacinação vacinação = (Vacinação) serviço;
                 if((vacina_aplicada != null) &&(vacina_aplicada != vacinação.getVacina())) continue;

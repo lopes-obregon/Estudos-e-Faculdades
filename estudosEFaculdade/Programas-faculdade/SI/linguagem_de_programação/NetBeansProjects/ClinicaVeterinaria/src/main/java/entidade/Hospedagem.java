@@ -24,8 +24,8 @@ public class Hospedagem extends Serviço{
         else
             dados += tempo_de_hospedagem_em_dias +" dias";
         dados += "\tData da entrada:"+ data_de_entrada + "\tData de saida:" + data_de_saida;
-        if(super.isUrgente() == true) dados +="\t Urgente:True";
-        else dados +="\t Urgente:False";
+        if(super.isUrgente() == true) dados +="\t Entrada Urgente:True";
+        else dados +="\t Entrada urgente:False";
         return  dados;
     }
 }
