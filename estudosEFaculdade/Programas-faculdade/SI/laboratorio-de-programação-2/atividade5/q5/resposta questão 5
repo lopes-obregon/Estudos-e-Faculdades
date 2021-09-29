@@ -1,0 +1,10 @@
+struct no {
+int chave ;
+struct no ∗prox ;
+} ;
+para que seja duplamente encadeada
+struct no {
+int chave ;
+struct no ∗prox ;
+struct no ∗ant ;
+} ;
