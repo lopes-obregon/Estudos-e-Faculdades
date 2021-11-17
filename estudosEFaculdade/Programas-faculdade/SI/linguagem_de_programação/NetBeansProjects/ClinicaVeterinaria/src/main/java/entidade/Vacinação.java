@@ -1,9 +1,32 @@
 
 package entidade;
 
+import java.util.HashMap;
 import util.Data;
 
 public class Vacinação extends Serviço {
+    //parte do conjunto dos objetos
+    public static HashMap<String, Vacinação> vacinações = new HashMap();
+    
+    public static boolean addVacinação(Vacinação vacinação){
+        String código = vacinação.getChaveDoServiço();
+
+        if(vacinações.get(código) == null){
+            vacinações.put(código, vacinação);
+            return true;
+        }else return false;
+    }
+    public static Vacinação getVacinação(String código){
+        return vacinações.get(código);
+    }
+    public static HashMap<String, Vacinação> getVacinações(){
+        return vacinações;
+    }
+    public static void setVacinações(HashMap<String, Vacinação> vacinações){
+        Vacinação.vacinações = vacinações;
+    }
+    
+//parte dos métodos especifico de cada objeto
     public enum Vacina{antirrábica, múltipla_ou_polivalente_v8_e_v10, contra_a_giardíase, contra_a_gripe, contra_a_leishmaniose}
     Vacina vacina; //filtro
     private Data data_da_vacina;//filtro

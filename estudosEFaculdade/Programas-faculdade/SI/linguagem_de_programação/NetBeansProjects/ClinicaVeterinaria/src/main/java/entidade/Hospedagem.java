@@ -1,10 +1,33 @@
 
 package entidade;
 
+import java.util.HashMap;
 import util.Data;
 
 
 public class Hospedagem extends Serviço{
+     //parte do conjunto dos objetos
+    public static HashMap<String, Hospedagem> hospedagens = new HashMap();
+    
+    public static boolean addCirurgia(Hospedagem hospedagem){
+        //String código = vacinação.getChaveDoServiço();
+        String código = hospedagem.getChaveDoServiço();
+
+        if(hospedagens.get(código) == null){
+            hospedagens.put(código, hospedagem);
+            return true;
+        }else return false;
+    }
+    public static Hospedagem getHospedagem(String código){
+        return hospedagens.get(código);
+    }
+    public static HashMap<String, Hospedagem> getHospedagens(){
+        return hospedagens;
+    }
+    public static void setHospedagens(HashMap<String, Hospedagem> hospedagens){
+       Hospedagem.hospedagens = hospedagens;
+    }
+    
     private Data data_de_entrada;//filtro
     private Data data_de_saida;
     private int tempo_de_hospedagem_em_dias;//filtro

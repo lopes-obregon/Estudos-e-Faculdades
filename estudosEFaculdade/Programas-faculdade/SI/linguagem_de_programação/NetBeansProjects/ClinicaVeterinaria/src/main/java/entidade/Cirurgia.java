@@ -1,5 +1,6 @@
 package entidade;
 
+import java.util.HashMap;
 import util.Hora;
 
 /**
@@ -7,6 +8,30 @@ import util.Hora;
  * @author renan
  */
 public class Cirurgia extends Serviço {
+    //parte do conjunto dos objetos
+    public static HashMap<String, Cirurgia> cirurgias = new HashMap();
+    
+    public static boolean addCirurgia(Cirurgia cirurgia){
+        //String código = vacinação.getChaveDoServiço();
+        String código = cirurgia.getChaveDoServiço();
+
+        if(cirurgias.get(código) == null){
+            cirurgias.put(código, cirurgia);
+            return true;
+        }else return false;
+    }
+    public static Cirurgia getCirurgia(String código){
+        return cirurgias.get(código);
+    }
+    public static HashMap<String, Cirurgia> getCirurgias(){
+        return cirurgias;
+    }
+    public static void setCirurgias(HashMap<String, Cirurgia> cirurgias){
+        Cirurgia.cirurgias = cirurgias;
+    }
+    
+//parte dos métodos especifico de cada objeto
+    
     public enum Anestesia{geral, inalatória, injetável, local, nenhuma};
     
     Anestesia anestesia;//filtro

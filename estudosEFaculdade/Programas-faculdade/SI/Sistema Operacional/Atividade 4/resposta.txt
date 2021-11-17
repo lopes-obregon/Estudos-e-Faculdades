@@ -1,0 +1,7 @@
+file1
+844424930143325 -rwxrwxrwx 2
+file2
+844424930143325 -rwxrwxrwx 2
+são iguais, conteúdos iguais, conteúdo apos modificar acaba sendo  o mesmo se mudo em file2 muda em fila 1.
+após executar o comando "rm file1.txt" o file2.txt continua existindo, inode diferentes de file3 e file4.Conteúdo
+de ambos alterados. Quando excluido o file3 o file4 perde o seu endereço para onde apontava saida diz que o arquivo não pode ser encontrado.

@@ -18,12 +18,34 @@ import entidade.Vacinação.Vacina;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import util.PersistênciaArquivo;
 
 /**
  *
  * @author renan
  */
 public class ClinicaVeterinaria {
+    //final ->constante
+    public static final String arquivo = "dados/ClinicaVeterinária";
+    //salva os dados da aplicação
+    public static void salvarAplicação(){
+        ArrayList objeto_raiz = new ArrayList();
+        //adiciona ao objeto raiz os objetos dos serviçõs
+        objeto_raiz.add(Cirurgia.getCirurgias());
+        objeto_raiz.add(Hospedagem.getHospedagens());
+        objeto_raiz.add(Vacinação.getVacinações());
+        PersistênciaArquivo.salvar(objeto_raiz, arquivo);
+    }
+    //recupera os dados da aplicação
+    public static void recuperarAplicação(){
+        ArrayList objeto_raiz = (ArrayList) PersistênciaArquivo.recuperar(arquivo);
+        if(objeto_raiz != null){
+            Cirurgia.setCirurgias((HashMap<String, Cirurgia>)objeto_raiz.get(0));
+            Hospedagem.setHospedagens((HashMap<String, Hospedagem>)objeto_raiz.get(1));
+            Vacinação.setVacinações((HashMap<String, Vacinação>)objeto_raiz.get(2));
+            
+        }
+    }
     public static ArrayList<Agendamento> agendamentos = new ArrayList();//ultimo cadastro
     public static HashMap<String, Proprietário> proprietários = new HashMap();//chave cpf
     public static HashMap<String, Animal> animais = new HashMap();//código sendo a chave
