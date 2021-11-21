@@ -163,18 +163,10 @@ public class ClinicaVeterinaria {
     //falta agendamento e animal
     //agendamento hora_agendada
     //animal -> idade
-    private static  ArrayList<Agendamento> selecionarAgendamentos(String cidade_do_proprietário, Vacina vacina_aplicada ,Data data_mínima, Anestesia anestesia_aplicada , Hora hora_mínima_agendada, int idade_mínima_do_animal,char entrada_urgente ){
+    public  static  ArrayList<Agendamento> selecionarAgendamentos(String cidade_do_proprietário, Vacina vacina_aplicada ,Data data_mínima, Anestesia anestesia_aplicada , Hora hora_mínima_agendada, int idade_mínima_do_animal,char entrada_urgente ){
         ArrayList<Agendamento> agendamento_selecionados = new ArrayList();
-       System.out.println("Filtros de Obras:"
-        + "\n - Cidade do proprietário:" + cidade_do_proprietário
-        + "\n - vacina aplicada:" + vacina_aplicada
-        + "\n - Data minima de hospedagem: " + data_mínima
-        +"\n - Anestesia aplicada:" + anestesia_aplicada
-        + "\n - Hora  mínima agendada: " + hora_mínima_agendada
-        + "\n - Idade mínima  do animal: " + idade_mínima_do_animal
-        + "\n - Entrada urgente: " + entrada_urgente
-        + "\n");
-        for (Agendamento agendamento : agendamentos) {
+      
+        for (Agendamento agendamento : Agendamento.getAgendamentos()) {
             Serviço serviço = agendamento.getServiço();
             String cidade = agendamento.getAnimal().getProprietário().getEndereço().getCidade();
             Hora hora_agendada = agendamento.getHoraDoAgendamento();

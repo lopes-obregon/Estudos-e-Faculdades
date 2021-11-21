@@ -1,6 +1,7 @@
 
 package util;
 
+import java.io.Serializable;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
@@ -8,7 +9,17 @@ import java.util.GregorianCalendar;
  *
  * @author renan
  */
-public class Data {
+public class Data implements Serializable{
+
+    public static Data toData(String data_string) {
+        if(!data_string.matches("\\d{2}/\\d{2}/\\d{4}")){
+            
+            System.out.println("ERROR na conversão de data  da string :" + data_string);
+            return null;
+        } 
+        String[] partes = data_string.split("/");
+        return new Data(Integer.parseInt(partes[0]), Integer.parseInt(partes[1]), Integer.parseInt(partes[2]));
+    }
     private int dia, mês, ano;
 
 

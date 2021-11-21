@@ -9,7 +9,7 @@ public class Hospedagem extends Serviço{
      //parte do conjunto dos objetos
     public static HashMap<String, Hospedagem> hospedagens = new HashMap();
     
-    public static boolean addCirurgia(Hospedagem hospedagem){
+    public static boolean addHospedagem(Hospedagem hospedagem){
         //String código = vacinação.getChaveDoServiço();
         String código = hospedagem.getChaveDoServiço();
 

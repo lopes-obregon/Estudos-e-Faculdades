@@ -1,11 +1,22 @@
 
 package util;
 
+import java.io.Serializable;
+
 /**
  *
  * @author renan
  */
-public class Hora {
+public class Hora implements Serializable {
+
+    public static Hora toHora(String hora_string) {
+       if(!hora_string.matches("\\d{2}:\\d{2}")){
+           System.out.println("ERROR na conversão do dado" + hora_string);
+           return null;
+       }
+       String[] partes = hora_string.split(":");
+       return new Hora(Integer.parseInt(partes[0]), Integer.parseInt(partes[1]));
+    }
     private int hora, minuto;
 
     public Hora(int hora, int minuto) {
