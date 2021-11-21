@@ -13,13 +13,13 @@ public class Proprietário {
     private String nome, cpf;
     private  Endereço endereço;
     public static Proprietário lerProprietário(){
-        String nome_do_proprietário = InterfaceTextual.lerString("Digite o nome do proprietário");
+        String nome_do_proprietário = InterfaceTextual.lerString(" o nome do proprietário");
         if(nome_do_proprietário == null) return null;
         
-        String cpf_proprietário = InterfaceTextual.lerString("Digite o cpf do proprietário");
+        String cpf_proprietário = InterfaceTextual.lerString(" o cpf do proprietário");
         if(cpf_proprietário == null) return null;
         
-        Endereço endereço = InterfaceTextual.lerEndereço("Digite o endereço no formato");
+        Endereço endereço = InterfaceTextual.lerEndereço(" o endereço no formato");
         if(endereço == null) return null;
         
         return new Proprietário(nome_do_proprietário, cpf_proprietário, endereço);

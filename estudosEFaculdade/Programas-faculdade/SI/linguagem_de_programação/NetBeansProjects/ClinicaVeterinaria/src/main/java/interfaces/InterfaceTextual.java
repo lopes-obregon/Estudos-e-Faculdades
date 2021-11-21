@@ -134,7 +134,7 @@ public class InterfaceTextual {
             }else{
                 System.out.println("- ERROR  na leitura do Proprietário");
             }
-            para_cadastrar = lerBoolean("para de cadastrar");
+            para_cadastrar = lerBoolean("parar de cadastrar");
         }
       
     }
@@ -202,7 +202,7 @@ public class InterfaceTextual {
         if(objetos.isEmpty()) return;
         System.out.println(cabeçalho);
         for(Object objeto: objetos) System.out.println(objeto);
-    
+        System.out.println();
     }
                
     public static ArrayList<Agendamento>selecionarAgendamentos(){
