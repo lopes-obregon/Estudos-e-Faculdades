@@ -19,11 +19,13 @@ public class PersistênciaArquivo {
     public static void salvar(Object objeto_raiz, String arquivo){
         if(objeto_raiz == null)return;
         try{
-            ObjectOutputStream saída = new ObjectOutputStream(new FileOutputStream(arquivo));
+            
+            ObjectOutputStream saída = new ObjectOutputStream(new FileOutputStream( arquivo));
             saída.writeObject(objeto_raiz);
             saída.close();
         }catch(Exception exceção){
             System.out.println("Falha ao salvar no arquivo:" + arquivo + "\n");
+            
         }
     }
     //recupera os dados salvo no arquivo
@@ -34,6 +36,7 @@ public class PersistênciaArquivo {
             return objeto_raiz;
         } catch (Exception exceção) {
             System.out.println("Falha na recuperação do arquivo:" + arquivo + "\n");
+            
             return null;
         }
     }

@@ -1,14 +1,17 @@
 
 package util;
 
+import java.io.Serializable;
+
 /**
  *
  * @author renan
  */
-public class Endereço {
+public class Endereço implements Serializable{
 
     public static Endereço toEndereço(String endereço_string) {
-        if(!endereço_string.matches("\\D+,\\D+,\\D+,\\D+,\\d{5}-\\d{3},\\d+")){
+        //[a-z A-Z 0-9]+ -> aceita caracteres de a-z  e números espaço para considerar o espaço da string sem ele acaba considerando errado
+        if(!endereço_string.matches("\\D+,[a-z A-Z 0-9]+,\\D+,\\D+,\\d{5}-\\d{3},\\d+")){
             System.out.println("ERROR na conversão do dado:" + endereço_string);
             return null;
         }

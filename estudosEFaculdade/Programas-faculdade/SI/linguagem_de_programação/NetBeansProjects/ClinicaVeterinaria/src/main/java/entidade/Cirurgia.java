@@ -26,9 +26,7 @@ public class Cirurgia extends Serviço {
     public static HashMap<String, Cirurgia> getCirurgias(){
         return cirurgias;
     }
-    public static void setCirurgias(HashMap<String, Cirurgia> cirurgias){
-        Cirurgia.cirurgias = cirurgias;
-    }
+   
     
 //parte dos métodos especifico de cada objeto
     

@@ -22,9 +22,6 @@ public class Vacinação extends Serviço {
     public static HashMap<String, Vacinação> getVacinações(){
         return vacinações;
     }
-    public static void setVacinações(HashMap<String, Vacinação> vacinações){
-        Vacinação.vacinações = vacinações;
-    }
     
 //parte dos métodos especifico de cada objeto
     public enum Vacina{antirrábica, múltipla_ou_polivalente_v8_e_v10, contra_a_giardíase, contra_a_gripe, contra_a_leishmaniose}

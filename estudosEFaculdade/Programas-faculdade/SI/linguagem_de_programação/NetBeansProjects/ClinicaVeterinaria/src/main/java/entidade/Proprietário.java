@@ -2,6 +2,7 @@
 package entidade;
 
 import interfaces.InterfaceTextual;
+import java.io.Serializable;
 import java.util.HashMap;
 import util.Endereço;
 
@@ -9,21 +10,10 @@ import util.Endereço;
  *
  * @author renan
  */
-public class Proprietário {
+public class Proprietário  implements  Serializable{
     private String nome, cpf;
     private  Endereço endereço;
-    public static Proprietário lerProprietário(){
-        String nome_do_proprietário = InterfaceTextual.lerString(" o nome do proprietário");
-        if(nome_do_proprietário == null) return null;
-        
-        String cpf_proprietário = InterfaceTextual.lerString(" o cpf do proprietário");
-        if(cpf_proprietário == null) return null;
-        
-        Endereço endereço = InterfaceTextual.lerEndereço(" o endereço no formato");
-        if(endereço == null) return null;
-        
-        return new Proprietário(nome_do_proprietário, cpf_proprietário, endereço);
-    }
+   
     public static HashMap<String, Proprietário> proprietários = new HashMap();
     public static boolean  addProprietário(Proprietário proprietário){
         String cpf = proprietário.getCpf();
@@ -33,6 +23,9 @@ public class Proprietário {
         }else{
             return false;
         }
+    }
+    public static void setProprietários(HashMap<String, Proprietário> proprietários){
+        Proprietário.proprietários = proprietários;
     }
     public static HashMap<String, Proprietário> getProprietários(){
         return proprietários;

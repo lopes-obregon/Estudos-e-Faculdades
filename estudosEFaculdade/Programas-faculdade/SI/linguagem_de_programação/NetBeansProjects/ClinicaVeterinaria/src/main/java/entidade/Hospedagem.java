@@ -24,9 +24,6 @@ public class Hospedagem extends Serviço{
     public static HashMap<String, Hospedagem> getHospedagens(){
         return hospedagens;
     }
-    public static void setHospedagens(HashMap<String, Hospedagem> hospedagens){
-       Hospedagem.hospedagens = hospedagens;
-    }
     
     private Data data_de_entrada;//filtro
     private Data data_de_saida;

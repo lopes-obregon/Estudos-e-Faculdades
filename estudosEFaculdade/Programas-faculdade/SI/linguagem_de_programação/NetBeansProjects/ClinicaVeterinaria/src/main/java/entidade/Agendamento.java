@@ -2,6 +2,7 @@
 package entidade;
 
 import interfaces.InterfaceTextual;
+import java.io.Serializable;
 import java.util.ArrayList;
 import util.Hora;
 import util.Data;
@@ -10,7 +11,7 @@ import util.Data;
  *
  * @author renan
  */
-public class Agendamento {
+public class Agendamento implements Serializable{
     //private static HashMap<String, Agendamento> agendamentos = new HashMap();
     private static ArrayList<Agendamento> agendamentos = new ArrayList();
     public static boolean addAgendamento(Agendamento agendamento){
@@ -20,22 +21,10 @@ public class Agendamento {
     public static ArrayList<Agendamento> getAgendamentos(){
         return agendamentos;
     }
-    public static Agendamento lerAgendamento(){
-        Data data_agendada = InterfaceTextual.lerData("Entre com uma  data no formato");
-        if(data_agendada == null) return null;
-        
-        Hora hora_agendada = InterfaceTextual.lerHora("Hora do agendamento no formato ");
-        if(hora_agendada == null) return null;
-        
-        String código_do_serviço = InterfaceTextual.lerString("Entre com o código do serviço");
-        Serviço serviço_realizado = Serviço.getServiço(código_do_serviço);
-        if(serviço_realizado == null) return null;
-        
-        String código_do_animal = InterfaceTextual.lerString("Entre com o código do animal");
-        Animal animal  =  Animal.getAnimal(código_do_animal);
-        if(animal == null) return null;
-        return new Agendamento(código_do_animal, data_agendada, hora_agendada, serviço_realizado, animal);
-    }
+    public static void setAgendamentos(ArrayList<Agendamento> agendamentos){
+        Agendamento.agendamentos = agendamentos;
+    } 
+   
     //data de agendamento
     private Data data_de_agendamento;//filtro
     private Serviço serviço;

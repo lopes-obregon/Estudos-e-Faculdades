@@ -32,18 +32,20 @@ public class ClinicaVeterinaria {
     public static void salvarAplicação(){
         ArrayList objeto_raiz = new ArrayList();
         //adiciona ao objeto raiz os objetos dos serviçõs
-        objeto_raiz.add(Cirurgia.getCirurgias());
-        objeto_raiz.add(Hospedagem.getHospedagens());
-        objeto_raiz.add(Vacinação.getVacinações());
+        objeto_raiz.add(Proprietário.getProprietários());
+        objeto_raiz.add(Animal.getAnimais());
+        objeto_raiz.add(Serviço.getServiços());
+        objeto_raiz.add(Agendamento.getAgendamentos());
         PersistênciaArquivo.salvar(objeto_raiz, arquivo);
     }
     //recupera os dados da aplicação
     public static void recuperarAplicação(){
         ArrayList objeto_raiz = (ArrayList) PersistênciaArquivo.recuperar(arquivo);
         if(objeto_raiz != null){
-            Cirurgia.setCirurgias((HashMap<String, Cirurgia>)objeto_raiz.get(0));
-            Hospedagem.setHospedagens((HashMap<String, Hospedagem>)objeto_raiz.get(1));
-            Vacinação.setVacinações((HashMap<String, Vacinação>)objeto_raiz.get(2));
+            Proprietário.setProprietários((HashMap<String, Proprietário>) objeto_raiz.get(0));
+            Animal.setAnimais((HashMap<String, Animal>) objeto_raiz.get(1));
+           Serviço.setServiços((HashMap<String, Serviço>) objeto_raiz.get(2));
+            Agendamento.setAgendamentos((ArrayList<Agendamento>) objeto_raiz.get(3));
             
         }
     }
