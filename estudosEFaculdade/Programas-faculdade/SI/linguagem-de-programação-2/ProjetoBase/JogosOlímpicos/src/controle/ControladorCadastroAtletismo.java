@@ -18,7 +18,7 @@ public class ControladorCadastroAtletismo {
     }
 
     public String inserirAtletismo(Atletismo atletismo) {
-        Atletismo atletismo1 = Atletismo.buscarAtletismo(atletismo.getModalidade());
+        Atletismo atletismo1 = Atletismo.buscarAtletismo(atletismo.getId());
         if(atletismo1 == null) return Atletismo.inserirAtletismo(atletismo);
         else return "Id do atletismo já cadastrado";
     }

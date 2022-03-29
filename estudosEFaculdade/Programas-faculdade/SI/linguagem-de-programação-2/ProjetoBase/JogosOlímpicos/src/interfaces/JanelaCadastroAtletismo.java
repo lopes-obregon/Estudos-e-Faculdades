@@ -246,6 +246,7 @@ public class JanelaCadastroAtletismo extends javax.swing.JFrame {
     private void limparCampos() {
         modalidadeTextField.setText("");
         distânciaTextField.setText("");
+        idTextField.setText("");
         
     }
     private Atletismo obterAtletismoInformado() {
@@ -254,6 +255,7 @@ public class JanelaCadastroAtletismo extends javax.swing.JFrame {
         String distância = distânciaTextField.getText();
         if(distância.isEmpty()) return null;
         String id = idTextField.getText();
+        System.out.println(id);
         if(id.isEmpty()) return null;
         return new Atletismo(modalidade, distância, id);
     }

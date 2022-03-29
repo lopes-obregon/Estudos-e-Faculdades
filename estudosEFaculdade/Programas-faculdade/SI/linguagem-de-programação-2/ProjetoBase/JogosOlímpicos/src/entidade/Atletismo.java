@@ -37,7 +37,7 @@ public class Atletismo {
         String sql = "INSERT INTO Atletismo(Id, Modalidade, Distancia) VALUES (?,?,?)";
         try {
             PreparedStatement comando = BD.conexão.prepareStatement(sql);
-            comando.setString(1, atletismo.getModalidade());
+            comando.setString(1, atletismo.getId());
             comando.setString(2, atletismo.getModalidade());
             comando.setString(3, atletismo.getDistância());
             comando.executeUpdate();
@@ -50,8 +50,9 @@ public class Atletismo {
     }
 
     public static String alterarAtletismo(Atletismo atletismo) {
-        String sql = "UPDATE Atletismo SET Modalidade = ? Distancia = ? WHERE Id = ?";
+        String sql = "UPDATE Atletismo SET Modalidade = ?, Distancia = ? WHERE Id = ?";
         try {
+            
             PreparedStatement comando = BD.conexão.prepareStatement(sql);
             comando.setString(1, atletismo.getModalidade());
             comando.setString(2, atletismo.getDistância());
