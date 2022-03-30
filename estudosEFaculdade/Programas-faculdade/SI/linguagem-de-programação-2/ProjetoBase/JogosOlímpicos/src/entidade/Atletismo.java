@@ -38,14 +38,14 @@ public class Atletismo {
         String sql = "INSERT INTO Atletismo(Modalidade, Distancia) VALUES (?,?)";
         try {
             PreparedStatement comando = BD.conexão.prepareStatement(sql);
-<<<<<<< HEAD
+
             comando.setString(1, atletismo.getModalidade());
             comando.setString(2, atletismo.getDistância());
-=======
+
             comando.setString(1, atletismo.getId());
             comando.setString(2, atletismo.getModalidade());
             comando.setString(3, atletismo.getDistância());
->>>>>>> dev
+
             comando.executeUpdate();
             comando.close();
             return null;
@@ -56,11 +56,11 @@ public class Atletismo {
     }
 
     public static String alterarAtletismo(Atletismo atletismo) {
-<<<<<<< HEAD
+
         String sql = "UPDATE Atletismo SET Distancia = ? WHERE Modalidade = ?";
-=======
+
         String sql = "UPDATE Atletismo SET Modalidade = ?, Distancia = ? WHERE Id = ?";
->>>>>>> dev
+
         try {
             
             PreparedStatement comando = BD.conexão.prepareStatement(sql);
@@ -90,11 +90,9 @@ public class Atletismo {
             
         }
     }
-<<<<<<< HEAD
-<<<<<<< HEAD
+
     private String modalidade, distância;
-=======
-=======
+
 
     public static Atletismo[] getVisões() {
         String sql = "SELECT Id, Modalidade from Atletismo";
@@ -116,7 +114,6 @@ public class Atletismo {
         return visões.toArray(new Atletismo[visões.size()]);
     }
     private String modalidade, distância, id;
->>>>>>> 21c543f (adicionado as visões.)
 
     public static Atletismo[] getVisões() {
         String sql = "SELECT Id, Modalidade from Atletismo";
@@ -138,7 +135,7 @@ public class Atletismo {
         return visões.toArray(new Atletismo[visões.size()]);
     }
     private String modalidade, distância, id;
->>>>>>> dev
+
 
     public Atletismo(String modalidade, String distância) {
         this.modalidade = modalidade;
@@ -160,8 +157,7 @@ public class Atletismo {
     public String getDistância() {
         return distância;
     }
-<<<<<<< HEAD
-=======
+
     public String getId(){
         return id;
     }
@@ -171,8 +167,5 @@ public class Atletismo {
         else return modalidade;
     }
     
-<<<<<<< HEAD
->>>>>>> dev
-=======
->>>>>>> 21c543f (adicionado as visões.)
+
 }
