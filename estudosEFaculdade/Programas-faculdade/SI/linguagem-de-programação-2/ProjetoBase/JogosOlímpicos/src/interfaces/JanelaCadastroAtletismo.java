@@ -59,12 +59,15 @@ public class JanelaCadastroAtletismo extends javax.swing.JFrame {
         modalidadeLabel.setText("Modalidadde");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
+<<<<<<< HEAD
         gridBagConstraints.gridy = 0;
         gridBagConstraints.gridwidth = 2;
 =======
         idLabel.setText("Id");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
+=======
+>>>>>>> 21c543f (adicionado as visões.)
         gridBagConstraints.gridy = 1;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(15, 70, 0, 0);
@@ -105,7 +108,10 @@ public class JanelaCadastroAtletismo extends javax.swing.JFrame {
 =======
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 3;
+<<<<<<< HEAD
 >>>>>>> dev
+=======
+>>>>>>> 21c543f (adicionado as visões.)
         gridBagConstraints.gridheight = 2;
         gridBagConstraints.ipadx = 183;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
@@ -116,8 +122,11 @@ public class JanelaCadastroAtletismo extends javax.swing.JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
         gridBagConstraints.gridy = 2;
 =======
+=======
+>>>>>>> 21c543f (adicionado as visões.)
         gridBagConstraints.gridy = 5;
         gridBagConstraints.gridwidth = 2;
 >>>>>>> dev
@@ -134,7 +143,10 @@ public class JanelaCadastroAtletismo extends javax.swing.JFrame {
 =======
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 5;
+<<<<<<< HEAD
 >>>>>>> dev
+=======
+>>>>>>> 21c543f (adicionado as visões.)
         gridBagConstraints.gridheight = 2;
         gridBagConstraints.ipadx = 183;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
@@ -186,9 +198,12 @@ public class JanelaCadastroAtletismo extends javax.swing.JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
         gridBagConstraints.gridy = 4;
         gridBagConstraints.gridwidth = 4;
 =======
+=======
+>>>>>>> 21c543f (adicionado as visões.)
         gridBagConstraints.gridy = 7;
         gridBagConstraints.gridwidth = 5;
 >>>>>>> dev

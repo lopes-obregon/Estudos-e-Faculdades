@@ -91,8 +91,32 @@ public class Atletismo {
         }
     }
 <<<<<<< HEAD
+<<<<<<< HEAD
     private String modalidade, distância;
 =======
+=======
+
+    public static Atletismo[] getVisões() {
+        String sql = "SELECT Id, Modalidade from Atletismo";
+        ResultSet  lista_de_resultados = null;
+        ArrayList<Atletismo> visões = new ArrayList();
+        try {
+            PreparedStatement comando = BD.conexão.prepareStatement(sql);
+            lista_de_resultados = comando.executeQuery();
+            while(lista_de_resultados.next()){
+                String id = lista_de_resultados.getString("Id");
+                String modalidade = lista_de_resultados.getString("Modalidade");
+                visões.add(new Atletismo(id, modalidade));
+            }
+            lista_de_resultados.close();
+            comando.close();
+        } catch (SQLException exceção_sql) { 
+            exceção_sql.printStackTrace();
+        }
+        return visões.toArray(new Atletismo[visões.size()]);
+    }
+    private String modalidade, distância, id;
+>>>>>>> 21c543f (adicionado as visões.)
 
     public static Atletismo[] getVisões() {
         String sql = "SELECT Id, Modalidade from Atletismo";
@@ -124,6 +148,10 @@ public class Atletismo {
         this.id = id;
         this.modalidade = modalidade;
     }
+    public Atletismo(String id, String modalidade){
+        this.id = id;
+        this.modalidade = modalidade;
+    }
 
     public String getModalidade() {
        return modalidade;
@@ -143,5 +171,8 @@ public class Atletismo {
         else return modalidade;
     }
     
+<<<<<<< HEAD
 >>>>>>> dev
+=======
+>>>>>>> 21c543f (adicionado as visões.)
 }
