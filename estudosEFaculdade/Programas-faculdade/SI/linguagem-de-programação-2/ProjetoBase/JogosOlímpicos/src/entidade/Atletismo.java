@@ -12,6 +12,7 @@ import java.sql.ResultSet;
 import java.sql.PreparedStatement;
 import persistência.BD;
 import java.sql.SQLException;
+import java.util.ArrayList;
 public class Atletismo {
     public static Atletismo buscarAtletismo(String modalidade){
         String sql = "SELECT * FROM Atletismo WHERE Modalidade = ?";
@@ -37,8 +38,14 @@ public class Atletismo {
         String sql = "INSERT INTO Atletismo(Modalidade, Distancia) VALUES (?,?)";
         try {
             PreparedStatement comando = BD.conexão.prepareStatement(sql);
+<<<<<<< HEAD
             comando.setString(1, atletismo.getModalidade());
             comando.setString(2, atletismo.getDistância());
+=======
+            comando.setString(1, atletismo.getId());
+            comando.setString(2, atletismo.getModalidade());
+            comando.setString(3, atletismo.getDistância());
+>>>>>>> dev
             comando.executeUpdate();
             comando.close();
             return null;
@@ -49,8 +56,13 @@ public class Atletismo {
     }
 
     public static String alterarAtletismo(Atletismo atletismo) {
+<<<<<<< HEAD
         String sql = "UPDATE Atletismo SET Distancia = ? WHERE Modalidade = ?";
+=======
+        String sql = "UPDATE Atletismo SET Modalidade = ?, Distancia = ? WHERE Id = ?";
+>>>>>>> dev
         try {
+            
             PreparedStatement comando = BD.conexão.prepareStatement(sql);
             comando.setString(1, atletismo.getDistância());
             comando.setString(2, atletismo.getModalidade());
@@ -78,11 +90,39 @@ public class Atletismo {
             
         }
     }
+<<<<<<< HEAD
     private String modalidade, distância;
+=======
+
+    public static Atletismo[] getVisões() {
+        String sql = "SELECT Id, Modalidade from Atletismo";
+        ResultSet  lista_de_resultados = null;
+        ArrayList<Atletismo> visões = new ArrayList();
+        try {
+            PreparedStatement comando = BD.conexão.prepareStatement(sql);
+            lista_de_resultados = comando.executeQuery();
+            while(lista_de_resultados.next()){
+                String id = lista_de_resultados.getString("Id");
+                String modalidade = lista_de_resultados.getString("Modalidade");
+                visões.add(new Atletismo(id, modalidade));
+            }
+            lista_de_resultados.close();
+            comando.close();
+        } catch (SQLException exceção_sql) { 
+            exceção_sql.printStackTrace();
+        }
+        return visões.toArray(new Atletismo[visões.size()]);
+    }
+    private String modalidade, distância, id;
+>>>>>>> dev
 
     public Atletismo(String modalidade, String distância) {
         this.modalidade = modalidade;
         this.distância = distância;
+    }
+    public Atletismo(String id, String modalidade){
+        this.id = id;
+        this.modalidade = modalidade;
     }
 
     public String getModalidade() {
@@ -92,4 +132,16 @@ public class Atletismo {
     public String getDistância() {
         return distância;
     }
+<<<<<<< HEAD
+=======
+    public String getId(){
+        return id;
+    }
+    @Override
+    public String toString() {
+        if(id != null) return modalidade + "[" + id + "]";
+        else return modalidade;
+    }
+    
+>>>>>>> dev
 }
