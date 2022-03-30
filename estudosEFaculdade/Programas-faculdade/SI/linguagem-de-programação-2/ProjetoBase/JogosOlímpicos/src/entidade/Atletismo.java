@@ -12,6 +12,7 @@ import java.sql.ResultSet;
 import java.sql.PreparedStatement;
 import persistência.BD;
 import java.sql.SQLException;
+import java.util.ArrayList;
 public class Atletismo {
     public static Atletismo buscarAtletismo(String id){
         String sql = "SELECT * FROM Atletismo WHERE Id = ?";
@@ -81,12 +82,36 @@ public class Atletismo {
             
         }
     }
+
+    public static Atletismo[] getVisões() {
+        String sql = "SELECT Id, Modalidade from Atletismo";
+        ResultSet  lista_de_resultados = null;
+        ArrayList<Atletismo> visões = new ArrayList();
+        try {
+            PreparedStatement comando = BD.conexão.prepareStatement(sql);
+            lista_de_resultados = comando.executeQuery();
+            while(lista_de_resultados.next()){
+                String id = lista_de_resultados.getString("Id");
+                String modalidade = lista_de_resultados.getString("Modalidade");
+                visões.add(new Atletismo(id, modalidade));
+            }
+            lista_de_resultados.close();
+            comando.close();
+        } catch (SQLException exceção_sql) { 
+            exceção_sql.printStackTrace();
+        }
+        return visões.toArray(new Atletismo[visões.size()]);
+    }
     private String modalidade, distância, id;
 
     public Atletismo(String modalidade, String distância, String id) {
         this.modalidade = modalidade;
         this.distância = distância;
         this.id = id;
+    }
+    public Atletismo(String id, String modalidade){
+        this.id = id;
+        this.modalidade = modalidade;
     }
 
     public String getModalidade() {
@@ -99,4 +124,10 @@ public class Atletismo {
     public String getId(){
         return id;
     }
+    @Override
+    public String toString() {
+        if(id != null) return modalidade + "[" + id + "]";
+        else return modalidade;
+    }
+    
 }
