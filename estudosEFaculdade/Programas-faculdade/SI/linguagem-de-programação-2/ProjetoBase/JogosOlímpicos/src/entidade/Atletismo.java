@@ -35,13 +35,10 @@ public class Atletismo {
         return atletismo;
     }
     public static String inserirAtletismo(Atletismo atletismo) {
-        String sql = "INSERT INTO Atletismo(Modalidade, Distancia) VALUES (?,?)";
+        String sql = "INSERT INTO Atletismo(Id, Modalidade, Distancia) VALUES (?,?,?)";
         try {
             PreparedStatement comando = BD.conexão.prepareStatement(sql);
-
-            comando.setString(1, atletismo.getModalidade());
-            comando.setString(2, atletismo.getDistância());
-
+            System.out.println(atletismo.getId());
             comando.setString(1, atletismo.getId());
             comando.setString(2, atletismo.getModalidade());
             comando.setString(3, atletismo.getDistância());
@@ -119,6 +116,7 @@ public class Atletismo {
     public Atletismo(String modalidade, String distância, String id) {
         this.modalidade = modalidade;
         this.distância = distância;
+        this.id = id;
     }
     public Atletismo(String id, String modalidade){
         this.id = id;
