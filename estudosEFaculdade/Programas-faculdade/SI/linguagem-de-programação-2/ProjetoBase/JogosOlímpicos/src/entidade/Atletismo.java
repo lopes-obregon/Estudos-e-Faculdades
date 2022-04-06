@@ -23,7 +23,7 @@ public class Atletismo {
             comando.setString(1, id);
             lista_resultados = comando.executeQuery();
             while(lista_resultados.next()){
-                atletismo = new Atletismo(id, lista_resultados.getString("Modalidade"));
+                atletismo = new Atletismo(lista_resultados.getString("Modalidade"), lista_resultados.getString("Distancia"), id);
             }
             lista_resultados.close();
             comando.close();

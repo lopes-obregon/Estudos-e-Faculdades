@@ -24,7 +24,7 @@ public class ControladorCadastroAtletismo {
     }
 
     public String alterarAtletismo(Atletismo atletismo) {
-        Atletismo atletismo1 = Atletismo.buscarAtletismo(atletismo.getModalidade());
+        Atletismo atletismo1 = Atletismo.buscarAtletismo(atletismo.getId());
         if(atletismo1 != null) return Atletismo.alterarAtletismo(atletismo);
         else return "Modalidade de atletismo não encontrado";
         
