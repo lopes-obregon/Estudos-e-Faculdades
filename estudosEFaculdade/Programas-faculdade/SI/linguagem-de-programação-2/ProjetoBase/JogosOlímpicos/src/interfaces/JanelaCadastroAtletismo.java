@@ -7,7 +7,7 @@ package interfaces;
 import controle.ControladorCadastroAtletismo;
 import entidade.Atletismo;
 import javax.swing.JOptionPane;
-import javax.swing.DefaultComboBoxModel;
+
 /**
  *
  * @author renan
@@ -18,10 +18,8 @@ public class JanelaCadastroAtletismo extends javax.swing.JFrame {
      * Creates new form ControladorCadastroAtletismo
      */
     ControladorCadastroAtletismo controlador;
-    Atletismo[] atletismo_cadastrados;
     public JanelaCadastroAtletismo(ControladorCadastroAtletismo controlador) {
         this.controlador = controlador;
-        atletismo_cadastrados = Atletismo.getVisões();
         initComponents();
         limparCampos();
     }
@@ -38,6 +36,8 @@ public class JanelaCadastroAtletismo extends javax.swing.JFrame {
     private void initComponents() {
         java.awt.GridBagConstraints gridBagConstraints;
 
+        idLabel = new javax.swing.JLabel();
+        idTextField = new javax.swing.JTextField();
         modalidadeLabel = new javax.swing.JLabel();
         modalidadeTextField = new javax.swing.JTextField();
         distânciaLabel = new javax.swing.JLabel();
@@ -48,27 +48,17 @@ public class JanelaCadastroAtletismo extends javax.swing.JFrame {
         alterarButton = new javax.swing.JButton();
         removerButton = new javax.swing.JButton();
         limparButton = new javax.swing.JButton();
-        atletismo_cadastradosComboBox = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Cadastar Atletismo");
         setMinimumSize(new java.awt.Dimension(465, 200));
+        setPreferredSize(new java.awt.Dimension(465, 240));
         getContentPane().setLayout(new java.awt.GridBagLayout());
 
-<<<<<<< HEAD
-        modalidadeLabel.setText("Modalidadde");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-<<<<<<< HEAD
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = 2;
-=======
         idLabel.setText("Id");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-=======
->>>>>>> 21c543f (adicionado as visões.)
-        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridy = 0;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(15, 70, 0, 0);
         getContentPane().add(idLabel, gridBagConstraints);
@@ -77,7 +67,7 @@ public class JanelaCadastroAtletismo extends javax.swing.JFrame {
         idTextField.setPreferredSize(new java.awt.Dimension(400, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridy = 0;
         gridBagConstraints.gridheight = 2;
         gridBagConstraints.ipadx = 183;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
@@ -87,11 +77,10 @@ public class JanelaCadastroAtletismo extends javax.swing.JFrame {
         modalidadeLabel.setText("Modalidadde");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridy = 2;
         gridBagConstraints.gridwidth = 3;
->>>>>>> dev
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(42, 70, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(10, 70, 0, 0);
         getContentPane().add(modalidadeLabel, gridBagConstraints);
 
         modalidadeTextField.setColumns(50);
@@ -102,34 +91,19 @@ public class JanelaCadastroAtletismo extends javax.swing.JFrame {
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-<<<<<<< HEAD
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 0;
-=======
         gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 3;
-<<<<<<< HEAD
->>>>>>> dev
-=======
->>>>>>> 21c543f (adicionado as visões.)
+        gridBagConstraints.gridy = 2;
         gridBagConstraints.gridheight = 2;
         gridBagConstraints.ipadx = 183;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(39, 5, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(7, 5, 0, 0);
         getContentPane().add(modalidadeTextField, gridBagConstraints);
 
         distânciaLabel.setText("Distância");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-<<<<<<< HEAD
-<<<<<<< HEAD
-        gridBagConstraints.gridy = 2;
-=======
-=======
->>>>>>> 21c543f (adicionado as visões.)
-        gridBagConstraints.gridy = 5;
+        gridBagConstraints.gridy = 4;
         gridBagConstraints.gridwidth = 2;
->>>>>>> dev
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(21, 70, 0, 0);
         getContentPane().add(distânciaLabel, gridBagConstraints);
@@ -137,16 +111,8 @@ public class JanelaCadastroAtletismo extends javax.swing.JFrame {
         distânciaTextField.setColumns(50);
         distânciaTextField.setPreferredSize(new java.awt.Dimension(30, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
-<<<<<<< HEAD
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 2;
-=======
         gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 5;
-<<<<<<< HEAD
->>>>>>> dev
-=======
->>>>>>> 21c543f (adicionado as visões.)
+        gridBagConstraints.gridy = 4;
         gridBagConstraints.gridheight = 2;
         gridBagConstraints.ipadx = 183;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
@@ -197,30 +163,11 @@ public class JanelaCadastroAtletismo extends javax.swing.JFrame {
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-<<<<<<< HEAD
-<<<<<<< HEAD
-        gridBagConstraints.gridy = 4;
-        gridBagConstraints.gridwidth = 4;
-=======
-=======
->>>>>>> 21c543f (adicionado as visões.)
-        gridBagConstraints.gridy = 7;
+        gridBagConstraints.gridy = 6;
         gridBagConstraints.gridwidth = 5;
->>>>>>> dev
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(13, 58, 49, 12);
+        gridBagConstraints.insets = new java.awt.Insets(13, 58, 48, 12);
         getContentPane().add(comandosPanel, gridBagConstraints);
-
-        atletismo_cadastradosComboBox.setModel(new DefaultComboBoxModel(atletismo_cadastrados));
-        atletismo_cadastradosComboBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                atletismo_cadastradosComboBoxActionPerformed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 0;
-        getContentPane().add(atletismo_cadastradosComboBox, gridBagConstraints);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -230,10 +177,11 @@ public class JanelaCadastroAtletismo extends javax.swing.JFrame {
     }//GEN-LAST:event_limparCampos
 
     private void removerAtletismo(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removerAtletismo
-        String modalidade = modalidadeTextField.getText();
+
+        String id = idTextField.getText();
         String mensagem_erro = null;
-        if(!modalidade.isEmpty()) mensagem_erro = controlador.removerAtletismo(modalidade);
-        else mensagem_erro = "Modalidade de Atletismo não informado";
+        if(!id.isEmpty()) mensagem_erro = controlador.removerAtletismo(id);
+        else mensagem_erro = "Id de Atletismo não informado";
         if(mensagem_erro == null) informarSucesso("Remoção bem sucedida");
         else informarErro(mensagem_erro);
     }//GEN-LAST:event_removerAtletismo
@@ -242,24 +190,28 @@ public class JanelaCadastroAtletismo extends javax.swing.JFrame {
         Atletismo atletismo = obterAtletismoInformado();
         String mensagem_erro = null;
         if(atletismo != null) mensagem_erro = controlador.alterarAtletismo(atletismo);
-        else mensagem_erro = "Algum atributo do amigo não foi informado";
+        else mensagem_erro = "Algum atributo do atletismo não foi informado";
         if(mensagem_erro == null) informarSucesso("Alteração bem sucedida");
         else informarErro(mensagem_erro);
     }//GEN-LAST:event_alterarAtletismo
 
     private void consultarAtletismo(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consultarAtletismo
-        String modalidade = modalidadeTextField.getText();
+        String id = idTextField.getText();
         String mensagem_erro = null;
         Atletismo atletismo = null;
-        if(!modalidade.isEmpty()){
-            atletismo = Atletismo.buscarAtletismo(modalidade);
+        if(!id.isEmpty()){
+            atletismo = Atletismo.buscarAtletismo(id);
             if(atletismo == null) mensagem_erro = "Atletismo não encontrado";
 
-        }else mensagem_erro = "Modalidade não informado";
+        }else mensagem_erro = "id não informado";
         if (mensagem_erro == null){
             String distância = atletismo.getDistância();
             if(distância == null) distância = "";
             distânciaTextField.setText(distância);
+            String modalidade = atletismo.getModalidade();
+            if(modalidade == null) modalidade = "";
+            modalidadeTextField.setText(modalidade);
+            
         } else informarErro(mensagem_erro);
     }//GEN-LAST:event_consultarAtletismo
 
@@ -276,17 +228,14 @@ public class JanelaCadastroAtletismo extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_modalidadeTextFieldActionPerformed
 
-    private void atletismo_cadastradosComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_atletismo_cadastradosComboBoxActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_atletismo_cadastradosComboBoxActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton alterarButton;
-    private javax.swing.JComboBox<String> atletismo_cadastradosComboBox;
     private javax.swing.JPanel comandosPanel;
     private javax.swing.JButton consultarButton;
     private javax.swing.JLabel distânciaLabel;
     private javax.swing.JTextField distânciaTextField;
+    private javax.swing.JLabel idLabel;
+    private javax.swing.JTextField idTextField;
     private javax.swing.JButton inserirButton;
     private javax.swing.JButton limparButton;
     private javax.swing.JLabel modalidadeLabel;
@@ -297,7 +246,6 @@ public class JanelaCadastroAtletismo extends javax.swing.JFrame {
     private void limparCampos() {
         modalidadeTextField.setText("");
         distânciaTextField.setText("");
-        idTextField.setText("");
         
     }
     private Atletismo obterAtletismoInformado() {
@@ -305,14 +253,9 @@ public class JanelaCadastroAtletismo extends javax.swing.JFrame {
         if(modalidade.isEmpty()) return null;
         String distância = distânciaTextField.getText();
         if(distância.isEmpty()) return null;
-<<<<<<< HEAD
-        return new Atletismo(modalidade, distância);
-=======
         String id = idTextField.getText();
-        System.out.println(id);
         if(id.isEmpty()) return null;
         return new Atletismo(modalidade, distância, id);
->>>>>>> dev
     }
 
     private void informarSucesso(String mensagem) {
