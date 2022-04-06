@@ -56,16 +56,14 @@ public class Atletismo {
     }
 
     public static String alterarAtletismo(Atletismo atletismo) {
-
-        String sql = "UPDATE Atletismo SET Distancia = ? WHERE Modalidade = ?";
-
         String sql = "UPDATE Atletismo SET Modalidade = ?, Distancia = ? WHERE Id = ?";
 
         try {
             
             PreparedStatement comando = BD.conexão.prepareStatement(sql);
-            comando.setString(1, atletismo.getDistância());
-            comando.setString(2, atletismo.getModalidade());
+            comando.setString(1, atletismo.getModalidade());
+            comando.setString(2, atletismo.getDistância());
+            comando.setString(3, atletismo.getId());
             comando.executeUpdate();
             comando.close();
             return null;
@@ -91,30 +89,6 @@ public class Atletismo {
         }
     }
 
-    private String modalidade, distância;
-
-
-    public static Atletismo[] getVisões() {
-        String sql = "SELECT Id, Modalidade from Atletismo";
-        ResultSet  lista_de_resultados = null;
-        ArrayList<Atletismo> visões = new ArrayList();
-        try {
-            PreparedStatement comando = BD.conexão.prepareStatement(sql);
-            lista_de_resultados = comando.executeQuery();
-            while(lista_de_resultados.next()){
-                String id = lista_de_resultados.getString("Id");
-                String modalidade = lista_de_resultados.getString("Modalidade");
-                visões.add(new Atletismo(id, modalidade));
-            }
-            lista_de_resultados.close();
-            comando.close();
-        } catch (SQLException exceção_sql) { 
-            exceção_sql.printStackTrace();
-        }
-        return visões.toArray(new Atletismo[visões.size()]);
-    }
-    private String modalidade, distância, id;
-
     public static Atletismo[] getVisões() {
         String sql = "SELECT Id, Modalidade from Atletismo";
         ResultSet  lista_de_resultados = null;
@@ -137,7 +111,12 @@ public class Atletismo {
     private String modalidade, distância, id;
 
 
-    public Atletismo(String modalidade, String distância) {
+    /**
+     *
+     * @param modalidade
+     * @param distância
+     */
+    public Atletismo(String modalidade, String distância, String id) {
         this.modalidade = modalidade;
         this.distância = distância;
     }
@@ -145,11 +124,6 @@ public class Atletismo {
         this.id = id;
         this.modalidade = modalidade;
     }
-    public Atletismo(String id, String modalidade){
-        this.id = id;
-        this.modalidade = modalidade;
-    }
-
     public String getModalidade() {
        return modalidade;
     }
