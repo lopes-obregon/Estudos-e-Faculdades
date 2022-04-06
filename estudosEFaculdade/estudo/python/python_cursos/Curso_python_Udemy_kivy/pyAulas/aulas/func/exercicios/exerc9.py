@@ -1,6 +1,0 @@
-def func(a, b, c, d):
-    print(a+b+c+d)
-
-lista = 1,2,3,4
-func(lista[0],lista[1],lista[2],lista[3])
-

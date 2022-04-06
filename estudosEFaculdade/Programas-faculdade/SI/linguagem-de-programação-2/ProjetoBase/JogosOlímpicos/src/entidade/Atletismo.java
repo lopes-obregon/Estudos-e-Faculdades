@@ -135,8 +135,12 @@ public class Atletismo {
     }
     @Override
     public String toString() {
-        if(id != null) return modalidade + "[" + id + "]";
-        else return modalidade;
+        if(id != null) return id + "[" + modalidade + "]";
+        else return id;
+    }
+
+    public Atletismo getVisão() {
+       return new Atletismo(id, modalidade);
     }
     
 

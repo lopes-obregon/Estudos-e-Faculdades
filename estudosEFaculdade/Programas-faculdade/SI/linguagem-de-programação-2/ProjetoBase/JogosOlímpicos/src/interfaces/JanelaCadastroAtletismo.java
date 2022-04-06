@@ -18,8 +18,10 @@ public class JanelaCadastroAtletismo extends javax.swing.JFrame {
      * Creates new form ControladorCadastroAtletismo
      */
     ControladorCadastroAtletismo controlador;
+    Atletismo[] atletismos_cadastrados;
     public JanelaCadastroAtletismo(ControladorCadastroAtletismo controlador) {
         this.controlador = controlador;
+        atletismos_cadastrados = Atletismo.getVisões();
         initComponents();
         limparCampos();
     }
