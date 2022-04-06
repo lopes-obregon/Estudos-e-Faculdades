@@ -71,11 +71,11 @@ public class Atletismo {
         
     }
 
-    public static String removerAtletismo(String modalidade) {
-        String sql = "DELETE FROM Atletismo WHERE Modalidade = ?";
+    public static String removerAtletismo(String id) {
+        String sql = "DELETE FROM Atletismo WHERE Id = ?";
         try {
             PreparedStatement comando = BD.conexão.prepareStatement(sql);
-            comando.setString(1, modalidade);
+            comando.setString(1, id);
             comando.executeUpdate();
             comando.close();
             return null;

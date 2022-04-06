@@ -30,9 +30,9 @@ public class ControladorCadastroAtletismo {
         
     }
 
-    public String removerAtletismo(String modalidade) {
-        Atletismo atletismo1 = Atletismo.buscarAtletismo(modalidade);
-        if(atletismo1 != null) return Atletismo.removerAtletismo(modalidade);
+    public String removerAtletismo(String id) {
+        Atletismo atletismo1 = Atletismo.buscarAtletismo(id);
+        if(atletismo1 != null) return Atletismo.removerAtletismo(id);
         else return "Modalidade de atletismo não cadastrado";
         
     }
