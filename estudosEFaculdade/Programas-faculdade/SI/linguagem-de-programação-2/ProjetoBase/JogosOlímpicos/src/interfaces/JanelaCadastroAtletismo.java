@@ -6,6 +6,7 @@ package interfaces;
 
 import controle.ControladorCadastroAtletismo;
 import entidade.Atletismo;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 
 /**
@@ -50,17 +51,18 @@ public class JanelaCadastroAtletismo extends javax.swing.JFrame {
         alterarButton = new javax.swing.JButton();
         removerButton = new javax.swing.JButton();
         limparButton = new javax.swing.JButton();
+        atletismo_cadastrosComboBox = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Cadastar Atletismo");
-        setMinimumSize(new java.awt.Dimension(465, 200));
-        setPreferredSize(new java.awt.Dimension(465, 240));
+        setMinimumSize(new java.awt.Dimension(280, 320));
+        setPreferredSize(new java.awt.Dimension(500, 300));
         getContentPane().setLayout(new java.awt.GridBagLayout());
 
         idLabel.setText("Id");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridy = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(15, 70, 0, 0);
         getContentPane().add(idLabel, gridBagConstraints);
@@ -69,7 +71,7 @@ public class JanelaCadastroAtletismo extends javax.swing.JFrame {
         idTextField.setPreferredSize(new java.awt.Dimension(400, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridy = 3;
         gridBagConstraints.gridheight = 2;
         gridBagConstraints.ipadx = 183;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
@@ -79,7 +81,7 @@ public class JanelaCadastroAtletismo extends javax.swing.JFrame {
         modalidadeLabel.setText("Modalidadde");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridy = 5;
         gridBagConstraints.gridwidth = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(10, 70, 0, 0);
@@ -94,7 +96,7 @@ public class JanelaCadastroAtletismo extends javax.swing.JFrame {
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridy = 5;
         gridBagConstraints.gridheight = 2;
         gridBagConstraints.ipadx = 183;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
@@ -104,7 +106,7 @@ public class JanelaCadastroAtletismo extends javax.swing.JFrame {
         distânciaLabel.setText("Distância");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridy = 7;
         gridBagConstraints.gridwidth = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(21, 70, 0, 0);
@@ -114,7 +116,7 @@ public class JanelaCadastroAtletismo extends javax.swing.JFrame {
         distânciaTextField.setPreferredSize(new java.awt.Dimension(30, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridy = 7;
         gridBagConstraints.gridheight = 2;
         gridBagConstraints.ipadx = 183;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
@@ -165,11 +167,18 @@ public class JanelaCadastroAtletismo extends javax.swing.JFrame {
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 6;
+        gridBagConstraints.gridy = 9;
         gridBagConstraints.gridwidth = 5;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(13, 58, 48, 12);
         getContentPane().add(comandosPanel, gridBagConstraints);
+
+        atletismo_cadastrosComboBox.setModel(new DefaultComboBoxModel(atletismos_cadastrados));
+        atletismo_cadastrosComboBox.setPreferredSize(new java.awt.Dimension(52, 44));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 0;
+        getContentPane().add(atletismo_cadastrosComboBox, gridBagConstraints);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -232,6 +241,7 @@ public class JanelaCadastroAtletismo extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton alterarButton;
+    private javax.swing.JComboBox<String> atletismo_cadastrosComboBox;
     private javax.swing.JPanel comandosPanel;
     private javax.swing.JButton consultarButton;
     private javax.swing.JLabel distânciaLabel;
