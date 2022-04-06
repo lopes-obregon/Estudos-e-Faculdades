@@ -14,16 +14,16 @@ import persistência.BD;
 import java.sql.SQLException;
 import java.util.ArrayList;
 public class Atletismo {
-    public static Atletismo buscarAtletismo(String modalidade){
-        String sql = "SELECT * FROM Atletismo WHERE Modalidade = ?";
+    public static Atletismo buscarAtletismo(String id){
+        String sql = "SELECT * FROM Atletismo WHERE Id = ?";
         ResultSet lista_resultados = null;
         Atletismo atletismo = null;
         try {
             PreparedStatement comando = BD.conexão.prepareStatement(sql);
-            comando.setString(1, modalidade);
+            comando.setString(1, id);
             lista_resultados = comando.executeQuery();
             while(lista_resultados.next()){
-                atletismo = new Atletismo(modalidade, lista_resultados.getString("Distancia"));
+                atletismo = new Atletismo(id, lista_resultados.getString("Modalidade"));
             }
             lista_resultados.close();
             comando.close();
