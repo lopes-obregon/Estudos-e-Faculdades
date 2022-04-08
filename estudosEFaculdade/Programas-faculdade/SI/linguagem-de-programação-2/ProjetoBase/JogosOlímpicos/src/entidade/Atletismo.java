@@ -38,7 +38,6 @@ public class Atletismo {
         String sql = "INSERT INTO Atletismo(Id, Modalidade, Distancia) VALUES (?,?,?)";
         try {
             PreparedStatement comando = BD.conexão.prepareStatement(sql);
-            System.out.println(atletismo.getId());
             comando.setString(1, atletismo.getId());
             comando.setString(2, atletismo.getModalidade());
             comando.setString(3, atletismo.getDistância());

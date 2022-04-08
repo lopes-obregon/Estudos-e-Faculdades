@@ -52,6 +52,7 @@ public class JanelaCadastroAtletismo extends javax.swing.JFrame {
         removerButton = new javax.swing.JButton();
         limparButton = new javax.swing.JButton();
         atletismo_cadastrosComboBox = new javax.swing.JComboBox<>();
+        atletismo_cadastradosLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Cadastar Atletismo");
@@ -177,8 +178,14 @@ public class JanelaCadastroAtletismo extends javax.swing.JFrame {
         atletismo_cadastrosComboBox.setPreferredSize(new java.awt.Dimension(52, 44));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridy = 2;
         getContentPane().add(atletismo_cadastrosComboBox, gridBagConstraints);
+
+        atletismo_cadastradosLabel.setText("Atletismos Cadastrados");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        getContentPane().add(atletismo_cadastradosLabel, gridBagConstraints);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -189,12 +196,16 @@ public class JanelaCadastroAtletismo extends javax.swing.JFrame {
 
     private void removerAtletismo(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removerAtletismo
 
-        String id = idTextField.getText();
+        Atletismo visão = (Atletismo) atletismo_cadastrosComboBox.getSelectedItem();
         String mensagem_erro = null;
-        if(!id.isEmpty()) mensagem_erro = controlador.removerAtletismo(id);
-        else mensagem_erro = "Id de Atletismo não informado";
-        if(mensagem_erro == null) informarSucesso("Remoção bem sucedida");
-        else informarErro(mensagem_erro);
+        if(visão != null) mensagem_erro = controlador.removerAtletismo(visão.getId());
+        else mensagem_erro = "Nenhum atletismo encontrado.";
+        if(mensagem_erro == null){
+            atletismo_cadastrosComboBox.removeItem(visão);
+            informarSucesso("Remoção realizada com sucesso!");
+            if(atletismos_cadastrados.length >= 1) atletismo_cadastrosComboBox.setSelectedIndex(0);
+            else atletismo_cadastrosComboBox.setSelectedIndex(-1);
+        }else informarErro(mensagem_erro);
     }//GEN-LAST:event_removerAtletismo
 
     private void alterarAtletismo(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_alterarAtletismo
@@ -202,19 +213,25 @@ public class JanelaCadastroAtletismo extends javax.swing.JFrame {
         String mensagem_erro = null;
         if(atletismo != null) mensagem_erro = controlador.alterarAtletismo(atletismo);
         else mensagem_erro = "Algum atributo do atletismo não foi informado";
-        if(mensagem_erro == null) informarSucesso("Alteração bem sucedida");
+        if(mensagem_erro == null){
+            Atletismo visão = getVisãoAlterada(atletismo.getModalidade());
+            atletismo_cadastrosComboBox.updateUI();
+            atletismo_cadastrosComboBox.setSelectedItem(visão);
+            informarSucesso("Alteração realizada com sucesso!");
+        }
         else informarErro(mensagem_erro);
     }//GEN-LAST:event_alterarAtletismo
 
     private void consultarAtletismo(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consultarAtletismo
-        String id = idTextField.getText();
+
+        Atletismo visão = (Atletismo) atletismo_cadastrosComboBox.getSelectedItem();
         String mensagem_erro = null;
         Atletismo atletismo = null;
-        if(!id.isEmpty()){
-            atletismo = Atletismo.buscarAtletismo(id);
+        if(visão != null){
+            atletismo = Atletismo.buscarAtletismo(visão.getId());
             if(atletismo == null) mensagem_erro = "Atletismo não encontrado";
 
-        }else mensagem_erro = "id não informado";
+        }else mensagem_erro = "Nenhum atletismo selecionado";
         if (mensagem_erro == null){
             String distância = atletismo.getDistância();
             if(distância == null) distância = "";
@@ -222,7 +239,9 @@ public class JanelaCadastroAtletismo extends javax.swing.JFrame {
             String modalidade = atletismo.getModalidade();
             if(modalidade == null) modalidade = "";
             modalidadeTextField.setText(modalidade);
-            
+            String id = atletismo.getId();
+            if(id == null) id = "";
+            idTextField.setText(id);
         } else informarErro(mensagem_erro);
     }//GEN-LAST:event_consultarAtletismo
 
@@ -231,8 +250,13 @@ public class JanelaCadastroAtletismo extends javax.swing.JFrame {
         String mensagem_erro = null;
         if(atletismo != null) mensagem_erro = controlador.inserirAtletismo(atletismo);
         else mensagem_erro = "Algum atributo do atletismo não foi informado";
-        if(mensagem_erro == null) informarSucesso("Inserção bem sucedida");
-        else informarErro(mensagem_erro);
+        if(mensagem_erro == null){
+            Atletismo visão = atletismo.getVisão();
+            atletismo_cadastrosComboBox.addItem(visão);
+           
+            atletismo_cadastrosComboBox.setSelectedItem(visão);
+            informarSucesso("Atletismo adicionado com sucesso!");
+        }else informarErro(mensagem_erro);
     }//GEN-LAST:event_inserirAtletismo
 
     private void modalidadeTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modalidadeTextFieldActionPerformed
@@ -241,7 +265,8 @@ public class JanelaCadastroAtletismo extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton alterarButton;
-    private javax.swing.JComboBox<String> atletismo_cadastrosComboBox;
+    private javax.swing.JLabel atletismo_cadastradosLabel;
+    private javax.swing.JComboBox<Atletismo> atletismo_cadastrosComboBox;
     private javax.swing.JPanel comandosPanel;
     private javax.swing.JButton consultarButton;
     private javax.swing.JLabel distânciaLabel;
@@ -276,6 +301,13 @@ public class JanelaCadastroAtletismo extends javax.swing.JFrame {
 
     private void informarErro(String mensagem) {
         JOptionPane.showMessageDialog(this, mensagem, "Erro", JOptionPane.ERROR_MESSAGE);
+    }
+
+    private Atletismo getVisãoAlterada(String modalidade) {
+        for(Atletismo visão: atletismos_cadastrados){
+            if(visão.getModalidade().equals(modalidade))return visão;
+        }
+        return null;
     }
     
 }
