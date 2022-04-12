@@ -8,6 +8,7 @@ import entidade.LocalCompetição;
 import entidade.LocalCompetição.Esporte;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -44,6 +45,7 @@ public class JanelaCadastroLocalCompetição extends javax.swing.JFrame {
         nome_do_localTextField = new javax.swing.JTextField();
         capacidadeTextField = new javax.swing.JTextField();
         endereçoTextField = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -84,6 +86,14 @@ public class JanelaCadastroLocalCompetição extends javax.swing.JFrame {
             }
         });
 
+        jButton1.setText("Inserir");
+        jButton1.setToolTipText("");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                inserirLocalCompetição(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -94,15 +104,19 @@ public class JanelaCadastroLocalCompetição extends javax.swing.JFrame {
                     .addComponent(esporteComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(sequencialTextField))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel2)
-                                .addComponent(jLabel3)
-                                .addComponent(jLabel4)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                    .addComponent(jLabel1)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(sequencialTextField))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel4)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jButton1)
+                                .addGap(29, 29, 29)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(nome_do_localTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE)
@@ -133,7 +147,9 @@ public class JanelaCadastroLocalCompetição extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(endereçoTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jButton1)
+                .addContainerGap(48, Short.MAX_VALUE))
         );
 
         pack();
@@ -154,6 +170,22 @@ public class JanelaCadastroLocalCompetição extends javax.swing.JFrame {
     private void endereçoTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_endereçoTextFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_endereçoTextFieldActionPerformed
+
+    private void inserirLocalCompetição(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inserirLocalCompetição
+        // TODO add your handling code here:
+         LocalCompetição local_competição = obterLocalCompetiçãoInformado();
+        String mensagem_erro = null;
+        if(local_competição != null) mensagem_erro = controlador.inserirAtletismo(local_competição);
+        else mensagem_erro = "Algum atributo do atletismo não foi informado";
+        if(mensagem_erro == null){
+            int sequencial  = LocalCompetição.últimoSequencial();
+            local_competição.setSequencial(sequencial);
+            modelo_lista_local_competição.addElement(local_competição.getVisão());
+            locais_cadastradosList.setSelectedIndex(modelo_lista_local_competição.size() -  1);
+            sequencialTextField.setText(""  + sequencial);
+            informarSucesso("Cadastrado com sucesso");
+        }else informarErro(mensagem_erro);
+    }//GEN-LAST:event_inserirLocalCompetição
 
     /**
      * @param args the command line arguments
@@ -194,6 +226,7 @@ public class JanelaCadastroLocalCompetição extends javax.swing.JFrame {
     private javax.swing.JTextField capacidadeTextField;
     private javax.swing.JTextField endereçoTextField;
     private javax.swing.JComboBox<String> esporteComboBox;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -215,5 +248,14 @@ public class JanelaCadastroLocalCompetição extends javax.swing.JFrame {
         capacidadeTextField.setText("");
         endereçoTextField.setText("");
         sequencialTextField.setText("");
+        esporteComboBox.setSelectedIndex(-1);
+    }
+
+    private void informarSucesso(String mensagem) {
+        JOptionPane.showMessageDialog(this, mensagem, "Informação", JOptionPane.INFORMATION_MESSAGE);
+    }
+
+    private void informarErro(String mensagem) {
+        JOptionPane.showMessageDialog(this, mensagem, "Erro", JOptionPane.ERROR_MESSAGE);
     }
 }

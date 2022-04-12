@@ -16,6 +16,25 @@ import persistência.BD;
  */
 public class LocalCompetição {
 
+    public static int últimoSequencial() {
+        String sql = "SELECT MAX(Sequencial) FROM LocalCompeticao";
+        ResultSet lista_resultados = null;
+        int sequencial = 0;
+        try {
+            
+        } catch (Exception e) {
+        }
+        
+    }
+
+    public void setSequencial(int sequencial) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    public Object getVisão() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
      public enum Esporte {atletismo, cerimônias, handebol, box, tênis_de_mesa, esgrima, badminton, caratê, judô, halterofilismo, futbool, outros}
     
     private int sequencial;
