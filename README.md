@@ -74,12 +74,3 @@ Conecte-se comigo:
 ## 📄 Licença
 
 Este repositório e seus conteúdos são disponibilizados para fins de estudo, aprendizado e portfólio pessoal. Todos os códigos e materiais são de minha autoria, a menos que explicitamente referenciado a fontes externas.
-
-
-**Instruções Finais para Você:**
-
-1.  **Preencha os `[ ]`:** Substitua todos os textos entre colchetes `[ ]` com suas informações específicas (seu nome, curso, tecnologias exatas, links, etc.).
-2.  **Ajuste os detalhes:** Se houver subpastas muito específicas que não foram mencionadas ou se a descrição de algum projeto não estiver 100% precisa, ajuste-as.
-3.  **Crie o arquivo:** Salve este texto como `README.md` (com "M" maiúsculo) na raiz do seu repositório.
-
-Com este README, seu repositório terá uma aparência muito mais profissional, clara e convidativa para quem o visitar! Boa sorte!
